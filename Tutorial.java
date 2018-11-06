@@ -1,4 +1,4 @@
-public class Tutorial(){
+public class Tutorial implements Session(){
 	private int size;
 	private int id;
 	private int vacancy;
