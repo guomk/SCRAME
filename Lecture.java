@@ -7,6 +7,6 @@ public class Lecture implements Session{
 		return vacancy;
 	}
 	public int getSize(){
-		return getSize;
+		return size;
 	}
 }

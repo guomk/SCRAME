@@ -11,10 +11,6 @@ public class Component {
         this.relativeWeightage = relativeWeightage;
     }
 
-    public Component(String name, float relativeWeightage) {
-
-    }
-
     public String getName() {
         return this.name;
     }
