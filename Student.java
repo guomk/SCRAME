@@ -4,15 +4,15 @@ public class Student {
     private String name;
     private String matricNo;
     private String school;
-    private String gender;
+    private int gender;
     private ArrayList<Record> recordList;
 
-    public Student(String name, String matricNo, String school, String gender) {
+    public Student(String name, String matricNo, String school, int gender) {
         this.name = name;
         this.matricNo = matricNo;
         this.school = school;
         this.gender = gender;
-        recordList = new ArrayList<Record>();
+        recordList = new ArrayList<>();
     }
 
     public void addRecord(Record record) {
@@ -32,7 +32,7 @@ public class Student {
         return this.school;
     }
 
-    public String getGender() {
+    public int getGender() {
         return this.gender;
     }
 }
