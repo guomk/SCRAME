@@ -16,4 +16,8 @@ public class Tutorial implements Session{
 	public int getSize(){
 		return size;
 	}
+
+	public boolean isFull() {
+		return vacancy == 0;
+	}
 }

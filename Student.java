@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Student {
     private String name;
@@ -6,6 +7,8 @@ public class Student {
     private String school;
     private int gender;
     private ArrayList<Record> recordList;
+    private HashMap<String, Integer> allCourses;
+    private int couseCount;
 
     public Student(String name, String matricNo, String school, int gender) {
         this.name = name;
@@ -13,12 +16,21 @@ public class Student {
         this.school = school;
         this.gender = gender;
         recordList = new ArrayList<>();
+        couseCount = 0;
     }
 
     public void addRecord(Record record) {
         recordList.add(record);
+        allCourses.put(record.getCourse().getName(), couseCount);
+        couseCount++;
     }
 
+    public boolean checkRegistered(String courseCode){
+        if(allCourses.containsKey(courseCode)){
+            return true;
+        }
+        else return false;
+    }
 
     public String getName() {
         return this.name;

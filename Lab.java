@@ -17,4 +17,8 @@ public class Lab{
 	public int getSize(){
 		return size;
 	}
+
+	public boolean isFull() {
+		return vacancy == 0;
+	}
 }

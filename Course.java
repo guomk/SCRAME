@@ -38,5 +38,24 @@ public class Course {
 		return component;
 	}
 
+	public boolean isFull(){
+		boolean labFull = true;
+		for(Lab a:lab){
+			if(!a.isFull()){
+				labFull = false;
+				break;
+			}
+		}
+		boolean tutorialFull = true;
+		for(Tutorial a:tutorial){
+			if(!a.isFull()){
+				tutorialFull = false;
+				break;
+			}
+		}
+		if(labFull || tutorialFull)
+			return true;
+		else return false;
+	}
 	
 }

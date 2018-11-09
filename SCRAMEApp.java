@@ -1,25 +1,27 @@
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
+import java.util.HashMap;
 
 public class SCRAMEApp {
 
     private static Scanner sc;
     private static ArrayList<Course> courseList;
+    private static int studentCount;
     private static ArrayList<Student> studentList;
-    private static HashSet<String> allMatricNos;
-    private static HashSet<String> allCourseCodes;
+    private static int courseCount;
+    private static HashMap<String, Integer> allMatricNos;
+    private static HashMap<String, Integer> allCourseCodes;
 
     public static void main(String[] args) throws IOException{
         sc = new Scanner(System.in);
         courseList = new ArrayList<>();
         studentList = new ArrayList<>();
-        allMatricNos = new HashSet<>();
-        allCourseCodes = new HashSet<>();
+        allMatricNos = new HashMap<>();
+        allCourseCodes = new HashMap<>();
+        courseCount = 0;
+        studentCount = 0;
         System.out.println("Welcome to the SCRAME System! It's a good day, isn't it?");
         System.out.println();
         while(true){
@@ -91,7 +93,7 @@ public class SCRAMEApp {
         String name = sc.next();
         System.out.println("Please enter the Matriculation Number of " + name);
         String matricNo = sc.next();
-        if(allMatricNos.contains(matricNo)){
+        if(allMatricNos.containsKey(matricNo)){
             System.out.println("This Matriculation Number already exists in the system records, you can proceed with other operations\n");
             return;
         }
@@ -119,7 +121,8 @@ public class SCRAMEApp {
             }
         }
         studentList.add(new Student(name, matricNo, school, gender));
-        allMatricNos.add(matricNo);
+        allMatricNos.put(matricNo, studentCount);
+        studentCount++;
         System.out.println("You've successfully added the student " + name + " with Matric No. " + matricNo + " to the SCRAME System!");
         System.out.println();
         System.out.println("Below is the list of all current students, there are altogether " + studentList.size() + " students in the system.");
@@ -134,7 +137,7 @@ public class SCRAMEApp {
     private static void addCourse(){
         System.out.println("Please enter the Course Code");
         String name = sc.next();
-        if(allMatricNos.contains(name)){
+        if(allMatricNos.containsKey(name)){
             System.out.println("This Course Code already exists in the system records, you can proceed with other operations\n");
             return;
         }
@@ -302,7 +305,8 @@ public class SCRAMEApp {
             System.out.println("All " + number + " lab sessions have been created\n");
         }
         courseList.add(new Course(name, faculty, tutorialList, labList));
-        allCourseCodes.add(name);
+        allCourseCodes.put(name, courseCount);
+        courseCount++;
         System.out.println("You've successfully added the course " + name + " with coordinator " + faculty + " to the SCRAME System!");
         System.out.println();
         System.out.println("Below is the list of all courses, there are altogether " + courseList.size() + " courses in the system.");
@@ -315,7 +319,30 @@ public class SCRAMEApp {
     }
 
     private static void addStudentToCourse(){
-
+        System.out.println("Please enter the Matriculation Number of the student");
+        String matricNo = sc.next();
+        if(!allMatricNos.containsKey(matricNo)){
+            System.out.println("There's no student in the system with Matric Number " + matricNo + ", please check the correctness of the input\n");
+            return;
+        }
+        Student currentStudent = studentList.get(allMatricNos.get(matricNo));
+        System.out.println("Please enter the Course Code of the course you want to register for " + currentStudent.getName());
+        String courseCode = sc.next();
+        if(!allCourseCodes.containsKey(courseCode)){
+            System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
+            return;
+        }
+        if(currentStudent.checkRegistered(courseCode)){
+            System.out.println(currentStudent.getName() + " has already been registered with the course " + courseCode + ", there's no need to add again");
+            return;
+        }
+        Course currentCourse = courseList.get(allCourseCodes.get(courseCode));
+        if(currentCourse.isFull()) {
+            System.out.println("The course " + courseCode + " has no vacancy left, please try another course");
+        }
+        else{
+            
+        }
     }
 
     private static void checkVacancy(){
