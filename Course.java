@@ -2,13 +2,13 @@ import java.util.ArrayList;
 public class Course {
 	private String name;
 	private Component component;
-	private String faculty;
+	private Faculty faculty;
 	private ArrayList<Record> recordList;
 	private ArrayList<Lab> lab;
 	private ArrayList<Tutorial> tutorial;
 
 
-	public Course(String name, String faculty, ArrayList<Tutorial> tutorial, ArrayList<Lab> lab){
+	public Course(String name, Faculty faculty, ArrayList<Tutorial> tutorial, ArrayList<Lab> lab){
 		this.name = name;
 		this.faculty = faculty;
 		this.lab = lab;

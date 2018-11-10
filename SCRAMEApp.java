@@ -13,8 +13,10 @@ public class SCRAMEApp {
     private static int courseCount;
     private static HashMap<String, Integer> allMatricNos;
     private static HashMap<String, Integer> allCourseCodes;
+    private static ArrayList<Faculty> facultyList;
+    private static HashMap<Integer, Integer>  allfaculties;
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args){
         sc = new Scanner(System.in);
         courseList = new ArrayList<>();
         studentList = new ArrayList<>();
@@ -141,9 +143,12 @@ public class SCRAMEApp {
             System.out.println("This Course Code already exists in the system records, you can proceed with other operations\n");
             return;
         }
-        System.out.println("Please enter the name of the course coordinator for " + name);
-        String faculty = sc.nextLine();
-        faculty = sc.nextLine();
+        System.out.println("Please enter the ID of the course coordinator for " + name);
+        String ID = sc.next();
+        while(!allfaculties.containsKey(ID)){
+            System.out.println("There's no faculty in the system with ID " + ID + ", please check the correctness of the input and enter again\n");
+            ID = sc.next();
+        }
         ArrayList<Tutorial> tutorialList = new ArrayList<>();
         int choice = 0;
         while(choice == 0){
@@ -304,10 +309,11 @@ public class SCRAMEApp {
             }
             System.out.println("All " + number + " lab sessions have been created\n");
         }
-        courseList.add(new Course(name, faculty, tutorialList, labList));
+        Faculty currentFaculty = facultyList.get(allfaculties.get(ID));
+        courseList.add(new Course(name, currentFaculty, tutorialList, labList));
         allCourseCodes.put(name, courseCount);
         courseCount++;
-        System.out.println("You've successfully added the course " + name + " with coordinator " + faculty + " to the SCRAME System!");
+        System.out.println("You've successfully added the course " + name + " with coordinator " + currentFaculty.getName() + " to the SCRAME System!");
         System.out.println();
         System.out.println("Below is the list of all courses, there are altogether " + courseList.size() + " courses in the system.");
         int count = 1;
@@ -339,10 +345,9 @@ public class SCRAMEApp {
         Course currentCourse = courseList.get(allCourseCodes.get(courseCode));
         if(currentCourse.isFull()) {
             System.out.println("The course " + courseCode + " has no vacancy left, please try another course");
+            return;
         }
-        else{
-            
-        }
+        
     }
 
     private static void checkVacancy(){
