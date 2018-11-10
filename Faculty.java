@@ -16,7 +16,7 @@ public class Faculty {
         this.name = name;
         this.title = title;
         this.description = desc;
-        this.id;
+        this.id = id;
     }
 
     public String getName() {
