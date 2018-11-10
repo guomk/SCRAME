@@ -347,7 +347,7 @@ public class SCRAMEApp {
             System.out.println("The course " + courseCode + " has no vacancy left, please try another course");
             return;
         }
-        
+
     }
 
     private static void checkVacancy(){
