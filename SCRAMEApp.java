@@ -1,8 +1,5 @@
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.HashMap;
+import java.io.*;
+import java.util.*;
 
 public class SCRAMEApp {
 
@@ -14,9 +11,24 @@ public class SCRAMEApp {
     private static HashMap<String, Integer> allMatricNos;
     private static HashMap<String, Integer> allCourseCodes;
     private static ArrayList<Faculty> facultyList;
-    private static HashMap<Integer, Integer>  allfaculties;
+    private static HashMap<String, Integer>  allfaculties;
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
+        facultyList = new ArrayList<>();
+        allfaculties = new HashMap<>();
+        File faculties = new File("./FacultyList");
+        BufferedReader br = new BufferedReader(new FileReader(faculties));
+        int n = Integer.parseInt(new StringTokenizer(br.readLine()).nextToken());
+        br.read();
+        for(int i = 0; i < n; i++){
+            String id = br.readLine();
+            String name = br.readLine();
+            String title = br.readLine();
+            String description = br.readLine();
+            allfaculties.put(id, i);
+            facultyList.add(new Faculty(name, title, description, id));
+            br.readLine();
+        }
         sc = new Scanner(System.in);
         courseList = new ArrayList<>();
         studentList = new ArrayList<>();
