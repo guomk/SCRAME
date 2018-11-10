@@ -92,7 +92,8 @@ public class SCRAMEApp {
 
     private static void addStudent(){
         System.out.println("Please enter the student's name");
-        String name = sc.next();
+        sc.nextLine();
+        String name = sc.nextLine();
         System.out.println("Please enter the Matriculation Number of " + name);
         String matricNo = sc.next();
         if(allMatricNos.containsKey(matricNo)){

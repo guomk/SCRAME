@@ -3,12 +3,11 @@ import java.util.ArrayList;
 public class Component {
 
     private String name;
-    private float relativeWeightage;
     private ArrayList<Component> subComponents;
+    private float exam_weightage;
 
     public Component(String name, float relativeWeightage) {
         this.name = name;
-        this.relativeWeightage = relativeWeightage;
     }
 
     public String getName() {
