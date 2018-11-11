@@ -26,6 +26,8 @@ public class Course implements Serializable {
 		this.tutorialDic = tutorialDic;
 		this.labDic = labDic;
 		this.studentCount = 0;
+		recordList = new ArrayList<>();
+		allStudents = new HashMap<>();
 	}
 	public String getName(){
 		return name;
