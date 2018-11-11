@@ -372,7 +372,28 @@ public class SCRAMEApp {
     }
 
     private static void enterAssessmentWeightage(){
+        double exam_weightage;
+        int numOfCAs;
+        String name;
+        double percent;
+        CA ca;
+        Component component;
+        System.out.println("Please enter the weightage of the exam");
+        exam_weightage = sc.nextDouble();
+        System.out.println("Please enter the number of CAs");
+        numOfCAs = sc.nextInt();
+        component = new Component(exam_weightage, numOfCAs);
+        ca = component.getCa();
+        for (int i = 0; i < numOfCAs; i++) {
+            System.out.println("Enter name for CA(" + (i+1) + ")");
+            name = sc.next();
+            ca.setName(name, i);
+            System.out.println("Enter weightage of CA(" + (i+1) + ") (consider all CAs as 1)");
+            percent = sc.nextDouble();
+            ca.setWeightage(percent, i);
+        }
 
+        component.printComponents();
     }
 
     private static void enterCourseWorkMark(){
