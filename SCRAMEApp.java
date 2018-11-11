@@ -454,14 +454,14 @@ public class SCRAMEApp {
     private static void printStudentList(){
     	String courseCode;
     	int choice = 0;
-    	System.out.println("Please enter the couse ID of which you want to print the student list:");
+    	System.out.println("Please enter the Coursecode of which you want to print the student list:");
+
     	courseCode = sc.next();
-    	while(true){
-    	if(!allMatricNos.containsKey(courseCode))
+    	if(!allCourseCodes.containsKey(courseCode)) {
             System.out.println("This Course Code does not exist in the system records, you can proceed with other operations\n");
-        else
-        	break;
+            return;
         }
+
         while(choice == 0){
         System.out.println("Please chhoose the sequence do you want to print the studnet lise:");
         System.out.println("1.By lecture");
