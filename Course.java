@@ -46,6 +46,10 @@ public class Course {
 		return component;
 	}
 
+	public void setComponent(Component component) {
+		this.component = component;
+	}
+
 	public boolean isFull(){
 		boolean labFull = true;
 		for(Lab a:lab){
