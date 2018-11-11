@@ -25,7 +25,7 @@ public class Tutorial implements Session{
 		return vacancy == 0;
 	}
 
-	public void registerd(){
+	public void registered(){
 		vacancy--;
 	}
 

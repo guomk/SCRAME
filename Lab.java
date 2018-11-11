@@ -14,7 +14,7 @@ public class Lab{
 		return id;
 	}
 
-	public int getVcancy(){
+	public int getVacancy(){
 		return vacancy;
 	}
 
