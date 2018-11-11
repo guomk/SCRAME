@@ -9,6 +9,10 @@ public class Tutorial implements Session{
 		this.vacancy = size;
 	}
 
+	public int getID(){
+		return id;
+	}
+	
 	public int getVacancy(){
 		return vacancy;
 	}
@@ -20,4 +24,9 @@ public class Tutorial implements Session{
 	public boolean isFull() {
 		return vacancy == 0;
 	}
+
+	public void registerd(){
+		vacancy--;
+	}
+
 }

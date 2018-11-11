@@ -10,6 +10,10 @@ public class Lab{
 		this.vacancy = size;
 	}
 
+	public int getID(){
+		return id;
+	}
+
 	public int getVcancy(){
 		return vacancy;
 	}
@@ -20,5 +24,9 @@ public class Lab{
 
 	public boolean isFull() {
 		return vacancy == 0;
+	}
+
+	public void registered(){
+		vacancy--;
 	}
 }
