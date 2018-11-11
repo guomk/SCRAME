@@ -1,4 +1,6 @@
-public class Tutorial implements Session{
+import java.io.Serializable;
+
+public class Tutorial implements Session, Serializable {
 	private int size;
 	private int id;
 	private int vacancy;

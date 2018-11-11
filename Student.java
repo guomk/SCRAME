@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Student {
+public class Student implements Serializable {
     private String name;
     private String matricNo;
     private String school;
