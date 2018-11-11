@@ -669,10 +669,7 @@ public class SCRAMEApp {
 
     private static void printStudentTranscript(){
         Student student = getStudent();
-        ArrayList<Record> records = student.getRecordList();
-        for (Record record : records) {
-            record.getCourse().getComponent().printMarks();
-        }
+        student.printTranscript();
     }
 
     private static Course getCourse() {
