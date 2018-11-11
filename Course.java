@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Course {
 	private String name;
 	private Component component;
@@ -7,6 +9,7 @@ public class Course {
 	private ArrayList<Lab> lab;
 	private ArrayList<Tutorial> tutorial;
 	private Lecture lecture;
+	private HashMap<String, Integer> allStudents;
 
 
 	public Course(String name, Faculty faculty, Lecture lecture, ArrayList<Tutorial> tutorial, ArrayList<Lab> lab){
@@ -85,6 +88,14 @@ public class Course {
 		if(labFull || tutorialFull || lectureFull)
 			return true;
 		else return false;
+	}
+
+	public boolean checkTutorial(int id){
+		for(Tutorial t : tutorial){
+			if(id == t.getID())
+				return true;
+		}
+		return false;
 	}
 	
 }
