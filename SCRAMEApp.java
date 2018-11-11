@@ -464,6 +464,8 @@ public class SCRAMEApp {
                     currentRecord.addSession(currentCourse.getLab().get(currentCourse.checkLab(id)));
                 }
             }
+            currentCourse.addRecord(currentRecord);
+            currentStudent.addRecord(currentRecord);
             System.out.println("Congratulation, the student " + currentStudent.getName() + " has been successfully registered with the course " + currentCourse.getName() + "(including lab & tutorial).");
         }
 
@@ -480,7 +482,7 @@ public class SCRAMEApp {
         System.out.println("Lecture vacancy = " + currentCourse.getLecture().getVacancy());
         System.out.println("This course has " + currentCourse.getTutorialNumber() + " tutorials and " + currentCourse.getLabNumber() + " labs.");
         for (int i = 1; i <= currentCourse.getTutorialNumber(); i++){
-            System.out.println("Tuorial group " + i + ": id = " + currentCourse.getTutorial().get(i-1).getID() + " vacancy = " + currentCourse.getTutorial().get(i-1).getVacancy());
+            System.out.println("Tutorial group " + i + ": id = " + currentCourse.getTutorial().get(i-1).getID() + " vacancy = " + currentCourse.getTutorial().get(i-1).getVacancy());
         }
         for (int j = 1; j <= currentCourse.getLabNumber(); j++){
             System.out.println("Lab group " + j + ": id = " + currentCourse.getLab().get(j-1).getID() + " vacancy = " + currentCourse.getLab().get(j-1).getVacancy());
@@ -501,7 +503,7 @@ public class SCRAMEApp {
         }
 
         while(choice == 0){
-        System.out.println("Please chhoose the sequence do you want to print the studnet lise:");
+        System.out.println("Please choose the sequence do you want to print the student list:");
         System.out.println("1.By lecture");
         System.out.println("2.By tutorial");
         System.out.println("3.By laboratory");
