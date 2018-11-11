@@ -368,6 +368,40 @@ public class SCRAMEApp {
     }
 
     private static void printStudentList(){
+    	string courseCode;
+    	int choice = 0;
+    	System.out.println("Please enter the couse ID of which you want to print the student list:");
+    	courseCode = sc.next();
+    	while(1){
+    	if(!allMatricNos.containsKey(courseCode))
+            System.out.println("This Course Code does not exist in the system records, you can proceed with other operations\n");
+        else
+        	break;
+        }
+        while(choice == 0){
+        System.out.println("Please chhoose the sequence do you want to print the studnet lise:");
+        System.out.println("1.By lecture");
+        System.out.println("2.By tutorial");
+        System.out.println("3.By laboratory");
+        try{
+                choice = sc.nextInt();
+            }
+            catch (Exception e){
+                sc.next();
+                choice = 0;
+                System.out.println("The input is not valid, please enter 1 or 2 or 3\n");
+                continue;
+            }
+        if(choice != 1 && choice !=2 && choice != 3){
+        	    choice = 0;
+                System.out.println("The input is not valid, please enter 1 or 2 or 3\n");
+                continue;
+        }
+    }
+    if(choice ==1){
+    	Course currentCourse = courseList.get(allCourseCodes.get(courseCode));
+
+    }
 
     }
 
