@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.*;
 import java.util.zip.CheckedOutputStream;
+import java.io.*;
 
 public class SCRAMEApp {
 
@@ -706,7 +707,7 @@ public class SCRAMEApp {
     }
 
 
-    private void pressAnyKeyToContinue()
+    private static void pressAnyKeyToContinue()
     {
         System.out.println("Press Enter key to continue...");
         try
@@ -715,5 +716,39 @@ public class SCRAMEApp {
         }
         catch(Exception e)
         {}
+    }
+
+    private static void saveObject(Object o) {
+        String outPath = "";
+        try {
+            FileOutputStream fileOut = new FileOutputStream(outPath);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(o);
+            out.close();
+            fileOut.close();
+            System.out.println("Serialized data is saved in " + outPath);
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
+
+    }
+
+    private static Object readObject(Object o) {
+        String inPath = "";
+        try {
+            FileInputStream fileIn = new FileInputStream(inPath);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            Object object = in.readObject();
+            in.close();
+            fileIn.close();
+            return object;
+        } catch (IOException i) {
+            i.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException c) {
+            System.out.println("Class not found");
+            c.printStackTrace();
+            return null;
+        }
     }
 }
