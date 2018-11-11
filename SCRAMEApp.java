@@ -15,7 +15,7 @@ public class SCRAMEApp {
 
     public static void main(String[] args) throws IOException{
         facultyList = new ArrayList<>();
-        allfaculties = new HashMap<>();
+        allfaculties = new HashMap<>();gg
         File faculties = new File("./FacultyList");
         BufferedReader br = new BufferedReader(new FileReader(faculties));
         int n = Integer.parseInt(new StringTokenizer(br.readLine()).nextToken());
