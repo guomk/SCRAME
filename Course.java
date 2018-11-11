@@ -30,8 +30,16 @@ public class Course {
 		return lab;
 	}
 
+	public int getLabNumber(){
+		return lab.size();
+	}
+
 	public ArrayList<Tutorial> getTutorial(){
 		return tutorial;
+	}
+
+	public int getTutorialNumber(){
+		return tutorial.size();
 	}
 
 	public Component getComponent(){
