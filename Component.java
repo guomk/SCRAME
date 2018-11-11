@@ -2,24 +2,36 @@ import java.util.ArrayList;
 
 public class Component {
 
-    private String name;
-    private float relativeWeightage;
-    private ArrayList<Component> subComponents;
+    private double examWeightage;
+    private CA ca;
+    private int numOfCAs;
+    private int examMark;
 
-    public Component(String name, float relativeWeightage) {
-        this.name = name;
-        this.relativeWeightage = relativeWeightage;
+    public Component(double exam_weightage, int numOfCAs) {
+        this.examWeightage = exam_weightage;
+        this.numOfCAs = numOfCAs;
+        this.ca = new CA(numOfCAs, 1-exam_weightage);
     }
 
-    public String getName() {
-        return this.name;
+
+    public CA getCa() {
+        return ca;
     }
 
-    public float getRelativeWeightage() {
-        return this.relativeWeightage;
+    public void printComponents() {
+        System.out.println("Component of the course: ");
+        System.out.format("%12s | %.2f\n", "Exam",  examWeightage);
+        for (int i = 0; i < numOfCAs; i++) {
+            System.out.format("%12s | %.2f\n", ca.getName(i), ca.getWeightage(i));
+        }
+        System.out.println();
     }
 
-    public ArrayList<Component> getSubComponents() {
-        return this.subComponents;
+    public void setExamMark(int examMark) {
+        this.examMark = examMark;
+    }
+
+    public void printMarks() {
+        
     }
 }
