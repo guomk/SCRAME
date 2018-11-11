@@ -1,5 +1,7 @@
-public class Lab{
-	
+import java.io.Serializable;
+
+public class Lab implements Serializable {
+
 	private int vacancy;
 	private int size;
 	private int id;

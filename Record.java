@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Record {
+public class Record implements Serializable {
 
     private Student student;
     private Course course;
@@ -18,5 +19,9 @@ public class Record {
 
     public Student getStudent() {
         return this.student;
+    }
+
+    public void addSession(Session s){
+        sessionList.add(s);
     }
 }

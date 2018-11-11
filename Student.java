@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Student {
+public class Student implements Serializable {
     private String name;
     private String matricNo;
     private String school;
@@ -16,6 +17,7 @@ public class Student {
         this.school = school;
         this.gender = gender;
         recordList = new ArrayList<>();
+        allCourses = new HashMap<>();
         couseCount = 0;
     }
 
@@ -68,4 +70,5 @@ public class Student {
     public ArrayList<Record> getRecordList() {
         return recordList;
     }
+
 }

@@ -1,4 +1,6 @@
-public class Faculty {
+import java.io.Serializable;
+
+public class Faculty implements Serializable {
 
     private String name;
     private String title;

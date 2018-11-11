@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Component {
+public class Component implements Serializable {
 
     private double examWeightage;
     private CA ca;
