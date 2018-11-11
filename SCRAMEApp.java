@@ -651,12 +651,23 @@ public class SCRAMEApp {
     }
 
     private static void enterCourseWorkMark(){
+        ArrayList<Record> courses;
+        CA ca = null;
         Course course;
-        CA ca;
+        Student student;
+        student = getStudent();
+        courses = student.getRecordList();
+
 
 //      For production
-        course = getCourse();
-        ca = course.getComponent().getCa();
+
+        for (Record record : courses) {
+            course = record.getCourse();
+            ca = course.getComponent().getCa();
+            ca.setMarks();
+            ca.printMarks();
+        }
+
 //---------------------------------------------------------------end of production section
 
         // For testing purpose
@@ -667,8 +678,7 @@ public class SCRAMEApp {
 //        ca.setWeightage(0.6, 1);
         // end of testing section
 
-        ca.setMarks();
-        ca.printMarks();
+
     }
 
     private static void enterExamMark(){
