@@ -32,4 +32,6 @@ public class Lab implements Serializable,Session {
 	public void registered(){
 		vacancy--;
 	}
+
+	public boolean ifEmpty(){return size == vacancy;}
 }

@@ -144,4 +144,8 @@ public class Record implements Serializable {
     public void addSession(Session s){
         sessionList.add(s);
     }
+
+    public ArrayList getSessionList(){
+        return sessionList;
+    }
 }

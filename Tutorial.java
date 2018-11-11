@@ -31,4 +31,7 @@ public class Tutorial implements Session, Serializable {
 		vacancy--;
 	}
 
+	public boolean ifEmpty(){return size == vacancy;}
+
+
 }
