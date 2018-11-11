@@ -31,7 +31,9 @@ public class Component {
         this.examMark = examMark;
     }
 
+
+
     public void printMarks() {
-        
+
     }
 }

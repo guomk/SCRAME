@@ -35,9 +35,27 @@ public class CA {
 
     public void setMarks() {
         Scanner sc = new Scanner(System.in);
+        int mark = -1;
         for (int i = 0; i < numOfCas; i++) {
             System.out.printf("Enter mark for %s\n", getName(i));
-            marks[i] = sc.nextInt();
+            mark = -1;
+            while (mark == -1) {
+                try {
+                    mark = sc.nextInt();
+                }
+                catch (Exception e) {
+                    sc.next();
+                    mark = -1;
+                    System.out.println("The input is not valid, please enter an integer between 0 and 100\n");
+                    continue;
+                }
+                if (mark < 0 || mark > 100) {
+                    mark = -1;
+                    System.out.println("The input is not valid, please enter an integer between 0 and 100\n");
+                    continue;
+                }
+            }
+            marks[i] = mark;
         }
     }
 
@@ -47,7 +65,9 @@ public class CA {
 
     public void printMarks() {
         for (int i = 0; i < numOfCas; i++) {
-            System.out.format("%12s | %d\n", getName(i), getMarks(i));
+            System.out.format("%12s | %d\n", caName.get(i), marks[i]);
         }
+        System.out.println("--------------------------------------------");
+        System.out.println();
     }
 }

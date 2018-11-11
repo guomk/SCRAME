@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.util.zip.CheckedOutputStream;
 
 public class SCRAMEApp {
 
@@ -456,35 +457,120 @@ public class SCRAMEApp {
     }
 
     private static void enterAssessmentWeightage(){
-        double exam_weightage;
-        int numOfCAs;
+        double exam_weightage = 0;
+        int numOfCAs = -1;
+        int input;
         String name;
-        double percent;
+        double percent = 0;
         CA ca;
+        Course course;
         Component component;
-        System.out.println("Please enter the weightage of the exam");
-        exam_weightage = sc.nextDouble();
+
+
+        course = getCourse();
+
+        System.out.println("Please enter the weightage of the exam (0-100)");
+        while (exam_weightage == 0) {
+            try {
+                input = sc.nextInt();
+                exam_weightage = (double)input / 100;
+            }
+            catch (Exception e) {
+                sc.next();
+                exam_weightage = 0;
+                System.out.println("The input is not valid, please enter an integer between 0 and 100\n");
+                continue;
+            }
+            if (input > 100 || input < 0) {
+                exam_weightage = 0;
+                System.out.println("The input is not valid, please enter an integer between 0 and 100\n");
+            }
+        }
+
         System.out.println("Please enter the number of CAs");
-        numOfCAs = sc.nextInt();
+        while (numOfCAs == -1) {
+            try {
+                numOfCAs = sc.nextInt();
+            }
+            catch (Exception e) {
+                sc.next();
+                numOfCAs = -1;
+                System.out.println("The input is not valid, please enter an positive integer");
+                continue;
+            }
+        }
         component = new Component(exam_weightage, numOfCAs);
         ca = component.getCa();
         for (int i = 0; i < numOfCAs; i++) {
+            percent = 0;
             System.out.println("Enter name for CA(" + (i+1) + ")");
             name = sc.next();
             ca.setName(name, i);
-            System.out.println("Enter weightage of CA(" + (i+1) + ") (consider all CAs as 1)");
-            percent = sc.nextDouble();
+            System.out.println("Enter weightage of " + name + " (consider all CAs as 100)");
+            while (percent == 0) {
+                try {
+                    percent = sc.nextInt();
+                    percent /= 100;
+                }
+                catch (Exception e) {
+                    sc.next();
+                    percent = 0;
+                    System.out.println("The input is not valid, please enter a float number\n");
+                    continue;
+                }
+                if (percent > 1 || percent < 0) {
+                     percent = 0;
+                     System.out.println("The input is not valid, please enter a float number between 0 and 1\n");
+                }
+            }
             ca.setWeightage(percent, i);
         }
+        course.setComponent(component);
 
         component.printComponents();
     }
 
     private static void enterCourseWorkMark(){
+        Course course;
+        CA ca;
 
+//      For production
+        course = getCourse();
+        ca = course.getComponent().getCa();
+//---------------------------------------------------------------end of production section
+
+        // For testing purpose
+//        ca = new CA(2, 0.4);
+//        ca.setName("CA1", 0);
+//        ca.setName("CA2", 1);
+//        ca.setWeightage(0.4, 0);
+//        ca.setWeightage(0.6, 1);
+        // end of testing section
+
+        ca.setMarks();
+        ca.printMarks();
     }
 
     private static void enterExamMark(){
+        Course course = getCourse();
+        Component component = course.getComponent();
+        int mark = 0;
+        System.out.println("Enter exam result for " + course.getName());
+        while (mark == 0) {
+            try {
+                mark = sc.nextInt();
+            }
+            catch (Exception e) {
+                sc.next();
+                mark = 0;
+                System.out.println("The input is not valid, please enter an integer between 0 and 100\n");
+                continue;
+            }
+            if (mark > 100 || mark < 0) {
+                mark = 0;
+                System.out.println("The input is not valid, please enter an integer between 0 and 100\n");
+            }
+        }
 
     }
 
@@ -494,5 +580,26 @@ public class SCRAMEApp {
 
     private static void printStudentTranscript(){
 
+    }
+
+
+    private static Course getCourse() {
+        System.out.println("Enter the course code you want to edit");
+        String courseCode;
+        int idx;
+        Course course;
+        while (true) {
+            courseCode = sc.next();
+            try {
+                idx = allCourseCodes.get(courseCode);
+            }
+            catch (Exception e) {
+                System.out.println("The course you are looking for is not valid");
+                continue;
+            }
+            break;
+        }
+        course = courseList.get(idx);
+        return course;
     }
 }

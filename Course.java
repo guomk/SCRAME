@@ -52,6 +52,10 @@ public class Course {
 		return component;
 	}
 
+	public void setComponent(Component component) {
+		this.component = component;
+	}
+
 	public boolean isFull(){
 		boolean lectureFull = true;
 		Lecture lecture = this.getLecture();
