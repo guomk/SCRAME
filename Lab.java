@@ -1,4 +1,4 @@
-public class Lab{
+public class Lab implements Session{
 	
 	private int vacancy;
 	private int size;

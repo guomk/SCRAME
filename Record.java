@@ -19,4 +19,8 @@ public class Record {
     public Student getStudent() {
         return this.student;
     }
+
+    public void addSession(Session s){
+        sessionList.add(s);
+    }
 }
