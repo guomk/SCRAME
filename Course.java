@@ -6,11 +6,13 @@ public class Course {
 	private ArrayList<Record> recordList;
 	private ArrayList<Lab> lab;
 	private ArrayList<Tutorial> tutorial;
+	private Lecture lecture;
 
 
-	public Course(String name, Faculty faculty, ArrayList<Tutorial> tutorial, ArrayList<Lab> lab){
+	public Course(String name, Faculty faculty, Lecture lecture, ArrayList<Tutorial> tutorial, ArrayList<Lab> lab){
 		this.name = name;
 		this.faculty = faculty;
+		this.lecture = lecture;
 		this.lab = lab;
 		this.tutorial = tutorial;
 	}
@@ -24,6 +26,10 @@ public class Course {
 
 	public ArrayList<Record> getRecordList(){
 		return recordList;
+	}
+
+	public Lecture getLecture(){
+		return lecture;
 	}
 
 	public ArrayList<Lab> getLab(){
@@ -51,21 +57,32 @@ public class Course {
 	}
 
 	public boolean isFull(){
-		boolean labFull = true;
-		for(Lab a:lab){
-			if(!a.isFull()){
-				labFull = false;
-				break;
+		boolean lectureFull = true;
+		Lecture lecture = this.getLecture();
+		if (!lecture.isFull()) {
+			lectureFull = false;
+		}
+		boolean labFull = false;
+		if(!lab.isEmpty()) {
+			labFull = true;
+			for (Lab a : lab) {
+				if (!a.isFull()) {
+					labFull = false;
+					break;
+				}
 			}
 		}
-		boolean tutorialFull = true;
-		for(Tutorial a:tutorial){
-			if(!a.isFull()){
-				tutorialFull = false;
-				break;
+		boolean tutorialFull = false;
+		if (!tutorial.isEmpty()) {
+			tutorialFull = true;
+			for (Tutorial a : tutorial) {
+				if (!a.isFull()) {
+					tutorialFull = false;
+					break;
+				}
 			}
 		}
-		if(labFull || tutorialFull)
+		if(labFull || tutorialFull || lectureFull)
 			return true;
 		else return false;
 	}
