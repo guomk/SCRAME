@@ -656,14 +656,40 @@ public class SCRAMEApp {
         ArrayList<Record> records;
         Student student;
         student = getStudent();
+        String courseCode;
+
+
         records = student.getRecordList();
+        boolean valid = true;
+
+
+        System.out.println("Please enter the Course Code of the course you want to enter course work mark");
+        courseCode = sc.next();
+        if(!allCourseCodes.containsKey(courseCode)){
+            valid = false;
+            System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
+        }
+        while (!valid) {
+            System.out.println("Please enter the Course Code of the course you want to enter course work mark");
+            courseCode = sc.next();
+            if(!allCourseCodes.containsKey(courseCode)){
+                System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
+                continue;
+            }
+            valid = true;
+
+        }
 
 
 //      For production
 
         for (Record record : records) {
-            record.setCaMarks();
-            record.printCaMarks();
+            if (record.getCourse().getName().equals(courseCode)) {
+                record.setCaMarks();
+                record.printCaMarks();
+                break;
+            }
+
         }
 
 //---------------------------------------------------------------end of production section
@@ -683,28 +709,38 @@ public class SCRAMEApp {
         ArrayList<Record> records;
         Student student;
         student = getStudent();
-        records = student.getRecordList();
+        String courseCode;
         int mark;
-        for (Record record : records) {
-            mark = 0;
-            System.out.println("Enter exam result for " + record.getCourse().getName());
-            while (mark == 0) {
-                try {
-                    mark = sc.nextInt();
-                }
-                catch (Exception e) {
-                    sc.next();
-                    mark = 0;
-                    System.out.println("The input is not valid, please enter an integer between 0 and 100\n");
-                    continue;
-                }
-                if (mark > 100 || mark < 0) {
-                    mark = 0;
-                    System.out.println("The input is not valid, please enter an integer between 0 and 100\n");
-                }
+
+        records = student.getRecordList();
+        boolean valid = true;
+
+
+        System.out.println("Please enter the Course Code of the course you want to enter course work mark");
+        courseCode = sc.next();
+        if(!allCourseCodes.containsKey(courseCode)){
+            valid = false;
+            System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
+        }
+        while (!valid) {
+            System.out.println("Please enter the Course Code of the course you want to enter course work mark");
+            courseCode = sc.next();
+            if(!allCourseCodes.containsKey(courseCode)){
+                System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
+                continue;
             }
-            record.setExamMark(mark);
-            record.printExamMark();
+            valid = true;
+
+        }
+
+
+        for (Record record : records) {
+            if (record.getCourse().getName().equals(courseCode)) {
+                record.setExamMark();
+                record.printExamMark();
+                break;
+            }
+
         }
 
     }
