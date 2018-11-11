@@ -13,6 +13,7 @@ public class Course implements Serializable {
 	private HashMap<String, Integer> allStudents;
 	private HashMap<Integer, Integer> labDic;
 	private HashMap<Integer, Integer> tutorialDic;
+	private int studentCount;
 
 
 
@@ -24,6 +25,7 @@ public class Course implements Serializable {
 		this.tutorial = tutorial;
 		this.tutorialDic = tutorialDic;
 		this.labDic = labDic;
+		this.studentCount = 0;
 	}
 	public String getName(){
 		return name;
@@ -117,5 +119,11 @@ public class Course implements Serializable {
 
 	public HashMap<Integer, Integer> getLabDic() {
 		return labDic;
+	}
+
+	public void addRecord(Record record) {
+		recordList.add(record);
+		allStudents.put(record.getStudent().getMatricNo(), studentCount);
+		studentCount++;
 	}
 }
