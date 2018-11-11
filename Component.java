@@ -31,9 +31,23 @@ public class Component {
         this.examMark = examMark;
     }
 
-
+    public void printExamMark() {
+        System.out.format("%12s | %d\n", "Exam", examMark);
+        System.out.println("--------------------------------------------");
+        System.out.println();
+    }
 
     public void printMarks() {
+        System.out.format("%12s | %d\n", "Exam", examMark);
+        for (int i = 0; i < numOfCAs; i++) {
+            System.out.format("%12s | %d\n", ca.getName(i), ca.getMarks(i));
+        }
+        System.out.println("--------------------------------------------");
+        System.out.println();
 
+    }
+
+    public double getOverallMark() {
+        return examWeightage * examMark + ca.getOverallCA();
     }
 }

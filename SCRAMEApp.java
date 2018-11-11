@@ -412,7 +412,8 @@ public class SCRAMEApp {
 
 
     private static void printStudentList(){
-
+        Student student = getStudent();
+        student.printTranscript();
     }
 
     private static void enterAssessmentWeightage(){
@@ -538,7 +539,11 @@ public class SCRAMEApp {
     }
 
     private static void printStudentTranscript(){
-
+        Student student = getStudent();
+        ArrayList<Record> records = student.getRecordList();
+        for (Record record : records) {
+            record.getCourse().getComponent().printMarks();
+        }
     }
 
 
@@ -560,5 +565,25 @@ public class SCRAMEApp {
         }
         course = courseList.get(idx);
         return course;
+    }
+
+    private static Student getStudent() {
+        System.out.println("Enter the matric number of the student you want to find");
+        String matricNo;
+        int idx;
+        Student student;
+        while (true) {
+            matricNo = sc.next();
+            try {
+                idx = allMatricNos.get(matricNo);
+            }
+            catch (Exception e) {
+                System.out.println("The student you are looking for is not present");
+                continue;
+            }
+            break;
+        }
+        student = studentList.get(idx);
+        return student;
     }
 }

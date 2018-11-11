@@ -70,4 +70,13 @@ public class CA {
         System.out.println("--------------------------------------------");
         System.out.println();
     }
+
+    public double getOverallCA() {
+        int sum = 0;
+        for (int i : marks) {
+            sum += i;
+        }
+        return sum * percent;
+    }
+
 }

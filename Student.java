@@ -32,6 +32,23 @@ public class Student {
         else return false;
     }
 
+    public void printTranscript() {
+        String gender;
+        if (this.gender == 1)
+            gender = "Male";
+        else if (this.gender == 2)
+            gender = "Female";
+        else
+            gender = "Genderqueer";
+        System.out.format("Name: %s\nMatric Number: %s\nGender: %s\n", name, matricNo, gender);
+        System.out.println("Printing marks for all course");
+        for (Record record : recordList) {
+            System.out.format("%12s | %d\n", record.getCourse().getName(), record.getCourse().getComponent().getOverallMark());
+            record.getCourse().getComponent().printMarks();
+        }
+        System.out.println();
+    }
+
     public String getName() {
         return this.name;
     }
@@ -46,5 +63,9 @@ public class Student {
 
     public int getGender() {
         return this.gender;
+    }
+
+    public ArrayList<Record> getRecordList() {
+        return recordList;
     }
 }
