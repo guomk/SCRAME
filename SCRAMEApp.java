@@ -163,25 +163,9 @@ public class SCRAMEApp {
             System.out.println("There's no faculty in the system with ID " + ID + ", please check the correctness of the input and enter again\n");
             ID = sc.next();
         }
-        System.out.println("Please enter the id of the lecture of this course");
-        int lectureid = -1;
-        while(lectureid == -1){
-            try{
-                lectureid = sc.nextInt();
-            }
-            catch (Exception e){
-                sc.next();
-                lectureid = -1;
-                System.out.println("The input is not valid, please enter a number\n");
-                continue;
-            }
-            if(lectureid < 0){
-                lectureid = -1;
-                System.out.println("The input is not valid, please enter a non-negative number\n");
-            }
-        }
         System.out.println("Please enter the size of the lecture of this course");
         int lectureSize = 0;
+        int lectureid = 0;
         while(lectureSize == 0){
             try{
                 lectureSize = sc.nextInt();
@@ -393,11 +377,11 @@ public class SCRAMEApp {
             return;
         }
         else{
-            currentCourse.getLecture().registered();
-            System.out.println("The course " + currentCourse.getName() + "has " + currentCourse.getTutorialNumber() + " tutorial groups and " + currentCourse.getLabNumber() + " lab groups.\n");
             System.out.println("The course detail: \n");
-            System.out.println("Lecture: id = " + currentCourse.getLecture().getID() + " vacancy = " + currentCourse.getLecture().getVacancy());
+            System.out.println("The course " + currentCourse.getName() + " has " + currentCourse.getTutorialNumber() + " tutorial groups and " + currentCourse.getLabNumber() + " lab groups.\n");
+            System.out.println("Lecture: vacancy = " + currentCourse.getLecture().getVacancy());
             System.out.println();
+            currentCourse.getLecture().registered();
             for (int i = 1; i <= currentCourse.getTutorialNumber(); i++){
                 System.out.println("Tutorial group " + i + ": id = " + currentCourse.getTutorial().get(i-1).getID() + " vacancy = " + currentCourse.getTutorial().get(i-1).getVacancy());
             }
@@ -407,29 +391,43 @@ public class SCRAMEApp {
             if (currentCourse.getTutorialNumber()==0 && currentCourse.getLabNumber() == 0){
                 return;
             }
-            else {
-                System.out.println("Enter the tutorial and lab group you want to register: ");
+            else if (currentCourse.getTutorialNumber() != 0){
+                System.out.println("Enter the tutorial group you want to register (please enter the tutorial group number): ");
                 boolean temp = true;
                 int tutorialGroup = 0;
-                int labGroup = 0;
-                while (temp) {
+                while (temp){
                     tutorialGroup = sc.nextInt();
-                    labGroup = sc.nextInt();
-                    if (currentCourse.getTutorial().get(tutorialGroup - 1).isFull()) {
-                        System.out.println("The tutorial group you choose is out of vacancy, please enter the tutorial and lab group again");
+                    if (currentCourse.getTutorial().get(tutorialGroup-1).isFull()){
+                        System.out.println("The tutorial group you choose is out of vacancy, please enter the tutorial group again");
                         temp = true;
-                    } else if (currentCourse.getLab().get(labGroup - 1).isFull()) {
-                        System.out.println("The lab group you choose is out of vacancy, please enter the tuotrial and lab group again");
-                        temp = true;
-                    } else {
-                        temp = false;
                     }
+                    else
+                        temp = false;
                 }
-                System.out.println("Congratulation, you hava successfully registered tutorial group " + tutorialGroup + " and lab group " + labGroup + " in Course" + currentCourse.getName());
-                currentCourse.getTutorial().get(tutorialGroup - 1).registered();
-                currentCourse.getLab().get(labGroup - 1).registered();
-                return;
+                System.out.println("Congratulation, you have successfully registered in tutorial group " + tutorialGroup);
+                currentCourse.getTutorial().get(tutorialGroup-1).registered();
+                if (currentCourse.getLabNumber() == 0){
+                    return;
+                }
+                else{
+                    System.out.println("Enter the lab group you want to register (please enter the lab group number): ");
+                    temp = true;
+                    int labGroup = 0;
+                    while (temp){
+                        labGroup = sc.nextInt();
+                        if (currentCourse.getLab().get(labGroup-1).isFull()){
+                            System.out.println("The lab group you choose is out of vacancy, please enter the lab group again");
+                            temp = true;
+                        }
+                        else
+                            temp = false;
+                    }
+                    System.out.println("Congratulation, you have successfully registered in lab group " + labGroup);
+                    currentCourse.getLab().get(labGroup-1).registered();
+                    return;
+                }
             }
+
         }
     }
 
@@ -441,7 +439,8 @@ public class SCRAMEApp {
             return;
         }
         Course currentCourse = courseList.get(allCourseCodes.get(courseCode));
-        System.out.println("This course has " + currentCourse.getTutorialNumber() + "tutorials and " + currentCourse.getLabNumber() + "labs.");
+        System.out.println("Lecture vacancy = " + currentCourse.getLecture().getVacancy());
+        System.out.println("This course has " + currentCourse.getTutorialNumber() + " tutorials and " + currentCourse.getLabNumber() + " labs.");
         for (int i = 1; i <= currentCourse.getTutorialNumber(); i++){
             System.out.println("Tuorial group " + i + ": id = " + currentCourse.getTutorial().get(i-1).getID() + " vacancy = " + currentCourse.getTutorial().get(i-1).getVacancy());
         }
