@@ -575,7 +575,7 @@ public class SCRAMEApp {
     		                Session se = (Session)r.getSessionList().get(i);
     		                if(se instanceof Tutorial)
     		                   if(se.getID() == id)
-    		                       System.out.println(r.getStudent().getName() + "  " + r.getStudent().getMatricNo() + "  " + r.getStudent().getSchool() + "  " + r.getStudent().getGender());
+    		                       System.out.println(r.getStudent().getName() + "\t\t" + r.getStudent().getMatricNo() + "\t\t" + r.getStudent().getSchool() + "\t\t" + r.getStudent().getGender());
     		            }
     		        }
 
