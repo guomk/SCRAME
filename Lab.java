@@ -1,6 +1,7 @@
 import java.io.Serializable;
 
-public class Lab implements Serializable, Session {
+public class Lab implements Serializable,Session {
+
 
 	private int vacancy;
 	private int size;

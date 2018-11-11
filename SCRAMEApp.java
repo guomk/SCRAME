@@ -772,12 +772,45 @@ public class SCRAMEApp {
      * Gets coursework mark of a course for a specific student( inclusive of its component)
      */
     private static void enterCourseWorkMark(){
-        Course course;
-        CA ca;
+        ArrayList<Record> records;
+        Student student;
+        student = getStudent();
+        String courseCode;
+
+
+        records = student.getRecordList();
+        boolean valid = true;
+
+
+        System.out.println("Please enter the Course Code of the course you want to enter course work mark");
+        courseCode = sc.next();
+        if(!allCourseCodes.containsKey(courseCode)){
+            valid = false;
+            System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
+        }
+        while (!valid) {
+            System.out.println("Please enter the Course Code of the course you want to enter course work mark");
+            courseCode = sc.next();
+            if(!allCourseCodes.containsKey(courseCode)){
+                System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
+                continue;
+            }
+            valid = true;
+
+        }
+
 
 //      For production
-        course = getCourse();
-        ca = course.getComponent().getCa();
+
+        for (Record record : records) {
+            if (record.getCourse().getName().equals(courseCode)) {
+                record.setCaMarks();
+                record.printCaMarks();
+                break;
+            }
+
+        }
+
 //---------------------------------------------------------------end of production section
 
         // For testing purpose
@@ -788,35 +821,50 @@ public class SCRAMEApp {
 //        ca.setWeightage(0.6, 1);
         // end of testing section
 
-        ca.setMarks();
-        ca.printMarks();
+
     }
 
     /**
      * Gets exam mark of a course for a specific student
      */
     private static void enterExamMark(){
-        Course course = getCourse();
-        Component component = course.getComponent();
-        int mark = 0;
-        System.out.println("Enter exam result for " + course.getName());
-        while (mark == 0) {
-            try {
-                mark = sc.nextInt();
-            }
-            catch (Exception e) {
-                sc.next();
-                mark = 0;
-                System.out.println("The input is not valid, please enter an integer between 0 and 100\n");
+        ArrayList<Record> records;
+        Student student;
+        student = getStudent();
+        String courseCode;
+        int mark;
+
+        records = student.getRecordList();
+        boolean valid = true;
+
+
+        System.out.println("Please enter the Course Code of the course you want to enter course work mark");
+        courseCode = sc.next();
+        if(!allCourseCodes.containsKey(courseCode)){
+            valid = false;
+            System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
+        }
+        while (!valid) {
+            System.out.println("Please enter the Course Code of the course you want to enter course work mark");
+            courseCode = sc.next();
+            if(!allCourseCodes.containsKey(courseCode)){
+                System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
                 continue;
             }
-            if (mark > 100 || mark < 0) {
-                mark = 0;
-                System.out.println("The input is not valid, please enter an integer between 0 and 100\n");
-            }
+            valid = true;
+
         }
-        component.setExamMark(mark);
-        component.printExamMark();
+
+
+        for (Record record : records) {
+            if (record.getCourse().getName().equals(courseCode)) {
+                record.setExamMark();
+                record.printExamMark();
+                break;
+            }
+
+        }
+
     }
 
     /**
