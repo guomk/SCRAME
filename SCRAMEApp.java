@@ -441,12 +441,68 @@ public class SCRAMEApp {
                 continue;
         }
     }
-    if(choice ==1){
-    	Course currentCourse = courseList.get(allCourseCodes.get(courseCode));
+        Course currentCourse = courseList.get(allCourseCodes.get(courseCode));
+    		if(currentCourse.getRecordList.size()==0){
+    			System.out.println("There is no student registered to this course.");
+    			return;}
+        if(choice ==1){
+    	    for(Student s:studentList){
+    	    	System.out.println("Student Name  "+" MatricNo  "+ " School "+ " Gender");
+    		    if(s.checkRegistered){
+    		    	System.out.println(s.getName+"  "+ s.getMatricNo+"  "+ s.getSchool+"  "+s.getGender);
+    		    }
+    	
+    		}
+    	}
+    	else if(choice ==2){
+    		if(currentCourse.getTutorialNumber()==0){
+    			System.out.println("There is no tutorial for this course.");
+    			return;
+    		}
+    		else{
+    			System.out.println("The tutorial list for this course:");
+    			for(Tuorial t: currentCourse.getTutorial()){
+    				System.out.println(s.getID);
+    			}
+    			System.out.println("Choose the tutorial you want to print");
+    			int id = -1;
+                while(id == -1){
+                    try{
+                        id = sc.nextInt();
+                    }
+                    catch (Exception e){
+                        sc.next();
+                        id = -1;
+                        System.out.println("The input is not valid, please enter a number\n");
+                        continue;
+                    }
+                    if(!currentCourse.alllab.containsKey(id)){
+                    	id = -1;
+                        System.out.println("The tutorial sesson does not exsit, please enter a valid tutorial session.\n");
+                        continue;
+
+    			}
+                }
+                for(Student s:studentList){
+    	    	System.out.println("Student Name  "+" MatricNo  "+ " School "+ " Gender");
+    		    if(s.checkRegistered){
+    		    	System.out.println(s.getName+"  "+ s.getMatricNo+"  "+ s.getSchool+"  "+s.getGender);
+    		    }
+    	
+    		}
+
+                    }
+
+    		}
+    	}
+
+
 
     }
 
-    }
+    
+
+    
 
     private static void enterAssessmentWeightage(){
         double exam_weightage;
@@ -488,4 +544,4 @@ public class SCRAMEApp {
     private static void printStudentTranscript(){
 
     }
-}
+
