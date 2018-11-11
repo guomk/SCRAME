@@ -16,6 +16,7 @@ public class Student {
         this.school = school;
         this.gender = gender;
         recordList = new ArrayList<>();
+        allCourses = new HashMap<>();
         couseCount = 0;
     }
 
@@ -68,4 +69,5 @@ public class Student {
     public ArrayList<Record> getRecordList() {
         return recordList;
     }
+
 }

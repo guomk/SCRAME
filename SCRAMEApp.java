@@ -423,7 +423,11 @@ public class SCRAMEApp {
                     }
                     if(currentCourse.checkTutorial(id) == -1){
                         id = -1;
-                        System.out.println("The selected Tutorial Group is full, please only select a tutorial group that has vacancy");
+                        System.out.println("The entered id doesn't exist, please choose an id from the above list");
+                    }
+                    else if(currentCourse.getTutorial().get(currentCourse.checkTutorial(id)).isFull()){
+                        id = -1;
+                        System.out.println("The selected tutorial Group is full, please only select a tutorial group that has vacancy");
                     }
                 }
                 System.out.println("The student " + currentStudent.getName() + " has been registered with the tutorial group " + id);
@@ -447,7 +451,11 @@ public class SCRAMEApp {
                         }
                         if(currentCourse.checkLab(id) == -1){
                             id = -1;
-                            System.out.println("The selected Lab Group is full, please only select a Lab group that has vacancy");
+                            System.out.println("The entered id doesn't exist, please choose an id from the above list");
+                        }
+                        else if(currentCourse.getLab().get(currentCourse.checkLab(id)).isFull()){
+                            id = -1;
+                            System.out.println("The selected lab Group is full, please only select a lab group that has vacancy");
                         }
                     }
                     System.out.println("The student " + currentStudent.getName() + " has been registered with the lab group " + id);
