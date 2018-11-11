@@ -6,7 +6,6 @@ public class Component implements Serializable {
     private double examWeightage;
     private CA ca;
     private int numOfCAs;
-    private int examMark;
 
     public Component(double exam_weightage, int numOfCAs) {
         this.examWeightage = exam_weightage;
@@ -28,27 +27,11 @@ public class Component implements Serializable {
         System.out.println();
     }
 
-    public void setExamMark(int examMark) {
-        this.examMark = examMark;
+    public double getExamWeightage() {
+        return examWeightage;
     }
 
-    public void printExamMark() {
-        System.out.format("%12s | %d\n", "Exam", examMark);
-        System.out.println("--------------------------------------------");
-        System.out.println();
-    }
-
-    public void printMarks() {
-        System.out.format("%12s | %d\n", "Exam", examMark);
-        for (int i = 0; i < numOfCAs; i++) {
-            System.out.format("%12s | %d\n", ca.getName(i), ca.getMarks(i));
-        }
-        System.out.println("--------------------------------------------");
-        System.out.println();
-
-    }
-
-    public double getOverallMark() {
-        return examWeightage * examMark + ca.getOverallCA();
+    public int getNumOfCAs() {
+        return numOfCAs;
     }
 }

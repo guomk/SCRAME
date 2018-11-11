@@ -653,21 +653,17 @@ public class SCRAMEApp {
     }
 
     private static void enterCourseWorkMark(){
-        ArrayList<Record> courses;
-        CA ca = null;
-        Course course;
+        ArrayList<Record> records;
         Student student;
         student = getStudent();
-        courses = student.getRecordList();
+        records = student.getRecordList();
 
 
 //      For production
 
-        for (Record record : courses) {
-            course = record.getCourse();
-            ca = course.getComponent().getCa();
-            ca.setMarks();
-            ca.printMarks();
+        for (Record record : records) {
+            record.setCaMarks();
+            record.printCaMarks();
         }
 
 //---------------------------------------------------------------end of production section
@@ -684,27 +680,33 @@ public class SCRAMEApp {
     }
 
     private static void enterExamMark(){
-        Course course = getCourse();
-        Component component = course.getComponent();
-        int mark = 0;
-        System.out.println("Enter exam result for " + course.getName());
-        while (mark == 0) {
-            try {
-                mark = sc.nextInt();
+        ArrayList<Record> records;
+        Student student;
+        student = getStudent();
+        records = student.getRecordList();
+        int mark;
+        for (Record record : records) {
+            mark = 0;
+            System.out.println("Enter exam result for " + record.getCourse().getName());
+            while (mark == 0) {
+                try {
+                    mark = sc.nextInt();
+                }
+                catch (Exception e) {
+                    sc.next();
+                    mark = 0;
+                    System.out.println("The input is not valid, please enter an integer between 0 and 100\n");
+                    continue;
+                }
+                if (mark > 100 || mark < 0) {
+                    mark = 0;
+                    System.out.println("The input is not valid, please enter an integer between 0 and 100\n");
+                }
             }
-            catch (Exception e) {
-                sc.next();
-                mark = 0;
-                System.out.println("The input is not valid, please enter an integer between 0 and 100\n");
-                continue;
-            }
-            if (mark > 100 || mark < 0) {
-                mark = 0;
-                System.out.println("The input is not valid, please enter an integer between 0 and 100\n");
-            }
+            record.setExamMark(mark);
+            record.printExamMark();
         }
-        component.setExamMark(mark);
-        component.printExamMark();
+
     }
 
     private static void printCourseStatistic(){

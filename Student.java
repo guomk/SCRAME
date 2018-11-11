@@ -45,8 +45,8 @@ public class Student implements Serializable {
         System.out.format("Name: %s\nMatric Number: %s\nGender: %s\n", name, matricNo, gender);
         System.out.println("Printing marks for all course");
         for (Record record : recordList) {
-            System.out.format("%12s | %d\n", record.getCourse().getName(), record.getCourse().getComponent().getOverallMark());
-            record.getCourse().getComponent().printMarks();
+            System.out.format("%12s | %d\n", record.getCourse().getName(), record.getOverallMark());
+            record.printMarks();
         }
         System.out.println();
     }
