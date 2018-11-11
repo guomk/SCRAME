@@ -4,17 +4,57 @@ import java.util.zip.CheckedOutputStream;
 import java.io.*;
 
 public class SCRAMEApp {
-
+    /**
+     * Scanner class for input
+     */
     private static Scanner sc;
+
+    /**
+     * The array to store all the courses
+     */
     private static ArrayList<Course> courseList;
+
+    /**
+     * Number of students in the system
+     */
     private static int studentCount;
+
+    /**
+     * The array to store all the students
+     */
     private static ArrayList<Student> studentList;
+
+    /**
+     * Number of courses in the system
+     */
     private static int courseCount;
+
+    /**
+     * A dictionary to store all MatricNumber, key: matricNumber, value: the index of corresponding students in studentList
+     */
     private static HashMap<String, Integer> allMatricNos;
+
+    /**
+     * A dictionary to store all Coursecodes, key:Coursecode , value: the index of corresponding course in courseList
+     */
     private static HashMap<String, Integer> allCourseCodes;
+
+    /**
+     * The array to store all faculties in the system
+     */
     private static ArrayList<Faculty> facultyList;
+
+    /**
+     * A dictionary to store all faculties, key: facultyid, value: the index of corresponding faculty in facultyList
+     */
     private static HashMap<String, Integer>  allfaculties;
 
+    /**
+     * the main application function
+     * Only accessible by the administrator of the application.
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException{
         facultyList = new ArrayList<>();
         allfaculties = new HashMap<>();
@@ -104,6 +144,9 @@ public class SCRAMEApp {
         }
     }
 
+    /**
+     * Add a student to the system
+     */
     private static void addStudent(){
         System.out.println("Please enter the student's name");
         sc.nextLine();
@@ -151,6 +194,9 @@ public class SCRAMEApp {
         System.out.println();
     }
 
+    /**
+     * Add a course to the system(including tutorials and labs)
+     */
     private static void addCourse(){
         System.out.println("Please enter the Course Code");
         String name = sc.next();
@@ -372,6 +418,9 @@ public class SCRAMEApp {
         System.out.println();
     }
 
+    /**
+     * Register a student to a course(including registration of labs and tutorials) and store 'student-course' information in a record
+     */
     private static void addStudentToCourse(){
         System.out.println("Please enter the Matriculation Number of the student");
         String matricNo = sc.next();
@@ -471,6 +520,9 @@ public class SCRAMEApp {
 
     }
 
+    /**
+     * check the vacancy of each lecture, lab and tutorial of a course
+     */
     private static void checkVacancy(){
         System.out.println("Please enter the Course Code you want to check for vacancy");
         String courseCode = sc.next();
@@ -490,7 +542,9 @@ public class SCRAMEApp {
         return; 
     }
 
-
+    /**
+     * Print the list of students of a course by lecture, lab or tutorial
+     */
     private static void printStudentList(){
     	String courseCode;
     	int choice = 0;
@@ -637,6 +691,9 @@ public class SCRAMEApp {
     }
 
 
+    /**
+     * Record the weightage of each component of the course ( including coursework and exam)
+     */
     private static void enterAssessmentWeightage(){
         double exam_weightage = 0;
         int numOfCAs = -1;
@@ -711,6 +768,9 @@ public class SCRAMEApp {
         component.printComponents();
     }
 
+    /**
+     * Gets coursework mark of a course for a specific student( inclusive of its component)
+     */
     private static void enterCourseWorkMark(){
         Course course;
         CA ca;
@@ -732,6 +792,9 @@ public class SCRAMEApp {
         ca.printMarks();
     }
 
+    /**
+     * Gets exam mark of a course for a specific student
+     */
     private static void enterExamMark(){
         Course course = getCourse();
         Component component = course.getComponent();
@@ -756,10 +819,18 @@ public class SCRAMEApp {
         component.printExamMark();
     }
 
+    /**
+     * Show grade percentage for overall (exam + coursework),
+     * exam only and coursework only
+     */
     private static void printCourseStatistic(){
 
     }
 
+    /**
+     * Show results for all courses registered by the student
+     * inclusive of the overall course mark and individual component marks
+     */
     private static void printStudentTranscript(){
         Student student = getStudent();
         student.printTranscript();

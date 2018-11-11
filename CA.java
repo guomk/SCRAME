@@ -3,7 +3,14 @@ import java.util.Scanner;
 import java.io.*;
 public class CA implements Serializable{
 
+    /**
+     * Number of CAs of a course
+     */
     private int numOfCas;
+
+    /**
+     * The total percentage of all CAs 
+     */
     private double percent;
     private double[] weightage;
     private ArrayList<String> caName;
