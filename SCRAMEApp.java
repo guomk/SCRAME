@@ -372,24 +372,65 @@ public class SCRAMEApp {
     }
 
     private static void enterAssessmentWeightage(){
-        double exam_weightage;
-        int numOfCAs;
+        double exam_weightage = 0;
+        int numOfCAs = -1;
         String name;
-        double percent;
+        double percent = 0;
         CA ca;
         Component component;
         System.out.println("Please enter the weightage of the exam");
-        exam_weightage = sc.nextDouble();
+        while (exam_weightage == 0) {
+            try {
+                exam_weightage = sc.nextDouble();
+            }
+            catch (Exception e) {
+                sc.next();
+                exam_weightage = 0;
+                System.out.println("The input is not valid, please enter a float number between 0 and 1\n");
+                continue;
+            }
+            if (exam_weightage > 1 || exam_weightage < 0) {
+                exam_weightage = 0;
+                System.out.println("The input is not valid, please enter a float number between 0 and 1\n");
+            }
+        }
+
         System.out.println("Please enter the number of CAs");
         numOfCAs = sc.nextInt();
+        while (numOfCAs == -1) {
+            try {
+                numOfCAs = sc.nextInt();
+            }
+            catch (Exception e) {
+                sc.next();
+                numOfCAs = -1;
+                System.out.println("The input is not valid, please enter an positive integer");
+                continue;
+            }
+        }
         component = new Component(exam_weightage, numOfCAs);
         ca = component.getCa();
         for (int i = 0; i < numOfCAs; i++) {
+            percent = 0;
             System.out.println("Enter name for CA(" + (i+1) + ")");
             name = sc.next();
             ca.setName(name, i);
-            System.out.println("Enter weightage of CA(" + (i+1) + ") (consider all CAs as 1)");
-            percent = sc.nextDouble();
+            System.out.println("Enter weightage of " + name + " (consider all CAs as 1)");
+            while (percent == 0) {
+                try {
+                    percent = sc.nextDouble();
+                }
+                catch (Exception e) {
+                    sc.next();
+                    percent = 0;
+                    System.out.println("The input is not valid, please enter a float number\n");
+                    continue;
+                }
+                if (percent > 1 || percent < 0) {
+                     percent = 0;
+                     System.out.println("The input is not valid, please enter a float number between 0 and 1\n");
+                }
+            }
             ca.setWeightage(percent, i);
         }
 
@@ -397,7 +438,7 @@ public class SCRAMEApp {
     }
 
     private static void enterCourseWorkMark(){
-
+        
     }
 
     private static void enterExamMark(){
@@ -411,4 +452,6 @@ public class SCRAMEApp {
     private static void printStudentTranscript(){
 
     }
+
+
 }
