@@ -691,7 +691,8 @@ public class SCRAMEApp {
                 System.out.println("The input is not valid, please enter an integer between 0 and 100\n");
             }
         }
-
+        component.setExamMark(mark);
+        component.printExamMark();
     }
 
     private static void printCourseStatistic(){
@@ -703,6 +704,11 @@ public class SCRAMEApp {
         student.printTranscript();
     }
 
+    /**
+     * A helper function that reads a course code (String),
+     * perform input checking and returns a Course object
+     * @return a Course object based on the user input
+     */
     private static Course getCourse() {
         System.out.println("Enter the course code you want to edit");
         String courseCode;
@@ -723,6 +729,11 @@ public class SCRAMEApp {
         return course;
     }
 
+    /**
+     * A helper function that reads a student's matric Number,
+     * perform input checking and returns a Student object
+     * @return a Student object based on the user input
+     */
     private static Student getStudent() {
         System.out.println("Enter the matric number of the student you want to find");
         String matricNo;
@@ -743,7 +754,10 @@ public class SCRAMEApp {
         return student;
     }
 
-
+    /**
+     * A helper function that waits for any user action,
+     * used to pause the program
+     */
     private static void pressAnyKeyToContinue()
     {
         System.out.println("Press Enter key to continue...");
@@ -755,6 +769,11 @@ public class SCRAMEApp {
         {}
     }
 
+    /**
+     * A helper function that performs serialization,
+     * saves object to binary files
+     * @param o Any object.
+     */
     private static void saveObject(Object o) {
         String outPath = "";
         try {
@@ -770,6 +789,12 @@ public class SCRAMEApp {
 
     }
 
+    /**
+     * A helper function that reads any object and return it,
+     * Type casting is not done
+     * @param o an Object read from binary file
+     * @return an Object or null
+     */
     private static Object readObject(Object o) {
         String inPath = "";
         try {
