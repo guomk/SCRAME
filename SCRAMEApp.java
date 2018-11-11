@@ -562,15 +562,74 @@ public class SCRAMEApp {
 
     			}
                 }
-                for(Student s:studentList){
+                if(currentCourse.getTutorial().get(currentCourse.checkTutorial(id)).ifEmpty()){
+                    System.out.println("There is no student registered to this tutorial session.");
+                    return;}
+
     	    	System.out.println("Student Name  "+" MatricNo  "+ " School "+ " Gender");
-    		    if(s.checkRegistered(courseCode)){
-    		    	System.out.println(s.getName() + "  " + s.getMatricNo() + "  " + s.getSchool() + "  " + s.getGender());
-    		    }
-    		    }
+                for(Record r: currentCourse.getRecordList()){
+    		            int len = r.getSessionList().size();
+    		            for(int i = 0; i < len; i++){
+    		                Session se = (Session)r.getSessionList().get(i);
+    		                if(se instanceof Tutorial)
+    		                   if(se.getID() == id)
+    		                       System.out.println(r.getStudent().getName() + "  " + r.getStudent().getMatricNo() + "  " + r.getStudent().getSchool() + "  " + r.getStudent().getGender());
+    		            }
+    		        }
+
+
 
     		}
     		}
+        else if(choice ==3){
+            if(currentCourse.getLabNumber()==0){
+                System.out.println("There is no lab for this course.");
+                return;
+            }
+            else{
+                System.out.println("The lab list for this course:");
+                for(Lab l: currentCourse.getLab()){
+                    System.out.println(l.getID());
+                }
+                System.out.println("Choose the lab you want to print");
+                int id = -1;
+                while(id == -1){
+                    try{
+                        id = sc.nextInt();
+                    }
+                    catch (Exception e){
+                        sc.next();
+                        id = -1;
+                        System.out.println("The input is not valid, please enter a number\n");
+                        continue;
+                    }
+                    if(currentCourse.checkLab(id) == -1){
+                        id = -1;
+                        System.out.println("The lab sesson does not exsit, please enter a valid tutorial session.\n");
+                        continue;
+
+                    }
+                }
+                if(currentCourse.getLab().get(currentCourse.checkLab(id)).ifEmpty()){
+                    System.out.println("There is no student registered to this tutorial session.");
+                    return;}
+
+                    System.out.println("Student Name  "+" MatricNo  "+ " School "+ " Gender");
+                        for(Record r: currentCourse.getRecordList()){
+                            int len = r.getSessionList().size();
+                            for(int i = 0; i < len; i++){
+                                Session se = (Session)r.getSessionList().get(i);
+                                if(se instanceof Lab)
+                                    if(se.getID() == id)
+                                        System.out.println(r.getStudent().getName() + "  " + r.getStudent().getMatricNo() + "  " + r.getStudent().getSchool() + "  " + r.getStudent().getGender());
+                            }
+                        }
+
+
+
+            }
+        }
+
 
 
     }
