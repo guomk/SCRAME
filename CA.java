@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-public class CA {
+import java.io.*;
+public class CA implements Serializable{
 
     private int numOfCas;
     private double percent;

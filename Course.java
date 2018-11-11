@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Course {
+public class Course implements Serializable {
 	private String name;
 	private Component component;
 	private Faculty faculty;

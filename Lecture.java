@@ -1,4 +1,6 @@
-public class Lecture implements Session{
+import java.io.Serializable;
+
+public class Lecture implements Session, Serializable {
 	private int vacancy;
 	private int size;
 	private int id;
