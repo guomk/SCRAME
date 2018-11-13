@@ -167,7 +167,7 @@ cz2001
 ---------------------------------------------------------------
 
 
-# CASE 2: Add student to course
+# CASE 3: Add student to course
 
 ## Add student to cz2001
 ```
@@ -378,7 +378,7 @@ cz2006
 --------------------------------------------------------
 
 
-# CASE 4:
+# CASE 4: Check available slot in a class (vacancy in a class)
 ```
 
 6
@@ -404,4 +404,25 @@ cz2006
 
 
 
-# CASE: 5
+# CASE 5:Print student list by lecture, tutorial or laboratory session for a course. 
+```
+7
+cz2001
+1
+
+7
+cz2001
+2
+
+7
+cz2001
+3
+
+7
+cz2002
+1
+
+7
+cz2002
+2
+
