@@ -171,6 +171,10 @@ public class Record implements Serializable {
         System.out.println();
     }
 
+    /**
+     * Gets the exam mark of the student.
+     * @return the exam mark of the student
+     */
     public double getExamMark(){
         return examMark;
     }
@@ -208,10 +212,21 @@ public class Record implements Serializable {
         return component.getExamWeightage() * (double) examMark + getOverallCA();
     }
 
+    /**
+     * Checks if mark of CAs are recorded in this record or not.
+     * Checking is done by checking if there is element in the <code>marks</code> array.
+     * @return
+     */
     public boolean hasMark(){
         return marks != null;
     }
 
+    /**
+     * Gets an array of integer.
+     * Each element in the array storing the mark of a CA
+     * Consider total mark of each CA as 100
+     * @return
+     */
     public int[] getMark(){
         return marks;
     }

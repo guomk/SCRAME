@@ -52,10 +52,14 @@ public class SCRAMEApp {
 
     /**
      * A dictionary to store all faculties.
-     * key: facultyid, value: the index of corresponding faculty in <cpode>facultyList</cpode>
+     * key: faculty id, value: the index of corresponding faculty in <cpode>facultyList</cpode>
      */
     private static HashMap<String, Integer>  allfaculties;
 
+    /**
+     * An array of strings storing ordinal number from one to twenty four.
+     * will be used in system output
+     */
     private static String[] ordinals = {"1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th"};
 
     /**
@@ -235,6 +239,9 @@ public class SCRAMEApp {
         pressAnyKeyToContinue();
     }
 
+    /**
+     * Prints name and matric number of all students in the school.
+     */
     private static void printStudent() {
         int count = 1;
         if (studentList.size() == 0) {
@@ -478,6 +485,9 @@ public class SCRAMEApp {
         pressAnyKeyToContinue();
     }
 
+    /**
+     * Prints course code and faculty who teaches the course of all courses in the system.
+     */
     private static void printCourse() {
         int count = 1;
         if (courseList.size() == 0) {
@@ -685,7 +695,7 @@ public class SCRAMEApp {
             System.out.println("Name        "+"MatricNo  "+ "School  "+ "Gender");
     	    for(Student s:studentList){
     		    if(s.checkRegistered(courseCode)){
-    		    	System.out.format("%-10s  %-8s  %-6s  %s\n", s.getName(), s.getMatricNo(), s.getSchool(), s.getGender());
+    		    	System.out.format("%-10s  %-8s  %-6s  %-10s\n", s.getName(), s.getMatricNo(), s.getSchool(), s.getGender());
     		    }
     		}
     	}
@@ -733,7 +743,7 @@ public class SCRAMEApp {
     		                Session se = (Session)r.getSessionList().get(i);
     		                if(se instanceof Tutorial)
     		                   if(se.getID() == id)
-                                   System.out.format("%-10s  %-8s  %-5s  %-s\n", r.getStudent().getName(), r.getStudent().getMatricNo(), r.getStudent().getSchool(), r.getStudent().getGender());}
+                                   System.out.format("%-10s  %-8s  %-6s  %-10s\n", r.getStudent().getName(), r.getStudent().getMatricNo(), r.getStudent().getSchool(), r.getStudent().getGender());}
                 }
 
     		}
@@ -781,7 +791,7 @@ public class SCRAMEApp {
                             Session se = (Session)r.getSessionList().get(i);
                             if(se instanceof Lab)
                                 if(se.getID() == id)
-                                    System.out.format("%-10s  %-8s  %-5s  %-s\n", r.getStudent().getName(), r.getStudent().getMatricNo(), r.getStudent().getSchool(), r.getStudent().getGender());}
+                                    System.out.format("%-10s  %-8s  %-6s  %-10s\n", r.getStudent().getName(), r.getStudent().getMatricNo(), r.getStudent().getSchool(), r.getStudent().getGender());}
                     }
             }
     	}

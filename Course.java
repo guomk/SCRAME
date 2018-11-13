@@ -96,6 +96,7 @@ public class Course implements Serializable {
 		this.tutorialDic = tutorialDic;
 		this.labDic = labDic;
 		this.studentCount = 0;
+		this.component = null;
 		recordList = new ArrayList<>();
 		allStudents = new HashMap<>();
 	}
@@ -181,6 +182,12 @@ public class Course implements Serializable {
 		this.component = component;
 	}
 
+	/**
+	 * Checks whether this course has a <code>Component</code> object storing its exam and CAs weightage.
+	 * @return a boolean value
+	 *         true if this course has a <code>Component</code> object
+	 *         false if this course dose not have a <code>Component</code> object storing its exam and CAs weightage
+	 */
 	public boolean hasComponent(){
 		return component != null;
 	}

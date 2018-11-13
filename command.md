@@ -169,7 +169,7 @@ cz2001
 ---------------------------------------------------------------
 
 
-# CASE 2: Add student to course
+# CASE 3: Add student to course
 
 ### Add student to cz2001
 ```
@@ -269,6 +269,21 @@ U100L
 cz2002
 1
 
+5
+U101L
+cz2002
+2
+
+5
+U122L
+cz2002
+2
+
+5
+U133L
+cz2002
+2
+
 
 ```
 
@@ -335,8 +350,6 @@ cz2007
 1
 1
 
-
-
 ```
 
 
@@ -380,7 +393,11 @@ cz2006
 --------------------------------------------------------
 
 
+<<<<<<< HEAD
+# CASE 4: Check available slot in a class (vacancy in a class)
+=======
 # CASE 4: Check available slot in a class
+>>>>>>> 11520ae6121ad90134cf1401b00e42844b878de6
 ```
 
 6
@@ -406,6 +423,111 @@ cz2006
 
 
 
+<<<<<<< HEAD
+# CASE 5:Print student list by lecture, tutorial or laboratory session for a course. 
+
+###Print student list for cz2001
+```
+
+7
+cz2001
+1
+
+7
+cz2001
+2
+
+7
+cz2001
+3
+```
+###Print student list for cz2002
+```
+7
+cz2002
+1
+
+7
+cz2002
+2
+1
+
+7
+cz2002
+2
+2
+
+7
+cz2002
+3
+```
+
+###Print student list for cz2007
+```
+
+7
+cz2007
+1
+
+7
+cz2007
+2
+1
+
+7
+cz2007
+3
+1
+
+
+```
+###Print student list for nonexistent course
+```
+7
+cz2006
+```
+
+###Print student list for nonexistent tutorial 
+```
+7
+cz2001
+2
+
+7
+cz2002
+2
+3
+```
+
+###Print student list for nonexistent lab 
+```
+7
+cz2002
+3
+
+7
+cz2007
+3
+3
+
+```
+
+###Print student list for empty tutorial
+```
+7
+cz2007
+2
+2
+```
+
+###Print student list for empty lab
+```
+7
+cz2007
+3
+2
+```
+=======
 # CASE: 5
 
 
@@ -461,3 +583,12 @@ assignment
 
 ```
 
+<<<<<<< HEAD
+=======
+## Sum of the weightage of CAs is not 100%
+```
+
+
+```
+>>>>>>> 11520ae6121ad90134cf1401b00e42844b878de6
+>>>>>>> befa6a21514dc004128f8c56d9bb0f66b1bf1df3
