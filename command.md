@@ -461,8 +461,3 @@ assignment
 
 ```
 
-## Sum of the weightage of CAs is not 100%
-```
-
-
-```
