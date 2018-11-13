@@ -60,14 +60,11 @@ public class SCRAMEApp {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException{
-        String javaPth = Paths.get("FacultyList").toString();
         facultyList = new ArrayList<>();
         allfaculties = new HashMap<>();
-//        File faculties = new File("./FacultyList");
-        File faculties = new File(javaPth);
+        File faculties = new File("./FacultyList");
         BufferedReader br = new BufferedReader(new FileReader(faculties));
         int n = Integer.parseInt(new StringTokenizer(br.readLine()).nextToken());
-        br.read();
         for(int i = 0; i < n; i++){
             br.readLine();
             String id = br.readLine();
