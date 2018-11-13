@@ -8,6 +8,7 @@ import java.util.*;
  * @version 1.0
  */
 public class SCRAMEApp {
+
     /**
      * Scanner class for input.
      */
