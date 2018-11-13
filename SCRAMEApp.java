@@ -21,7 +21,7 @@ public class SCRAMEApp {
     /**
      * Number of students in the system.
      */
-    private static int studentCount;
+    private static Integer studentCount;
 
     /**
      * An array of <code>Student</code> object storing all the students.
@@ -31,7 +31,7 @@ public class SCRAMEApp {
     /**
      * Number of courses in the system.
      */
-    private static int courseCount;
+    private static Integer courseCount;
 
     /**
      * A dictionary to store all MatricNumber.
@@ -84,16 +84,28 @@ public class SCRAMEApp {
             facultyList.add(new Faculty(name, title, description, id));
         }
         sc = new Scanner(System.in);
-        courseList = new ArrayList<>();
-        studentList = new ArrayList<>();
-        allMatricNos = new HashMap<>();
-        allCourseCodes = new HashMap<>();
-        courseCount = 0;
-        studentCount = 0;
+        courseList = (ArrayList<Course>)readObject("./courseList");
+        if(courseList == null)
+            courseList = new ArrayList<>();
+        studentList = (ArrayList<Student>)readObject("./studentList");
+        if(studentList == null)
+            studentList = new ArrayList<>();
+        allMatricNos = (HashMap<String, Integer>)readObject("./allMatricNos");
+        if(allMatricNos == null)
+            allMatricNos = new HashMap<>();
+        allCourseCodes = (HashMap<String, Integer>)readObject("./allCourseCodes");
+        if(allCourseCodes == null)
+            allCourseCodes = new HashMap<>();
+        courseCount = (Integer)readObject("./courseCount");
+        if(courseCount == null)
+            courseCount = 0;
+        studentCount = (Integer)readObject("./studentCount");
+        if(studentCount == null)
+            studentCount = 0;
         System.out.println("Welcome to the SCRAME System! It's a good day, isn't it?");
         System.out.println();
         while(true){
-            System.out.println("Please choose from the following list of operations (enter a number between 1 and 11):");
+            System.out.println("Please choose from the following list of operations (enter a number between 1 and 13):");
             System.out.println("1. Add a student");
             System.out.println("2. Add a course");
             System.out.println("3. Print current students in the system");
@@ -106,7 +118,7 @@ public class SCRAMEApp {
             System.out.println("10. Enter exam mark");
             System.out.println("11. Print course statistics");
             System.out.println("12. Print student transcript");
-            System.out.println("13. Quit");
+            System.out.println("13. Save and Quit");
 
             int choice = 0;
             try{
@@ -122,6 +134,12 @@ public class SCRAMEApp {
                 continue;
             }
             if(choice == 13) {
+                saveObject(courseList, "./courseList");
+                saveObject(studentList, "./studentList");
+                saveObject(courseCount, "./courseCount");
+                saveObject(studentCount, "./studentCount");
+                saveObject(allCourseCodes, "./allCourseCodes");
+                saveObject(allMatricNos, "./allMatricNos");
                 System.out.println("Thanks for using SCRAME, see you next time!");
                 break;
             }
@@ -479,7 +497,7 @@ public class SCRAMEApp {
         }
         System.out.println("Below is the list of all courses, there are altogether " + courseList.size() + " courses in the system.");
         for(Course c:courseList){
-            System.out.println("(" + count + ") Course Code: " + c.getName() + "  |  Course Coordinator: " + c.getFaculty().getName());
+            System.out.println("(" + count + ") Course Code: " + c.getName() + "  |  Course Coordinator: " + c.getFaculty().getName() + " | Course Vacancy: " + c.getLecture().getVacancy());
             count++;
         }
         pressAnyKeyToContinue();
@@ -869,18 +887,29 @@ public class SCRAMEApp {
         ArrayList<Record> records;
         Student student;
         student = getStudent();
+        if (student == null)
+            return;
         String courseCode;
+        int idx;
+        Course course;
 
 
         records = student.getRecordList();
+        if (records.size() == 0) {
+            System.out.println("Student " + student.getName() + " hasn't been registered into any course");
+            pressAnyKeyToContinue();
+            return;
+        }
         boolean valid = true;
 
 
         System.out.println("Please enter the Course Code of the course you want to enter course work mark");
         courseCode = sc.next();
-        if(!allCourseCodes.containsKey(courseCode)){
+        idx = allCourseCodes.get(courseCode);
+        course = courseList.get(idx);
+        if(!student.checkRegistered(courseCode)){
             valid = false;
-            System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
+            System.out.println("Student " + student.getName() + " hasn't been registered to " + courseCode);
         }
         while (!valid) {
             System.out.println("Please enter the Course Code of the course you want to enter course work mark");
@@ -894,9 +923,15 @@ public class SCRAMEApp {
         }
 
 
+        if (!course.hasComponent()) {
+            System.out.println("Please enter the assessment components for the course " + courseList.get(idx).getName() + " first.");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return;
+        }
         for (Record record : records) {
             if (record.getCourse().getName().equals(courseCode)) {
-                record.setCaMarks();
+                record.setCaMarks(sc);
                 record.printCaMarks();
                 break;
             }
@@ -914,16 +949,28 @@ public class SCRAMEApp {
         ArrayList<Record> records;
         Student student;
         student = getStudent();
+        if (student == null)
+            return;
         String courseCode;
-        int mark;
+        int idx;
+        Course course;
+
 
         records = student.getRecordList();
-        boolean valid = true;
+        if (records.size() == 0) {
+            System.out.println("Student " + student.getName() + " hasn't been registered into any course");
+            pressAnyKeyToContinue();
+            return;
+        }
 
+        boolean valid = true;
 
         System.out.println("Please enter the Course Code of the course you want to enter course work mark");
         courseCode = sc.next();
-        if(!allCourseCodes.containsKey(courseCode)){
+        idx = allCourseCodes.get(courseCode);
+        course = courseList.get(idx);
+
+        if(!student.checkRegistered(courseCode)){
             valid = false;
             System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
         }
@@ -937,11 +984,16 @@ public class SCRAMEApp {
             valid = true;
 
         }
-
+        if(!course.hasComponent()){
+            System.out.println("Please enter the assessment components for the course " + courseList.get(idx).getName() + " first.");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return;
+        }
 
         for (Record record : records) {
             if (record.getCourse().getName().equals(courseCode)) {
-                record.setExamMark();
+                record.setExamMark(sc);
                 record.printExamMark();
                 break;
             }
@@ -1026,6 +1078,7 @@ public class SCRAMEApp {
     private static void printStudentTranscript(){
         Student student = getStudent();
         student.printTranscript();
+        pressAnyKeyToContinue();
     }
 
     /**
@@ -1034,6 +1087,12 @@ public class SCRAMEApp {
      * @return a Course object based on the user input
      */
     private static Course getCourse() {
+        if (courseList.size() == 0) {
+            System.out.println("There is no course in the system");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return null;
+        }
         System.out.println("Enter the course code of the course you want to edit");
         String courseCode;
         int idx;
@@ -1059,6 +1118,12 @@ public class SCRAMEApp {
      * @return a Student object based on the user input
      */
     private static Student getStudent() {
+        if (studentList.size() == 0) {
+            System.out.println("There is no student in the system");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return null;
+        }
         System.out.println("Enter the matric number of the student you want to find");
         String matricNo;
         int idx;
@@ -1097,10 +1162,10 @@ public class SCRAMEApp {
     /**
      * A helper function that performs serialization,
      * saves object to binary files
+     * @param outPath the path of the object to be serialized
      * @param o Any object.
      */
-    private static void saveObject(Object o) {
-        String outPath = "";
+    private static void saveObject(Object o, String outPath) {
         try {
             FileOutputStream fileOut = new FileOutputStream(outPath);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -1109,7 +1174,6 @@ public class SCRAMEApp {
             fileOut.close();
             System.out.println("Serialized data is saved in " + outPath);
         } catch (IOException i) {
-            i.printStackTrace();
         }
 
     }
@@ -1117,11 +1181,10 @@ public class SCRAMEApp {
     /**
      * A helper function that reads any object and return it,
      * Type casting is not done
-     * @param o an Object read from binary file
+     * @param inPath the path from which we read object
      * @return an Object or null
      */
-    private static Object readObject(Object o) {
-        String inPath = "";
+    private static Object readObject(String inPath) {
         try {
             FileInputStream fileIn = new FileInputStream(inPath);
             ObjectInputStream in = new ObjectInputStream(fileIn);
@@ -1130,11 +1193,9 @@ public class SCRAMEApp {
             fileIn.close();
             return object;
         } catch (IOException i) {
-            i.printStackTrace();
             return null;
         } catch (ClassNotFoundException c) {
             System.out.println("Class not found");
-            c.printStackTrace();
             return null;
         }
     }

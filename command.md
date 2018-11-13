@@ -92,7 +92,7 @@ IEM
 
 ```
 
-## Test adding existing student
+### Test adding existing student
 ```
 
 1
@@ -102,7 +102,7 @@ U222L
 ```
 
 
-## Test invalid entry
+### Test invalid entry
 ```
 
 1
@@ -169,7 +169,7 @@ cz2001
 
 # CASE 3: Add student to course
 
-## Add student to cz2001
+### Add student to cz2001
 ```
 
 5
@@ -214,7 +214,7 @@ cz2001
 
 
 ```
-## Add student to cz2002
+### Add student to cz2002
 ```
 
 5
@@ -270,7 +270,7 @@ cz2002
 
 ```
 
-## Add student to cz2007
+### Add student to cz2007
 ```
 
 5
@@ -339,7 +339,7 @@ cz2007
 
 
 
-## Add to course which has no lecture vacancy
+### Add to course which has no lecture vacancy
 ```
 
 5
@@ -347,7 +347,7 @@ U101L
 cz2001
 
 ```
-## Add to course which has no lab/tut vacancy
+### Add to course which has no lab/tut vacancy
 ```
 
 5
@@ -359,14 +359,14 @@ cz2007
 2
 
 ```
-## Add wrong student ID
+### Add wrong student ID
 ```
 
 5
 U123H
 
 ```
-## Add to wrong course code
+### Add to wrong course code
 ```
 
 5
@@ -392,7 +392,7 @@ cz2007
 
 ```
 
-## Wrong course code
+### Wrong course code
 ```
 
 6
