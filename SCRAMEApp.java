@@ -86,14 +86,14 @@ public class SCRAMEApp {
             System.out.println("Please choose from the following list of operations (enter a number between 1 and 11):");
             System.out.println("1. Add a student");
             System.out.println("2. Add a course");
-            System.out.println("3. Register student for a course (this includes registering for Tutorial/Lab classes");
-            System.out.println("4. Check availableslot in a class (vacancy in a class)");
+            System.out.println("3. Register student for a course (this includes registering for Tutorial/Lab classes)");
+            System.out.println("4. Check available slot in a class (vacancy in a class)");
             System.out.println("5. Print student list by lecture, tutorial or laboratory session for a course");
             System.out.println("6. Enter course assessment components weightage");
             System.out.println("7. Enter coursework mark - inclusive of its components");
             System.out.println("8. Enter exam mark");
             System.out.println("9. Print course statistics");
-            System.out.println("10, Print student transcript");
+            System.out.println("10. Print student transcript");
             System.out.println("11. Quit");
             int choice = 0;
             try{
@@ -469,15 +469,16 @@ public class SCRAMEApp {
             if(currentCourse.getTutorialNumber() == 0)
                 System.out.println("This course only has Lecture.");
             else if(currentCourse.getLabNumber() == 0)
-                System.out.print("This course only has Lecture and Tutorial.");
+                System.out.println("This course only has Lecture and Tutorial.");
             else
-                System.out.print("This course has Lecture, Tutorial and Lab.");
+                System.out.println("This course has Lecture, Tutorial and Lab.");
             System.out.println("Lecture: vacancy = " + currentCourse.getLecture().getVacancy());
             currentCourse.getLecture().registered();
+            currentRecord.addSession(currentCourse.getLecture());
             if (currentCourse.getTutorialNumber() != 0){
                 System.out.println("Enter the id of the tutorial group you want to register (only select a tutorial group that has vacancy): ");
                 for (int i = 1; i <= currentCourse.getTutorialNumber(); i++){
-                    System.out.println("Tutorial group " + currentCourse.getTutorial().get(i-1).getID() + " vacancy: " + currentCourse.getTutorial().get(i-1).getVacancy() + " / " + currentCourse.getTutorial().get(i - 1).getSize());
+                    System.out.println("Tutorial group " + currentCourse.getTutorial().get(i-1).getID() + "  |  vacancy: " + currentCourse.getTutorial().get(i-1).getVacancy() + " / " + currentCourse.getTutorial().get(i - 1).getSize());
                 }
                 int id = -1;
                 while(id == -1){
@@ -505,7 +506,7 @@ public class SCRAMEApp {
                 if(currentCourse.getLabNumber() != 0){
                     System.out.println("Enter the id of the lab group you want to register (only select a lab group that has vacancy): ");
                     for (int i = 1; i <= currentCourse.getLabNumber(); i++){
-                        System.out.println("Tutorial group " + currentCourse.getLab().get(i-1).getID() + " vacancy: " + currentCourse.getLab().get(i-1).getVacancy() + " / " + currentCourse.getLab().get(i - 1).getSize());
+                        System.out.println("Lab group " + currentCourse.getLab().get(i-1).getID() + "  |  vacancy: " + currentCourse.getLab().get(i-1).getVacancy() + " / " + currentCourse.getLab().get(i - 1).getSize());
                     }
                     id = -1;
                     while(id == -1){
@@ -534,7 +535,14 @@ public class SCRAMEApp {
             }
             currentCourse.addRecord(currentRecord);
             currentStudent.addRecord(currentRecord);
-            System.out.println("Congratulation, the student " + currentStudent.getName() + " has been successfully registered with the course " + currentCourse.getName() + "(including lab & tutorial).");
+            System.out.print("Congratulations, the student " + currentStudent.getName() + " has been successfully registered with the course " + currentCourse.getName());
+            if(currentRecord.getSessionList().size() > 1){
+                System.out.print(" Tutorial Group " + currentRecord.getSessionList().get(1).getID());
+            }
+            if(currentRecord.getSessionList().size() > 2){
+                System.out.print(" Lab Group " + currentRecord.getSessionList().get(2).getID());
+            }
+            System.out.println(".");
             System.out.println();
             pressAnyKeyToContinue();
         }

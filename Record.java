@@ -145,7 +145,7 @@ public class Record implements Serializable {
         sessionList.add(s);
     }
 
-    public ArrayList getSessionList(){
+    public ArrayList<Session> getSessionList(){
         return sessionList;
     }
 }
