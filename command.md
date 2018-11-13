@@ -420,7 +420,6 @@ cz2006
 
 
 
-
 # CASE 5:Print student list by lecture, tutorial or laboratory session for a course. 
 
 ###Print student list for cz2001

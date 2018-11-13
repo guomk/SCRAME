@@ -25,7 +25,7 @@ public class Lecture implements Session, Serializable {
 	private int id;
 
 	/**
-	 * <code>Lecture</code> constructor
+	 * <code>Lecture</code> constructor.
 	 * Creates a new lecture session with given id and size of this lecture.
 	 * Sets initial vacancies of this lecture equal to size of this lecture.
 	 * @param id id of this lecture
@@ -63,8 +63,8 @@ public class Lecture implements Session, Serializable {
 
 	/**
 	 * Checks if this lecture session is full or not by checking this lecture's vacancy.
-	 * @return a boolean value
-	 *         true if this lecture is full
+	 * @return A boolean value.
+	 *         true if this lecture is full,
 	 *         false if this lecture has vacancy
 	 */
 	public boolean isFull(){
