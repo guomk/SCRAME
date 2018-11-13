@@ -103,6 +103,7 @@ public class Student implements Serializable {
     public void printTranscript() {
         System.out.format("Name: %s\nMatric Number: %s\nGender: %s\n", name, matricNo, gender);
         System.out.println("Printing marks for all course");
+        System.out.println();
         for (Record record : recordList) {
             System.out.format("%20s | %f\n", record.getCourse().getName(), record.getOverallMark());
             record.printMarks();
