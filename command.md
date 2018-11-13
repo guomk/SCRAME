@@ -378,7 +378,7 @@ cz2006
 --------------------------------------------------------
 
 
-# CASE 4:
+# CASE 4: Check available slot in a class
 ```
 
 6
@@ -435,7 +435,11 @@ class_participation
 
 ```
 
-## Enter invalid coursecode
+## Enter invalid weightage
 ```
+8
+cz2007
+120
+60
 
 ```

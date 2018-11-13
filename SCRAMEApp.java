@@ -835,6 +835,10 @@ public class SCRAMEApp {
                 System.out.println("The input is not valid, please enter an positive integer");
                 continue;
             }
+            if (numOfCAs == 0){
+                numOfCAs = -1;
+                System.out.println("The input is not valid, please enter an integer greater than 0");
+            }
         }
         component = new Component(exam_weightage, numOfCAs);
         ca = component.getCa();
