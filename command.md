@@ -393,11 +393,8 @@ cz2006
 --------------------------------------------------------
 
 
-<<<<<<< HEAD
 # CASE 4: Check available slot in a class (vacancy in a class)
-=======
-# CASE 4: Check available slot in a class
->>>>>>> 11520ae6121ad90134cf1401b00e42844b878de6
+
 ```
 
 6
@@ -423,7 +420,7 @@ cz2006
 
 
 
-<<<<<<< HEAD
+
 # CASE 5:Print student list by lecture, tutorial or laboratory session for a course. 
 
 ###Print student list for cz2001
@@ -433,13 +430,6 @@ cz2006
 cz2001
 1
 
-7
-cz2001
-2
-
-7
-cz2001
-3
 ```
 ###Print student list for cz2002
 ```
@@ -457,9 +447,6 @@ cz2002
 2
 2
 
-7
-cz2002
-3
 ```
 
 ###Print student list for cz2007
@@ -489,6 +476,7 @@ cz2006
 
 ###Print student list for nonexistent tutorial 
 ```
+
 7
 cz2001
 2
@@ -501,6 +489,10 @@ cz2002
 
 ###Print student list for nonexistent lab 
 ```
+7
+cz2001
+3
+
 7
 cz2002
 3
@@ -527,8 +519,7 @@ cz2007
 3
 2
 ```
-=======
-# CASE: 5
+
 
 
 
@@ -572,7 +563,7 @@ assignment
 ```
 
 ## Enter invalid number of CAs
-```
+``` 
 8
 cz2007
 60
@@ -583,12 +574,3 @@ assignment
 
 ```
 
-<<<<<<< HEAD
-=======
-## Sum of the weightage of CAs is not 100%
-```
-
-
-```
->>>>>>> 11520ae6121ad90134cf1401b00e42844b878de6
->>>>>>> befa6a21514dc004128f8c56d9bb0f66b1bf1df3
