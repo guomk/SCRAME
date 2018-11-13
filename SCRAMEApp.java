@@ -1,6 +1,6 @@
 import java.io.*;
+import java.nio.file.Paths;
 import java.util.*;
-import java.util.zip.CheckedOutputStream;
 
 public class SCRAMEApp {
     /**
@@ -60,20 +60,22 @@ public class SCRAMEApp {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException{
+        String javaPth = Paths.get("FacultyList").toString();
         facultyList = new ArrayList<>();
         allfaculties = new HashMap<>();
-        File faculties = new File("./FacultyList");
+//        File faculties = new File("./FacultyList");
+        File faculties = new File(javaPth);
         BufferedReader br = new BufferedReader(new FileReader(faculties));
         int n = Integer.parseInt(new StringTokenizer(br.readLine()).nextToken());
         br.read();
         for(int i = 0; i < n; i++){
+            br.readLine();
             String id = br.readLine();
             String name = br.readLine();
             String title = br.readLine();
             String description = br.readLine();
             allfaculties.put(id, i);
             facultyList.add(new Faculty(name, title, description, id));
-            br.readLine();
         }
         sc = new Scanner(System.in);
         courseList = new ArrayList<>();
