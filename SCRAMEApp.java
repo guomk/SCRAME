@@ -89,7 +89,7 @@ public class SCRAMEApp {
         System.out.println("Welcome to the SCRAME System! It's a good day, isn't it?");
         System.out.println();
         while(true){
-            System.out.println("Please choose from the following list of operations (enter a number between 1 and 11):");
+            System.out.println("Please choose from the following list of operations (enter a number between 1 and 13):");
             System.out.println("1. Add a student");
             System.out.println("2. Add a course");
             System.out.println("3. Print current students in the system");
@@ -469,7 +469,7 @@ public class SCRAMEApp {
         }
         System.out.println("Below is the list of all courses, there are altogether " + courseList.size() + " courses in the system.");
         for(Course c:courseList){
-            System.out.println("(" + count + ") Course Code: " + c.getName() + "  |  Course Coordinator: " + c.getFaculty().getName());
+            System.out.println("(" + count + ") Course Code: " + c.getName() + "  |  Course Coordinator: " + c.getFaculty().getName() + " | Course Vacancy: " + c.getLecture().getVacancy());
             count++;
         }
         pressAnyKeyToContinue();
@@ -1016,6 +1016,7 @@ public class SCRAMEApp {
     private static void printStudentTranscript(){
         Student student = getStudent();
         student.printTranscript();
+        pressAnyKeyToContinue();
     }
 
     /**
