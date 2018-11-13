@@ -95,7 +95,7 @@ public class SCRAMEApp {
             System.out.println("3. Print current students in the system");
             System.out.println("4. Print current courses in the system");
             System.out.println("5. Register student for a course (this includes registering for Tutorial/Lab classes");
-            System.out.println("6. Check availableslot in a class (vacancy in a class)");
+            System.out.println("6. Check available slot in a class (vacancy in a class)");
             System.out.println("7. Print student list by lecture, tutorial or laboratory session for a course");
             System.out.println("8. Enter course assessment components weightage");
             System.out.println("9. Enter coursework mark - inclusive of its components");
@@ -670,8 +670,8 @@ public class SCRAMEApp {
     	    return;
     	}
         if(choice ==1){
+            System.out.println("Name        "+"MatricNo  "+ "School  "+ "Gender");
     	    for(Student s:studentList){
-    	    	System.out.println("Name        "+"MatricNo  "+ "School  "+ "Gender");
     		    if(s.checkRegistered(courseCode)){
     		    	System.out.format("%-10s  %-8s  %-6s  %s\n", s.getName(), s.getMatricNo(), s.getSchool(), s.getGender());
     		    }
@@ -953,7 +953,66 @@ public class SCRAMEApp {
      * (exam + coursework,exam only and coursework only)
      */
     private static void printCourseStatistic(){
-
+        if(courseList.isEmpty()){
+            System.out.println("There's no course in the System, please add a course first");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return;
+        }
+        int idx = -1;
+        while (idx == -1) {
+            System.out.println("Please enter the course code of the course you want to check");
+            String courseCode;
+            courseCode = sc.next();
+            if(!allCourseCodes.containsKey(courseCode)){
+                System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
+                System.out.println();
+            }
+            else{
+                idx = allCourseCodes.get(courseCode);
+            }
+        }
+        Course currentCourse = courseList.get(idx);
+        if(!currentCourse.hasComponent()){
+            System.out.println("Please enter the assessment components for the course " + courseList.get(idx).getName() + " first.");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return;
+        }
+        double overallavg = 0;
+        int numOfCAs = currentCourse.getComponent().getNumOfCAs();
+        double examavg = 0;
+        double[] caavg = new double[numOfCAs];
+        int count = 0;
+        for(int i = 0; i < currentCourse.getRecordList().size(); i++){
+            Record currentRecord = currentCourse.getRecordList().get(i);
+            if(currentRecord.hasMark()){
+                count++;
+                examavg += currentRecord.getExamMark();
+                overallavg += currentRecord.getOverallMark();
+                for(int j = 0; j < numOfCAs; j++){
+                    caavg[j] += currentRecord.getMark()[j];
+                }
+            }
+        }
+        if(count == 0){
+            System.out.println("There's no student grade record for this course.");
+        }
+        else{
+            if(count == 1){
+                System.out.println("There are altogether " + count + " record found, the average marks over all records are shown below");
+            }
+            else{
+                System.out.println("There are altogether " + count + " records found, the average marks over all records are shown below");
+            }
+            System.out.format("%14s | %f\n", "Overall grade", overallavg / count);
+            System.out.format("%14s | %f\n", "Exam", examavg / count);
+            for(int j = 0; j < numOfCAs; j++){
+                System.out.format("%14s | %f\n", currentCourse.getComponent().getCa().getName(j), caavg[j] / count);
+            }
+        }
+        System.out.println();
+        pressAnyKeyToContinue();
     }
 
     /**

@@ -39,7 +39,6 @@ public class Record implements Serializable {
     private int examMark;
 //    private int numOfCAs;
 
-
     /**
      * <code>Record</code> object
      * Creates a record with given <code>Student</code> and <code>Course</code> object.
@@ -168,6 +167,10 @@ public class Record implements Serializable {
         System.out.println();
     }
 
+    public double getExamMark(){
+        return examMark;
+    }
+
     /**
      * Prints the mark of exam and each CA of the 'student-course' stored in this record.
      * Consider total mark of exam and each CA as 100
@@ -196,6 +199,14 @@ public class Record implements Serializable {
         double examPart = examMark * component.getExamWeightage();
         double CaPart = getOverallCA();
         return component.getExamWeightage() * (double) examMark + getOverallCA();
+    }
+
+    public boolean hasMark(){
+        return marks != null;
+    }
+
+    public int[] getMark(){
+        return marks;
     }
 
     /**
