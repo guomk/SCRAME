@@ -1079,11 +1079,11 @@ public class SCRAMEApp {
                 System.out.println("There are altogether " + count + " records found, the average marks over all records are shown below");
             }
             System.out.println("--------------------------------------------");
-            System.out.format("%-12s | %-8s | %s\n", "", "Grade", "Weightage");
-            System.out.format("%14s | %f\n", "Overall grade", overallavg / count);
-            System.out.format("%14s | %f\n", "Exam", examavg / count);
+            System.out.format("%-20s | %-8s | %s\n", "Component", "Grade", "Weightage");
+            System.out.format("%-20s | %-8s | %s\n", "Overall grade", overallavg/count + "/100", "NA");
+            System.out.format("%-20s | %-8s | %d%%\n", "Exam", examavg / count + "/100", Math.round(currentCourse.getComponent().getExamWeightage() * 100));
             for(int j = 0; j < numOfCAs; j++){
-                System.out.format("%14s | %f\n", currentCourse.getComponent().getCa().getName(j), caavg[j] / count);
+                System.out.format("%-20s | %-8s | %d%%\n", currentCourse.getComponent().getCa().getName(j), caavg[j] / count + "/100", Math.round(100 * currentCourse.getComponent().getCa().getWeightage(j)));
             }
         }
         System.out.println();
