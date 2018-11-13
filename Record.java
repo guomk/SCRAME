@@ -1,7 +1,6 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 /**
  * Represents a record in the system.
  * Each record contains a 'student-course' pair and the mark of the student.
@@ -61,8 +60,7 @@ public class Record implements Serializable {
     /**
      * Sets the mark of each CA of the 'student-course' pair stored in this record,perform input checking.
      */
-    public void setCaMarks() {
-        Scanner sc = new Scanner(System.in);
+    public void setCaMarks(Scanner sc) {
         int mark;
         Component component = course.getComponent();
         CA ca = component.getCa();
@@ -134,8 +132,7 @@ public class Record implements Serializable {
     /**
      * Sets the exam mark of the 'student-course' pair stored in this record,perform input checking.
      */
-    public void setExamMark() {
-        Scanner sc = new Scanner(System.in);
+    public void setExamMark(Scanner sc) {
         int mark;
         System.out.printf("Enter mark for %s\n", "Exam");
         mark = -1;

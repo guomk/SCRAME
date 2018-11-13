@@ -859,18 +859,29 @@ public class SCRAMEApp {
         ArrayList<Record> records;
         Student student;
         student = getStudent();
+        if (student == null)
+            return;
         String courseCode;
+        int idx;
+        Course course;
 
 
         records = student.getRecordList();
+        if (records.size() == 0) {
+            System.out.println("Student " + student.getName() + " hasn't been registered into any course");
+            pressAnyKeyToContinue();
+            return;
+        }
         boolean valid = true;
 
 
         System.out.println("Please enter the Course Code of the course you want to enter course work mark");
         courseCode = sc.next();
-        if(!allCourseCodes.containsKey(courseCode)){
+        idx = allCourseCodes.get(courseCode);
+        course = courseList.get(idx);
+        if(!student.checkRegistered(courseCode)){
             valid = false;
-            System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
+            System.out.println("Student " + student.getName() + " hasn't been registered to " + courseCode);
         }
         while (!valid) {
             System.out.println("Please enter the Course Code of the course you want to enter course work mark");
@@ -884,9 +895,15 @@ public class SCRAMEApp {
         }
 
 
+        if (!course.hasComponent()) {
+            System.out.println("Please enter the assessment components for the course " + courseList.get(idx).getName() + " first.");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return;
+        }
         for (Record record : records) {
             if (record.getCourse().getName().equals(courseCode)) {
-                record.setCaMarks();
+                record.setCaMarks(sc);
                 record.printCaMarks();
                 break;
             }
@@ -904,16 +921,28 @@ public class SCRAMEApp {
         ArrayList<Record> records;
         Student student;
         student = getStudent();
+        if (student == null)
+            return;
         String courseCode;
-        int mark;
+        int idx;
+        Course course;
+
 
         records = student.getRecordList();
-        boolean valid = true;
+        if (records.size() == 0) {
+            System.out.println("Student " + student.getName() + " hasn't been registered into any course");
+            pressAnyKeyToContinue();
+            return;
+        }
 
+        boolean valid = true;
 
         System.out.println("Please enter the Course Code of the course you want to enter course work mark");
         courseCode = sc.next();
-        if(!allCourseCodes.containsKey(courseCode)){
+        idx = allCourseCodes.get(courseCode);
+        course = courseList.get(idx);
+
+        if(!student.checkRegistered(courseCode)){
             valid = false;
             System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
         }
@@ -927,11 +956,16 @@ public class SCRAMEApp {
             valid = true;
 
         }
-
+        if(!course.hasComponent()){
+            System.out.println("Please enter the assessment components for the course " + courseList.get(idx).getName() + " first.");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return;
+        }
 
         for (Record record : records) {
             if (record.getCourse().getName().equals(courseCode)) {
-                record.setExamMark();
+                record.setExamMark(sc);
                 record.printExamMark();
                 break;
             }
@@ -1024,6 +1058,12 @@ public class SCRAMEApp {
      * @return a Course object based on the user input
      */
     private static Course getCourse() {
+        if (courseList.size() == 0) {
+            System.out.println("There is no course in the system");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return null;
+        }
         System.out.println("Enter the course code of the course you want to edit");
         String courseCode;
         int idx;
@@ -1049,6 +1089,12 @@ public class SCRAMEApp {
      * @return a Student object based on the user input
      */
     private static Student getStudent() {
+        if (studentList.size() == 0) {
+            System.out.println("There is no student in the system");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return null;
+        }
         System.out.println("Enter the matric number of the student you want to find");
         String matricNo;
         int idx;
