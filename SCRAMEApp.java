@@ -3,6 +3,12 @@ import java.util.*;
 import java.util.zip.CheckedOutputStream;
 import java.io.*;
 
+/**
+ * Represents the SCRAME application
+ * The application allows the creation of courses and adding of student records.
+ * @author Group3
+ * @version 1.0
+ */
 public class SCRAMEApp {
     /**
      * Scanner class for input.
