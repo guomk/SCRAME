@@ -14,6 +14,7 @@ public class Component implements Serializable {
      * Weightage of exam of a course.
      */
     private double examWeightage;
+
     /**
      * A CA object recording name and weightage of all CAs of a course.
      */
@@ -51,9 +52,9 @@ public class Component implements Serializable {
      */
     public void printComponents() {
         System.out.println("Component of the course: ");
-        System.out.format("%12s | %.2f\n", "Exam",  examWeightage);
+        System.out.format("%12s | %d%%\n", "Exam",  Math.round(100 * examWeightage));
         for (int i = 0; i < numOfCAs; i++) {
-            System.out.format("%12s | %.2f\n", ca.getName(i), ca.getWeightage(i));
+            System.out.format("%12s | %d%%\n", ca.getName(i), Math.round(ca.getWeightage(i) * 100));
         }
         System.out.println();
     }

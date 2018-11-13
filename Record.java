@@ -44,8 +44,9 @@ public class Record implements Serializable {
      * <code>Record</code> object
      * Creates a record with given <code>Student</code> and <code>Course</code> object.
      * Each <code>Record</code> object contains a 'student-course'pair and the student's mark of the course.
+     *
      * @param student <code>Student</code> object storing information of the student in this record
-     * @param course <code>Course</code> object storing information of the course in this record
+     * @param course  <code>Course</code> object storing information of the course in this record
      */
     public Record(Student student, Course course) {
         this.student = student;
@@ -73,8 +74,7 @@ public class Record implements Serializable {
             while (mark == -1) {
                 try {
                     mark = sc.nextInt();
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     sc.next();
                     mark = -1;
                     System.out.println("The input is not valid, please enter an integer between 0 and 100\n");
@@ -92,6 +92,7 @@ public class Record implements Serializable {
 
     /**
      * Gets the mark of CA with index i.
+     *
      * @param i the index of CA in the <code>mark</code> array
      * @return the mark of CA with index i.
      */
@@ -116,6 +117,7 @@ public class Record implements Serializable {
 
     /**
      * Gets the overall CA mark of the course with respect to the total mark of the course.
+     *
      * @return the overall CA mark of the course with respect to the total mark of the course
      */
     public double getOverallCA() {
@@ -124,7 +126,7 @@ public class Record implements Serializable {
         double sum = 0;
         int cnt = 0;
         for (int i : marks) {
-            sum += (double)i * ca.getWeightage(cnt);
+            sum += (double) i * ca.getWeightage(cnt);
             cnt++;
         }
         return sum;
@@ -141,8 +143,7 @@ public class Record implements Serializable {
         while (mark == -1) {
             try {
                 mark = sc.nextInt();
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 sc.next();
                 mark = -1;
                 System.out.println("The input is not valid, please enter an integer between 0 and 100\n");
@@ -186,6 +187,7 @@ public class Record implements Serializable {
     /**
      * Gets total mark of the course stored in this record.
      * inclusive of exam and all CAs
+     *
      * @return the total mark of the course stored in this record
      */
     public double getOverallMark() {
@@ -193,11 +195,12 @@ public class Record implements Serializable {
         CA ca = component.getCa();
         double examPart = examMark * component.getExamWeightage();
         double CaPart = getOverallCA();
-        return component.getExamWeightage() * (double)examMark + getOverallCA();
+        return component.getExamWeightage() * (double) examMark + getOverallCA();
     }
 
     /**
      * Gets the <code>Course</code> object which stores information of the course stored in this record.
+     *
      * @return the <code>Course</code> object which stores information of the course stored in this record
      */
     public Course getCourse() {
@@ -206,6 +209,7 @@ public class Record implements Serializable {
 
     /**
      * Gets the <code>Student</code> object which stores information of the student stored in this record.
+     *
      * @return the <code>Course</code> object which stores information of the course stored in this record
      */
     public Student getStudent() {
@@ -214,18 +218,21 @@ public class Record implements Serializable {
 
     /**
      * Adds a tutorial or a lab session of the course to this record
+     *
      * @param s the lab or tutorial session to be added
      */
-    public void addSession(Session s){
+    public void addSession(Session s) {
         sessionList.add(s);
     }
+
+
 
     /**
      * Gets an array of <code>Session</code> object.
      * Each <code>Session</code> object stores a lab or a tutorial session of the course taken by the student
      * @return the array of <code>Session</code> object
      */
-    public ArrayList getSessionList(){
+    public ArrayList<Session> getSessionList() {
         return sessionList;
     }
 }
