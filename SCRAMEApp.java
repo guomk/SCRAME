@@ -1072,6 +1072,8 @@ public class SCRAMEApp {
             else{
                 System.out.println("There are altogether " + count + " records found, the average marks over all records are shown below");
             }
+            System.out.println("--------------------------------------------");
+            System.out.format("%-12s | %-8s | %s\n", "", "Grade", "Weightage");
             System.out.format("%14s | %f\n", "Overall grade", overallavg / count);
             System.out.format("%14s | %f\n", "Exam", examavg / count);
             for(int j = 0; j < numOfCAs; j++){
