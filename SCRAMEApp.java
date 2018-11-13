@@ -65,8 +65,8 @@ public class SCRAMEApp {
     /**
      * The main application function.
      * Only accessible by the administrator of this application.
-     * @param args
-     * @throws IOException
+     * @param args input of the main function
+     * @throws IOException input/output exceptions thrown by main function      
      */
     public static void main(String[] args) throws IOException{
         facultyList = new ArrayList<>();
@@ -801,7 +801,7 @@ public class SCRAMEApp {
 
 
     /**
-     * Records the weightage of each component of a course (including coursework and exam)
+     * Records the weightage of each component of a course (including coursework and exam).
      */
     private static void enterAssessmentWeightage(){
         double exam_weightage = 0;
@@ -892,7 +892,7 @@ public class SCRAMEApp {
     }
 
     /**
-     * Gets coursework mark of a course for a specific student(inclusive of its component)
+     * Gets coursework mark of a course for a specific student(inclusive of its component).
      */
     private static void enterCourseWorkMark(){
         ArrayList<Record> records;
@@ -960,7 +960,7 @@ public class SCRAMEApp {
     }
 
     /**
-     * Gets exam mark of a course for a specific student
+     * Gets exam mark of a course for a specific student.
      */
     private static void enterExamMark(){
         ArrayList<Record> records;
@@ -1089,8 +1089,8 @@ public class SCRAMEApp {
     }
 
     /**
-     * Shows results for all courses registered by a student
-     * inclusive of the overall course mark and individual component marks
+     * Shows results for all courses registered by a student,
+     * inclusive of the overall course mark and individual component marks.
      */
     private static void printStudentTranscript(){
         Student student = getStudent();
@@ -1100,7 +1100,7 @@ public class SCRAMEApp {
 
     /**
      * A helper function that reads a course code (String),
-     * perform input checking and returns a Course object
+     * perform input checking and returns a Course object.
      * @return a Course object based on the user input
      */
     private static Course getCourse() {
@@ -1131,7 +1131,7 @@ public class SCRAMEApp {
 
     /**
      * A helper function that reads a student's matric Number,
-     * perform input checking and returns a Student object
+     * perform input checking and returns a Student object.
      * @return a Student object based on the user input
      */
     private static Student getStudent() {
