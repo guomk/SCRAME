@@ -89,7 +89,7 @@ public class SCRAMEApp {
             System.out.println("3. Print current students in the system");
             System.out.println("4. Print current courses in the system");
             System.out.println("5. Register student for a course (this includes registering for Tutorial/Lab classes");
-            System.out.println("6. Check availableslot in a class (vacancy in a class)");
+            System.out.println("6. Check available slot in a class (vacancy in a class)");
             System.out.println("7. Print student list by lecture, tutorial or laboratory session for a course");
             System.out.println("8. Enter course assessment components weightage");
             System.out.println("9. Enter coursework mark - inclusive of its components");
@@ -658,8 +658,8 @@ public class SCRAMEApp {
     	    return;
     	}
         if(choice ==1){
+            System.out.println("Name        "+"MatricNo  "+ "School  "+ "Gender");
     	    for(Student s:studentList){
-    	    	System.out.println("Name        "+"MatricNo  "+ "School  "+ "Gender");
     		    if(s.checkRegistered(courseCode)){
     		    	System.out.format("%-10s  %-8s  %-6s  %s\n", s.getName(), s.getMatricNo(), s.getSchool(), s.getGender());
     		    }
@@ -941,6 +941,28 @@ public class SCRAMEApp {
      * (exam + coursework,exam only and coursework only)
      */
     private static void printCourseStatistic(){
+        int choice = 0;
+        while(choice == 0){
+            System.out.println("Please select from the following choices (enter a number between 1 and 3)");
+            System.out.println("(1) Print the statistics for the overall mark");
+            System.out.println("(2) Print the statistics for the exam");
+            System.out.println("(3) Print the statistics for the CA");
+            try{
+                choice = sc.nextInt();
+            }
+            catch (Exception e){
+                sc.next();
+                choice = 0;
+                System.out.println("The input is not valid, please enter a number\n");
+                continue;
+            }
+            if(choice < 1 && choice > 3){
+                choice = 0;
+                System.out.println("The input is not valid, please enter a number between 1 and 3\n");
+                continue;
+            }
+
+        }
 
     }
 
