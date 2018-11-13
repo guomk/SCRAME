@@ -947,29 +947,66 @@ public class SCRAMEApp {
      * (exam + coursework,exam only and coursework only)
      */
     private static void printCourseStatistic(){
-        int choice = 0;
-        while(choice == 0){
-            System.out.println("Please select from the following choices (enter a number between 1 and 3)");
-            System.out.println("(1) Print the statistics for the overall mark");
-            System.out.println("(2) Print the statistics for the exam");
-            System.out.println("(3) Print the statistics for the CA");
-            try{
-                choice = sc.nextInt();
-            }
-            catch (Exception e){
-                sc.next();
-                choice = 0;
-                System.out.println("The input is not valid, please enter a number\n");
-                continue;
-            }
-            if(choice < 1 && choice > 3){
-                choice = 0;
-                System.out.println("The input is not valid, please enter a number between 1 and 3\n");
-                continue;
-            }
-
+        if(courseList.isEmpty()){
+            System.out.println("There's no course in the System, please add a course first");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return;
         }
-
+        int idx = -1;
+        while (idx == -1) {
+            System.out.println("Please enter the course code of the course you want to check");
+            String courseCode;
+            courseCode = sc.next();
+            if(!allCourseCodes.containsKey(courseCode)){
+                System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
+                System.out.println();
+            }
+            else{
+                idx = allCourseCodes.get(courseCode);
+            }
+        }
+        Course currentCourse = courseList.get(idx);
+        if(!currentCourse.hasComponent()){
+            System.out.println("Please enter the assessment components for the course " + courseList.get(idx).getName() + " first.");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return;
+        }
+        double overallavg = 0;
+        int numOfCAs = currentCourse.getComponent().getNumOfCAs();
+        double examavg = 0;
+        double[] caavg = new double[numOfCAs];
+        int count = 0;
+        for(int i = 0; i < currentCourse.getRecordList().size(); i++){
+            Record currentRecord = currentCourse.getRecordList().get(i);
+            if(currentRecord.hasMark()){
+                count++;
+                examavg += currentRecord.getExamMark();
+                overallavg += currentRecord.getOverallMark();
+                for(int j = 0; j < numOfCAs; j++){
+                    caavg[j] += currentRecord.getMark()[j];
+                }
+            }
+        }
+        if(count == 0){
+            System.out.println("There's no student grade record for this course.");
+        }
+        else{
+            if(count == 1){
+                System.out.println("There are altogether " + count + " record found, the average marks over all records are shown below");
+            }
+            else{
+                System.out.println("There are altogether " + count + " records found, the average marks over all records are shown below");
+            }
+            System.out.format("%14s | %f\n", "Overall grade", overallavg / count);
+            System.out.format("%14s | %f\n", "Exam", examavg / count);
+            for(int j = 0; j < numOfCAs; j++){
+                System.out.format("%14s | %f\n", currentCourse.getComponent().getCa().getName(j), caavg[j] / count);
+            }
+        }
+        System.out.println();
+        pressAnyKeyToContinue();
     }
 
     /**

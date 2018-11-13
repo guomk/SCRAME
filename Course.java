@@ -181,6 +181,9 @@ public class Course implements Serializable {
 		this.component = component;
 	}
 
+	public boolean hasComponent(){
+		return component != null;
+	}
 	/**
 	 * Checks whether this course if full or not.
 	 * Checking is done by individually checking whether lecture, labs and tutorials are full or not.
