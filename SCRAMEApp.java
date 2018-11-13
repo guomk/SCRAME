@@ -7,7 +7,7 @@ import java.util.*;
  * @author Group3
  * @version 1.0
  */
-public class SCRAMEApp extends Course {
+public class SCRAMEApp{
     /**
      * Scanner class for input.
      */
