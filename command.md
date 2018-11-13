@@ -1,4 +1,5 @@
-# Adding Student
+# CASE 1: Adding Student
+```
 1
 James
 U111L
@@ -89,24 +90,36 @@ U155L
 IEM
 1
 
-# Test adding existing student
+```
+
+## Test adding existing student
+```
+
 1
 Nick
 U222L
 
-# Test invalid entry
+```
+
+
+## Test invalid entry
+```
+
 1
 Dummy
 U987H
 DummySchool
 6
 
+```
 --------------------------------------------------------------
 
 
 
 
-# Adding courses
+# CASE 2: Adding courses
+```
+
 2
 cz2001
 1
@@ -143,14 +156,21 @@ cz2007
 2
 10
 
+```
 # Test adding existing course
+```
+
 2
 cz2001
 
+```
 ---------------------------------------------------------------
 
 
-# Add student to cz2001
+# CASE 2: Add student to course
+
+## Add student to cz2001
+```
 
 5
 U111L
@@ -193,8 +213,9 @@ U100L
 cz2001
 
 
-
-# Add student to cz2002
+```
+## Add student to cz2002
+```
 
 5
 U111L
@@ -247,9 +268,11 @@ cz2002
 1
 
 
+```
 
+## Add student to cz2007
+```
 
-# Add student to cz2007
 5
 U111L
 cz2007
@@ -312,17 +335,21 @@ cz2007
 
 
 
+```
 
 
 
+## Add to course which has no lecture vacancy
+```
 
-# Add to course which has no lecture vacancy
 5
 U101L
 cz2001
 
+```
+## Add to course which has no lab/tut vacancy
+```
 
-# Add to course which has no lab/tut vacancy
 5
 U155L
 cz2007
@@ -331,15 +358,50 @@ cz2007
 1
 2
 
+```
+## Add wrong student ID
+```
 
-# Add wrong student ID
 5
 U123H
 
+```
+## Add to wrong course code
+```
 
-# Add to wrong course code
 5
 U144L
 cz2006
 
+```
 
+--------------------------------------------------------
+
+
+# CASE 4:
+```
+
+6
+cz2001
+
+6
+cz2002
+
+6
+cz2007
+
+```
+
+## Wrong course code
+```
+
+6
+cz2006
+
+```
+
+--------------------------------------------------
+
+
+
+# CASE: 5

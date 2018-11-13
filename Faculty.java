@@ -1,5 +1,11 @@
 import java.io.Serializable;
 
+/**
+ * Represents a faculty in the school.
+ * A faculty can teach multiple courses.
+ * @author Group3
+ * @version 1.0
+ */
 public class Faculty implements Serializable {
 
     /**
@@ -61,28 +67,56 @@ public class Faculty implements Serializable {
         return this.name;
     }
 
+    /**
+     * Gets the title of this faculty.
+     * @return the title of this faculty
+     */
     public String getTitle() {
         return this.title;
     }
 
+    /**
+     * Gets the description of this faculty.
+     * @return the description of this faculty
+     */
     public String getDescription() {
         return this.description;
     }
 
+    /**
+     * Gets the description of this faculty.
+     * @return the description of this faculty.
+     */
     public String getId() { return this.id; }
 
+    /**
+     * Sets the name of this faculty.
+     * @param name new name of this faculty
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Sets the title of this faculty.
+     * @param title new title of this faculty
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * Sets the description of this faculty.
+     * @param desc new description of this faculty
+     */
     public void setDescription(String desc) {
         this.description = desc;
     }
 
+    /**
+     * Sets the id of this faculty.
+     * @param id new id of this faculty
+     */
     public void setId(String id) { this.id = id; }
 
 }
