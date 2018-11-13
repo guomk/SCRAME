@@ -525,7 +525,7 @@ cz2007
 
 # CASE 6: Enter course assessment components weightage
 
-## Add course assessment with only 1 exam + main coursework component without sub-components
+### Add course assessment with only 1 exam + main coursework component without sub-components
 ```
 8
 cz2001
@@ -535,7 +535,7 @@ coursework
 
 ```
 
-## Enter course assessment with exam + a coursework with 2 sub-components
+### Enter course assessment with exam + a coursework with 2 sub-components
 ```
 8
 cz2002
@@ -548,7 +548,7 @@ class participation
 
 ```
 
-## Enter invalid weightage
+### Enter invalid weightage
 ```
 8
 cz2007
@@ -559,7 +559,7 @@ assignment
 
 ```
 
-## Enter invalid number of CAs
+### Enter invalid number of CAs
 ``` 
 8
 cz2007
@@ -571,7 +571,7 @@ assignment
 
 ```
 
-## Enter invalid course code
+### Enter invalid course code
 ```
 8
 cz2009
@@ -585,7 +585,7 @@ coursework
 
 # CASE 7: Enter coursework mark – inclusive of its components
 
-##Enter valid coursework mark for course with only 1 main component
+###Enter valid coursework mark for course with only 1 main component
 ```
 9
 U111L
@@ -594,7 +594,7 @@ cz2001
 
 ```
 
-##Enter valid coursework marks for course with 2 sub-components
+###Enter valid coursework marks for course with 2 sub-components
 ```
 9
 U111L
@@ -604,7 +604,7 @@ cz2002
 
 ```
 
-##Enter invalid matriculation number
+###Enter invalid matriculation number
 ```
 9
 1
@@ -614,7 +614,7 @@ cz2001
 
 ```
 
-##Enter invalid course code
+###Enter invalid course code
 ```
 9
 U111L
@@ -624,7 +624,7 @@ cz2001
 
 ```
 
-##Enter a course which the student hasn't been registered to
+###Enter a course which the student hasn't been registered to
 ```
 9
 U101L
@@ -635,7 +635,7 @@ cz2002
 
 ```
 
-##Enter a course not in the course list
+###Enter a course not in the course list
 ```
 9
 U222L
@@ -644,7 +644,7 @@ CZ2001
 
 ```
 
-##Enter invalid marks out of mark range
+###Enter invalid marks out of mark range
 ```
 9
 U222L
@@ -656,7 +656,7 @@ cz2001
 
 #CASE 8: Enter exam mark
 
-##Enter valid exam mark for the valid course
+###Enter valid exam mark for the valid course
 ```
 10
 U111L
@@ -665,4 +665,11 @@ cz2001
 
 ```
 
-##
+###Enter course without assessment components
+```
+10
+U100L
+cz2007
+```
+
+###Enter 

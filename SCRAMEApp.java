@@ -984,12 +984,18 @@ public class SCRAMEApp {
 
         System.out.println("Please enter the Course Code of the course you want to enter course work mark");
         courseCode = sc.next();
+        if(!allCourseCodes.containsKey(courseCode)){
+            System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return;
+        }
         idx = allCourseCodes.get(courseCode);
         course = courseList.get(idx);
 
         if(!student.checkRegistered(courseCode)){
             valid = false;
-            System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
+            System.out.println("The student hasn't been registered to the course " + courseCode + ", please check the correctness of the input\n");
         }
         while (!valid) {
             System.out.println("Please enter the Course Code of the course you want to enter course work mark");
