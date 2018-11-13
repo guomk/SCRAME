@@ -441,5 +441,26 @@ class_participation
 cz2007
 120
 60
+1
+assignment
+100
+
+```
+
+## Enter invalid number of CAs
+```
+8
+cz2007
+60
+0
+1
+assignment
+100
+
+```
+
+## Sum of the weightage of CAs is not 100%
+```
+
 
 ```
