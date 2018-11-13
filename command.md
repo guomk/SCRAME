@@ -380,7 +380,7 @@ cz2006
 --------------------------------------------------------
 
 
-# CASE 4:
+# CASE 4: Check available slot in a class
 ```
 
 6
@@ -407,3 +407,41 @@ cz2006
 
 
 # CASE: 5
+
+
+
+
+# CASE 6: Enter course assessment components weightage
+
+## Add course assessment with only 1 exam + main coursework component without sub-components
+```
+8
+cz2001
+60
+1
+coursework
+100
+
+```
+
+## Enter course assessment with exam + a coursework with 2 sub-components
+```
+8
+cz2002
+60
+2
+assignment
+70
+class_participation
+30
+
+```
+
+## Enter invalid weightage
+```
+8
+cz2007
+120
+60
+
+```
