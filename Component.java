@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 /**
  * Represents the component of a course.
- * component includes: exam and all CAs
- * A course can have only one component
+ * Component includes: exam and all CAs.
+ * A course can have only one component.
  * @author Group3
  * @version 1.0
  */
@@ -26,7 +26,7 @@ public class Component implements Serializable {
     private int numOfCAs;
 
     /**
-     * <code>Component</code> constructor
+     * <code>Component</code> constructor.
      * Sets the exam weightage and number of CAs.
      * @param exam_weightage weightage of exam of the course
      * @param numOfCAs number of CAs of the course

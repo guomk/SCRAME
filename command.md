@@ -393,11 +393,8 @@ cz2006
 --------------------------------------------------------
 
 
-<<<<<<< HEAD
+
 # CASE 4: Check available slot in a class (vacancy in a class)
-=======
-# CASE 4: Check available slot in a class
->>>>>>> 11520ae6121ad90134cf1401b00e42844b878de6
 ```
 
 6
@@ -423,7 +420,6 @@ cz2006
 
 
 
-<<<<<<< HEAD
 # CASE 5:Print student list by lecture, tutorial or laboratory session for a course. 
 
 ###Print student list for cz2001
@@ -527,8 +523,7 @@ cz2007
 3
 2
 ```
-=======
-# CASE: 5
+
 
 
 

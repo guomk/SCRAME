@@ -20,13 +20,13 @@ public class CA implements Serializable{
 
     /**
      * An array storing names of CAs,
-     * array size is changeable
+     * array size is changeable.
      */
     private ArrayList<String> caName;
 
 
     /**
-     * <code>CA</code> constructor
+     * <code>CA</code> constructor.
      * Sets the number of CAs and the total percentage.
      * @param num  total number of CAs of the course
      * @param percent  total percentage of all CAs of the course
@@ -76,9 +76,9 @@ public class CA implements Serializable{
     }
 
     /**
-     * Gets the array storing all CAs of a course.
+     * Gets the array storing name of all CAs of a course.
      * @return array <code>caName</code>,
-     *         storing all CAs of a course
+     *         storing name of all CAs of a course
      */
     public ArrayList<String> getCaName() {
         return caName;
