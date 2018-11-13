@@ -7,7 +7,7 @@ import java.util.*;
  * @author Group3
  * @version 1.0
  */
-public class SCRAMEApp extends Course {
+public class SCRAMEApp {
     /**
      * Scanner class for input.
      */
@@ -102,7 +102,7 @@ public class SCRAMEApp extends Course {
         studentCount = (Integer)readObject("./studentCount");
         if(studentCount == null)
             studentCount = 0;
-        System.out.println("Welcome to the SCRAME System! It's a good day, isn't it?");
+        System.out.println("Welcome to the SCRAME System! It's a good day, isn't it? ;>");
         System.out.println();
         while(true){
             System.out.println("Please choose from the following list of operations (enter a number between 1 and 13):");
@@ -1164,7 +1164,7 @@ public class SCRAMEApp extends Course {
                 idx = allMatricNos.get(matricNo);
             }
             catch (Exception e) {
-                System.out.println("The student you are looking for is not present");
+                System.out.println("The student you are looking for is not present. Please enter another matric number");
                 continue;
             }
             break;
