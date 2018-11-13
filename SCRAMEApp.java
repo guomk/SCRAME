@@ -86,60 +86,68 @@ public class SCRAMEApp {
             System.out.println("Please choose from the following list of operations (enter a number between 1 and 11):");
             System.out.println("1. Add a student");
             System.out.println("2. Add a course");
-            System.out.println("3. Register student for a course (this includes registering for Tutorial/Lab classes");
-            System.out.println("4. Check availableslot in a class (vacancy in a class)");
-            System.out.println("5. Print student list by lecture, tutorial or laboratory session for a course");
-            System.out.println("6. Enter course assessment components weightage");
-            System.out.println("7. Enter coursework mark - inclusive of its components");
-            System.out.println("8. Enter exam mark");
-            System.out.println("9. Print course statistics");
-            System.out.println("10, Print student transcript");
-            System.out.println("11. Quit");
+            System.out.println("3. Print current students in the system");
+            System.out.println("4. Print current courses in the system");
+            System.out.println("5. Register student for a course (this includes registering for Tutorial/Lab classes");
+            System.out.println("6. Check availableslot in a class (vacancy in a class)");
+            System.out.println("7. Print student list by lecture, tutorial or laboratory session for a course");
+            System.out.println("8. Enter course assessment components weightage");
+            System.out.println("9. Enter coursework mark - inclusive of its components");
+            System.out.println("10. Enter exam mark");
+            System.out.println("11. Print course statistics");
+            System.out.println("12. Print student transcript");
+            System.out.println("13. Quit");
             int choice = 0;
             try{
                 choice = sc.nextInt();
             }
             catch (Exception e){
                 sc.next();
-                System.out.println("The input is not valid, please enter a number between 1 and 11\n");
+                System.out.println("The input is not valid, please enter a number between 1 and 13\n");
                 continue;
             }
-            if(choice < 1 || choice > 11){
-                System.out.println("The input is not valid, please enter a number between 1 and 11\n");
+            if(choice < 1 || choice > 13){
+                System.out.println("The input is not valid, please enter a number between 1 and 13\n");
                 continue;
             }
-            if(choice == 11) {
+            if(choice == 13) {
                 System.out.println("Thanks for using SCRAME, see you next time!");
                 break;
             }
             else if(choice == 1){
                 addStudent();
             }
+            else if(choice == 3){
+                printStudent();
+            }
             else if(choice == 2){
                 addCourse();
             }
-            else if (choice == 3){
+            else if(choice == 4){
+                printCourse();
+            }
+            else if (choice == 5){
                 addStudentToCourse();
             }
-            else if(choice == 4){
+            else if(choice == 6){
                 checkVacancy();
             }
-            else if(choice == 5){
+            else if(choice == 7){
                 printStudentList();
             }
-            else if(choice == 6){
+            else if(choice == 8){
                 enterAssessmentWeightage();
             }
-            else if(choice == 7){
+            else if(choice == 9){
                 enterCourseWorkMark();
             }
-            else if(choice == 8){
+            else if(choice == 10){
                 enterExamMark();
             }
-            else if(choice == 9){
+            else if(choice == 11){
                 printCourseStatistic();
             }
-            else if(choice == 10){
+            else if(choice == 12){
                 printStudentTranscript();
             }
 
@@ -201,6 +209,22 @@ public class SCRAMEApp {
         System.out.println();
         pressAnyKeyToContinue();
     }
+
+    private static void printStudent() {
+        int count = 1;
+        if (studentList.size() == 0) {
+            System.out.println("There is no student in the system");
+            pressAnyKeyToContinue();
+            return;
+        }
+        System.out.println("Below is the list of all current students, there is " + studentList.size() + " student in the system.");
+        for(Student s:studentList){
+            System.out.println("(" + count + ") Name: " + s.getName() + "  |  Matric Number: " + s.getMatricNo());
+            count++;
+        }
+        pressAnyKeyToContinue();
+    }
+
 
     /**
      * Adds a course to this system(including tutorials and labs).
@@ -428,6 +452,22 @@ public class SCRAMEApp {
         System.out.println();
         pressAnyKeyToContinue();
     }
+
+    private static void printCourse() {
+        int count = 1;
+        if (courseList.size() == 0) {
+            System.out.println("There is not course in the system");
+            pressAnyKeyToContinue();
+            return;
+        }
+        System.out.println("Below is the list of all courses, there are altogether " + courseList.size() + " courses in the system.");
+        for(Course c:courseList){
+            System.out.println("(" + count + ") Course Code: " + c.getName() + "  |  Course Coordinator: " + c.getFaculty().getName());
+            count++;
+        }
+        pressAnyKeyToContinue();
+    }
+
 
     /**
      * Registers a student to a course(including registration of labs and tutorials) and store 'student-course' information in a record.
