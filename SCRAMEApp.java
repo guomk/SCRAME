@@ -51,7 +51,7 @@ public class SCRAMEApp {
      */
     private static HashMap<String, Integer>  allfaculties;
 
-    private static String[] ordinals = {"1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th, 12th, 13th, 14th, 15th, 16th, 17th, 18th, 19th, 20th, 21st, 22nd, 23rd, 24th"};
+    private static String[] ordinals = {"1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th"};
 
     /**
      * The main application function.
@@ -390,7 +390,7 @@ public class SCRAMEApp {
                         System.out.println("The input is not valid, please enter a non-negative number\n");
                     }
                 }
-                System.out.println("Please enter the size of the " + ordinals + " lab session");
+                System.out.println("Please enter the size of the " + ordinals[i] + " lab session");
                 int size = 0;
                 while(size == 0){
                     try{
@@ -734,7 +734,7 @@ public class SCRAMEApp {
 
         course = getCourse();
 
-        System.out.println("Please enter the weightage of the exam (0-100)");
+        System.out.println("Please enter the weightage (%) of the exam (0-100)");
         while (exam_weightage == 0) {
             try {
                 input = sc.nextInt();
@@ -771,7 +771,7 @@ public class SCRAMEApp {
             System.out.println("Enter name for CA(" + (i+1) + ")");
             name = sc.next();
             ca.setName(name, i);
-            System.out.println("Enter weightage of " + name + " (consider all CAs as 100)");
+            System.out.println("Enter weightage of " + name + " in all CAs");
             while (percent == 0) {
                 try {
                     percent = sc.nextInt();
@@ -780,12 +780,12 @@ public class SCRAMEApp {
                 catch (Exception e) {
                     sc.next();
                     percent = 0;
-                    System.out.println("The input is not valid, please enter a float number\n");
+                    System.out.println("The input is not valid, please enter a integer between 0 and 100\n");
                     continue;
                 }
                 if (percent > 1 || percent < 0) {
                      percent = 0;
-                     System.out.println("The input is not valid, please enter a float number between 0 and 1\n");
+                     System.out.println("The input is not valid, please enter a integer between 0 and 100\n");
                 }
             }
             ca.setWeightage(percent, i);
@@ -830,8 +830,6 @@ public class SCRAMEApp {
         }
 
 
-//      For production
-
         for (Record record : records) {
             if (record.getCourse().getName().equals(courseCode)) {
                 record.setCaMarks();
@@ -842,17 +840,6 @@ public class SCRAMEApp {
         }
         System.out.println();
         pressAnyKeyToContinue();
-
-//---------------------------------------------------------------end of production section
-
-        // For testing purpose
-//        ca = new CA(2, 0.4);
-//        ca.setName("CA1", 0);
-//        ca.setName("CA2", 1);
-//        ca.setWeightage(0.4, 0);
-//        ca.setWeightage(0.6, 1);
-        // end of testing section
-
 
     }
 
@@ -924,7 +911,7 @@ public class SCRAMEApp {
      * @return a Course object based on the user input
      */
     private static Course getCourse() {
-        System.out.println("Enter the course code you want to edit");
+        System.out.println("Enter the course code of the course you want to edit");
         String courseCode;
         int idx;
         Course course;
