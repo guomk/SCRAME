@@ -1094,7 +1094,12 @@ public class SCRAMEApp {
      */
     private static void printStudentTranscript(){
         Student student = getStudent();
-        student.printTranscript();
+        try {
+            student.printTranscript();
+        } catch (NullPointerException e) {
+            System.out.println("");
+        }
+
         pressAnyKeyToContinue();
     }
 
