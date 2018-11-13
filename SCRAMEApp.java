@@ -821,27 +821,33 @@ public class SCRAMEApp {
         component = new Component(exam_weightage, numOfCAs);
         ca = component.getCa();
         for (int i = 0; i < numOfCAs; i++) {
-            percent = 0;
             System.out.println("Enter name for CA(" + (i+1) + ")");
             name = sc.next();
             ca.setName(name, i);
-            System.out.println("Enter weightage of " + name + " in all CAs");
-            while (percent == 0) {
-                try {
-                    percent = sc.nextInt();
-                    percent /= 100;
-                }
-                catch (Exception e) {
-                    sc.next();
-                    percent = 0;
-                    System.out.println("The input is not valid, please enter a integer between 0 and 100\n");
-                    continue;
-                }
-                if (percent > 1 || percent < 0) {
-                     percent = 0;
-                     System.out.println("The input is not valid, please enter a integer between 0 and 100\n");
+            if (i == numOfCAs-1) {
+                percent = 1 - percent;
+                System.out.println("The weightage of " + name + " is set automatically");
+            }
+            else {
+                System.out.println("Enter weightage of " + name + " in all CAs");
+                while (percent == 0) {
+                    try {
+                        percent = sc.nextInt();
+                        percent /= 100;
+                    }
+                    catch (Exception e) {
+                        sc.next();
+                        percent = 0;
+                        System.out.println("The input is not valid, please enter a integer between 0 and 100\n");
+                        continue;
+                    }
+                    if (percent > 1 || percent < 0) {
+                        percent = 0;
+                        System.out.println("The input is not valid, please enter a integer between 0 and 100\n");
+                    }
                 }
             }
+
             ca.setWeightage(percent, i);
         }
         course.setComponent(component);
