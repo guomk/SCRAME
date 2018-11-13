@@ -105,8 +105,11 @@ public class Record implements Serializable {
         Component component = course.getComponent();
         CA ca = component.getCa();
         ArrayList<String> caName = ca.getCaName();
+        System.out.println("Printing CA marks");
+        System.out.println("--------------------------------------------");
+        System.out.format("%-12s | %-8s | %s\n", "Name", "Grade", "Weightage");
         for (int i = 0; i < component.getNumOfCAs(); i++) {
-            System.out.format("%12s | %d\n", caName.get(i), marks[i]);
+            System.out.format("%-12s | %-8s | %d%%\n", caName.get(i), Integer.toString(marks[i]), Math.round(100 * ca.getWeightage(i)));
         }
         System.out.println("--------------------------------------------");
         System.out.println();
@@ -159,7 +162,11 @@ public class Record implements Serializable {
      * Prints the exam mark of the student.
      */
     public void printExamMark() {
-        System.out.format("%12s | %d\n", "Exam", examMark);
+        Component component = course.getComponent();
+        System.out.println("Printing Exam mark");
+        System.out.println("--------------------------------------------");
+        System.out.format("%-12s | %-8s | %s\n", "", "Grade", "Weightage");
+        System.out.format("%-12s | %-8s | %d%%\n", "Exam", Integer.toString(examMark) + "/100", Math.round(component.getExamWeightage() * 100));
         System.out.println("--------------------------------------------");
         System.out.println();
     }
@@ -175,9 +182,12 @@ public class Record implements Serializable {
     public void printMarks() {
         Component component = course.getComponent();
         CA ca = component.getCa();
-        System.out.format("%12s | %d\n", "Exam", examMark);
+        System.out.println("Printing Exam and CA marks");
+        System.out.println("--------------------------------------------");
+        System.out.format("%-12s | %-8s | %s\n", "Name", "Grade", "Weightage");
+        System.out.format("%-12s | %-8s | %d%%\n", "Exam", Integer.toString(examMark) + "/100", Math.round(component.getExamWeightage() * 100));
         for (int i = 0; i < component.getNumOfCAs(); i++) {
-            System.out.format("%12s | %d\n", ca.getName(i), getCaMarks(i));
+            System.out.format("%-12s | %-8s | %d%%\n", ca.getName(i), Integer.toString(marks[i]) + "/100", Math.round(100 * ca.getWeightage(i)));
         }
         System.out.println("--------------------------------------------");
         System.out.println();

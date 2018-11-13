@@ -110,6 +110,8 @@ Dummy
 U987H
 DummySchool
 6
+2
+
 
 ```
 --------------------------------------------------------------
@@ -157,7 +159,7 @@ cz2007
 10
 
 ```
-# Test adding existing course
+### Test adding existing course
 ```
 
 2
