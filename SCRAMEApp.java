@@ -52,17 +52,21 @@ public class SCRAMEApp extends Course {
 
     /**
      * A dictionary to store all faculties.
-     * key: facultyid, value: the index of corresponding faculty in <cpode>facultyList</cpode>
+     * key: faculty id, value: the index of corresponding faculty in <cpode>facultyList</cpode>
      */
     private static HashMap<String, Integer>  allfaculties;
 
+    /**
+     * An array of strings storing ordinal number from one to twenty four.
+     * will be used in system output
+     */
     private static String[] ordinals = {"1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th"};
 
     /**
      * The main application function.
      * Only accessible by the administrator of this application.
-     * @param args
-     * @throws IOException
+     * @param args input of the main function
+     * @throws IOException input/output exceptions thrown by main function      
      */
     public static void main(String[] args) throws IOException{
         facultyList = new ArrayList<>();
@@ -235,6 +239,9 @@ public class SCRAMEApp extends Course {
         pressAnyKeyToContinue();
     }
 
+    /**
+     * Prints name and matric number of all students in the school.
+     */
     private static void printStudent() {
         int count = 1;
         if (studentList.size() == 0) {
@@ -478,6 +485,9 @@ public class SCRAMEApp extends Course {
         pressAnyKeyToContinue();
     }
 
+    /**
+     * Prints course code and faculty who teaches the course of all courses in the system.
+     */
     private static void printCourse() {
         int count = 1;
         if (courseList.size() == 0) {
@@ -685,7 +695,7 @@ public class SCRAMEApp extends Course {
             System.out.println("Name        "+"MatricNo  "+ "School  "+ "Gender");
     	    for(Student s:studentList){
     		    if(s.checkRegistered(courseCode)){
-    		    	System.out.format("%-10s  %-8s  %-6s  %s\n", s.getName(), s.getMatricNo(), s.getSchool(), s.getGender());
+    		    	System.out.format("%-10s  %-8s  %-6s  %-10s\n", s.getName(), s.getMatricNo(), s.getSchool(), s.getGender());
     		    }
     		}
     	}
@@ -733,7 +743,7 @@ public class SCRAMEApp extends Course {
     		                Session se = (Session)r.getSessionList().get(i);
     		                if(se instanceof Tutorial)
     		                   if(se.getID() == id)
-                                   System.out.format("%-10s  %-8s  %-5s  %-s\n", r.getStudent().getName(), r.getStudent().getMatricNo(), r.getStudent().getSchool(), r.getStudent().getGender());}
+                                   System.out.format("%-10s  %-8s  %-6s  %-10s\n", r.getStudent().getName(), r.getStudent().getMatricNo(), r.getStudent().getSchool(), r.getStudent().getGender());}
                 }
 
     		}
@@ -781,7 +791,7 @@ public class SCRAMEApp extends Course {
                             Session se = (Session)r.getSessionList().get(i);
                             if(se instanceof Lab)
                                 if(se.getID() == id)
-                                    System.out.format("%-10s  %-8s  %-5s  %-s\n", r.getStudent().getName(), r.getStudent().getMatricNo(), r.getStudent().getSchool(), r.getStudent().getGender());}
+                                    System.out.format("%-10s  %-8s  %-6s  %-10s\n", r.getStudent().getName(), r.getStudent().getMatricNo(), r.getStudent().getSchool(), r.getStudent().getGender());}
                     }
             }
     	}
@@ -791,7 +801,7 @@ public class SCRAMEApp extends Course {
 
 
     /**
-     * Records the weightage of each component of a course (including coursework and exam)
+     * Records the weightage of each component of a course (including coursework and exam).
      */
     private static void enterAssessmentWeightage(){
         double exam_weightage = 0;
@@ -844,7 +854,8 @@ public class SCRAMEApp extends Course {
         ca = component.getCa();
         for (int i = 0; i < numOfCAs; i++) {
             System.out.println("Enter name for CA(" + (i+1) + ")");
-            name = sc.next();
+            sc.nextLine();
+            name = sc.nextLine();
             ca.setName(name, i);
             if (i == numOfCAs-1) {
                 percent = 1 - percent;
@@ -881,7 +892,7 @@ public class SCRAMEApp extends Course {
     }
 
     /**
-     * Gets coursework mark of a course for a specific student(inclusive of its component)
+     * Gets coursework mark of a course for a specific student(inclusive of its component).
      */
     private static void enterCourseWorkMark(){
         ArrayList<Record> records;
@@ -905,6 +916,12 @@ public class SCRAMEApp extends Course {
 
         System.out.println("Please enter the Course Code of the course you want to enter course work mark");
         courseCode = sc.next();
+        if(!allCourseCodes.containsKey(courseCode)) {
+            System.out.println("This Course Code does not exist in the system records, you can proceed with other operations\n");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return;
+        }
         idx = allCourseCodes.get(courseCode);
         course = courseList.get(idx);
         if(!student.checkRegistered(courseCode)){
@@ -943,7 +960,7 @@ public class SCRAMEApp extends Course {
     }
 
     /**
-     * Gets exam mark of a course for a specific student
+     * Gets exam mark of a course for a specific student.
      */
     private static void enterExamMark(){
         ArrayList<Record> records;
@@ -1072,8 +1089,8 @@ public class SCRAMEApp extends Course {
     }
 
     /**
-     * Shows results for all courses registered by a student
-     * inclusive of the overall course mark and individual component marks
+     * Shows results for all courses registered by a student,
+     * inclusive of the overall course mark and individual component marks.
      */
     private static void printStudentTranscript(){
         Student student = getStudent();
@@ -1083,7 +1100,7 @@ public class SCRAMEApp extends Course {
 
     /**
      * A helper function that reads a course code (String),
-     * perform input checking and returns a Course object
+     * perform input checking and returns a Course object.
      * @return a Course object based on the user input
      */
     private static Course getCourse() {
@@ -1114,7 +1131,7 @@ public class SCRAMEApp extends Course {
 
     /**
      * A helper function that reads a student's matric Number,
-     * perform input checking and returns a Student object
+     * perform input checking and returns a Student object.
      * @return a Student object based on the user input
      */
     private static Student getStudent() {

@@ -26,7 +26,7 @@ public class Lab implements Serializable,Session {
 	private int id;
 
 	/**
-	 * <code>Lab</code> constructor
+	 * <code>Lab</code> constructor.
 	 * Creates a new lab session with given id and size of this lab.
 	 * Sets initial vacancies of this lab equal to size of this lab.
 	 * @param id id of this lab
@@ -64,8 +64,8 @@ public class Lab implements Serializable,Session {
 
 	/**
 	 * Checks if this lab session is full or not by checking this lab's vacancy.
-	 * @return a boolean value
-	 *         true if this lab is full
+	 * @return A boolean value.
+	 *         true if this lab is full,
 	 *         false if this lab has vacancy
 	 */
 	public boolean isFull() {
@@ -82,8 +82,8 @@ public class Lab implements Serializable,Session {
 	/**
 	 * Checks if this lab session is empty or not,
 	 * by checking whether the size equals to vacancy or not.
-	 * @return a boolean value
-	 *         true if this lab session if empty (no student registers this lab session)
+	 * @return A boolean value.
+	 *         true if this lab session if empty (no student registers this lab session),
 	 *         false if there are students register this lab session
 	 */
 	public boolean isEmpty(){return size == vacancy;}

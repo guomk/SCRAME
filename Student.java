@@ -42,12 +42,12 @@ public class Student implements Serializable {
     private HashMap<String, Integer> allCourses;
 
     /**
-     * Number of courses taken by this student
+     * Number of courses taken by this student.
      */
     private int couseCount;
 
     /**
-     * <code>Student</code> constructor
+     * <code>Student</code> constructor.
      * Creates a new student with given name, matricNo, school and gender.
      * @param name name of this student
      * @param matricNo matricnumber of this student
@@ -71,7 +71,7 @@ public class Student implements Serializable {
 
     /**
      * Adds a record of this student to <code>recordList</code>.
-     * The <code>Record</code> object contains a 'student-course'pair and this student's mark of a course
+     * The <code>Record</code> object contains a 'student-course'pair and this student's mark of a course.
      * Adds the corresponding course into the course list of this student.
      * @param record the <code>Record</code> object to be added
      */
@@ -98,13 +98,13 @@ public class Student implements Serializable {
     /**
      * Prints the transcript of this student.
      * Inclusive of this student's personal information,
-     *              overall mark and individual mark of each component of all courses taken by this student
+     *              overall mark and individual mark of each component of all courses taken by this student.
      */
     public void printTranscript() {
         System.out.format("Name: %s\nMatric Number: %s\nGender: %s\n", name, matricNo, gender);
         System.out.println("Printing marks for all course");
         for (Record record : recordList) {
-            System.out.format("%12s | %f\n", record.getCourse().getName(), record.getOverallMark());
+            System.out.format("%20s | %f\n", record.getCourse().getName(), record.getOverallMark());
             record.printMarks();
         }
         System.out.println();

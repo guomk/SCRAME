@@ -39,7 +39,7 @@ public class Record implements Serializable {
 //    private int numOfCAs;
 
     /**
-     * <code>Record</code> object
+     * <code>Record</code> object.
      * Creates a record with given <code>Student</code> and <code>Course</code> object.
      * Each <code>Record</code> object contains a 'student-course'pair and the student's mark of the course.
      *
@@ -59,6 +59,7 @@ public class Record implements Serializable {
 
     /**
      * Sets the mark of each CA of the 'student-course' pair stored in this record,perform input checking.
+     * @param sc <code>Scanner</code> pass in a Scanner object to the function
      */
     public void setCaMarks(Scanner sc) {
         int mark;
@@ -89,7 +90,6 @@ public class Record implements Serializable {
 
     /**
      * Gets the mark of CA with index i.
-     *
      * @param i the index of CA in the <code>mark</code> array
      * @return the mark of CA with index i.
      */
@@ -107,9 +107,9 @@ public class Record implements Serializable {
         ArrayList<String> caName = ca.getCaName();
         System.out.println("Printing CA marks");
         System.out.println("--------------------------------------------");
-        System.out.format("%-12s | %-8s | %s\n", "Name", "Grade", "Weightage");
+        System.out.format("%-20s | %-8s | %s\n", "Name", "Grade", "Weightage");
         for (int i = 0; i < component.getNumOfCAs(); i++) {
-            System.out.format("%-12s | %-8s | %d%%\n", caName.get(i), Integer.toString(marks[i]), Math.round(100 * ca.getWeightage(i)));
+            System.out.format("%-20s | %-8s | %d%%\n", caName.get(i), Integer.toString(marks[i]), Math.round(100 * ca.getWeightage(i)));
         }
         System.out.println("--------------------------------------------");
         System.out.println();
@@ -117,7 +117,6 @@ public class Record implements Serializable {
 
     /**
      * Gets the overall CA mark of the course with respect to the total mark of the course.
-     *
      * @return the overall CA mark of the course with respect to the total mark of the course
      */
     public double getOverallCA() {
@@ -134,6 +133,7 @@ public class Record implements Serializable {
 
     /**
      * Sets the exam mark of the 'student-course' pair stored in this record,perform input checking.
+     * @param sc <code>Scanner</code> pass in a Scanner object to the function
      */
     public void setExamMark(Scanner sc) {
         int mark;
@@ -165,12 +165,16 @@ public class Record implements Serializable {
         Component component = course.getComponent();
         System.out.println("Printing Exam mark");
         System.out.println("--------------------------------------------");
-        System.out.format("%-12s | %-8s | %s\n", "", "Grade", "Weightage");
-        System.out.format("%-12s | %-8s | %d%%\n", "Exam", Integer.toString(examMark) + "/100", Math.round(component.getExamWeightage() * 100));
+        System.out.format("%-20s | %-8s | %s\n", "", "Grade", "Weightage");
+        System.out.format("%-20s | %-8s | %d%%\n", "Exam", Integer.toString(examMark) + "/100", Math.round(component.getExamWeightage() * 100));
         System.out.println("--------------------------------------------");
         System.out.println();
     }
 
+    /**
+     * Gets the exam mark of the student.
+     * @return the exam mark of the student
+     */
     public double getExamMark(){
         return examMark;
     }
@@ -184,10 +188,10 @@ public class Record implements Serializable {
         CA ca = component.getCa();
         System.out.println("Printing Exam and CA marks");
         System.out.println("--------------------------------------------");
-        System.out.format("%-12s | %-8s | %s\n", "Name", "Grade", "Weightage");
-        System.out.format("%-12s | %-8s | %d%%\n", "Exam", Integer.toString(examMark) + "/100", Math.round(component.getExamWeightage() * 100));
+        System.out.format("%-20s | %-8s | %s\n", "Name", "Grade", "Weightage");
+        System.out.format("%-20s | %-8s | %d%%\n", "Exam", Integer.toString(examMark) + "/100", Math.round(component.getExamWeightage() * 100));
         for (int i = 0; i < component.getNumOfCAs(); i++) {
-            System.out.format("%-12s | %-8s | %d%%\n", ca.getName(i), Integer.toString(marks[i]) + "/100", Math.round(100 * ca.getWeightage(i)));
+            System.out.format("%-20s | %-8s | %d%%\n", ca.getName(i), Integer.toString(marks[i]) + "/100", Math.round(100 * ca.getWeightage(i)));
         }
         System.out.println("--------------------------------------------");
         System.out.println();
@@ -195,9 +199,8 @@ public class Record implements Serializable {
     }
 
     /**
-     * Gets total mark of the course stored in this record.
-     * inclusive of exam and all CAs
-     *
+     * Gets total mark of the course stored in this record,
+     * inclusive of exam and all CAs.
      * @return the total mark of the course stored in this record
      */
     public double getOverallMark() {
@@ -208,17 +211,29 @@ public class Record implements Serializable {
         return component.getExamWeightage() * (double) examMark + getOverallCA();
     }
 
+    /**
+     * Checks if mark of CAs are recorded in this record or not.
+     * Checking is done by checking if there is element in the <code>marks</code> array.
+     * @return A boolean value.
+     *         true if mark of CAs are recorded in this record
+     *         false if mark of CAs are not recorded in this record
+     */
     public boolean hasMark(){
         return marks != null;
     }
 
+    /**
+     * Gets an array of integer.
+     * Each element in the array storing the mark of a CA.
+     * Consider total mark of each CA as 100.
+     * @return the array storing marks of CAs
+     */
     public int[] getMark(){
         return marks;
     }
 
     /**
      * Gets the <code>Course</code> object which stores information of the course stored in this record.
-     *
      * @return the <code>Course</code> object which stores information of the course stored in this record
      */
     public Course getCourse() {
@@ -227,7 +242,6 @@ public class Record implements Serializable {
 
     /**
      * Gets the <code>Student</code> object which stores information of the student stored in this record.
-     *
      * @return the <code>Course</code> object which stores information of the course stored in this record
      */
     public Student getStudent() {
@@ -235,8 +249,7 @@ public class Record implements Serializable {
     }
 
     /**
-     * Adds a tutorial or a lab session of the course to this record
-     *
+     * Adds a tutorial or a lab session of the course to this record.
      * @param s the lab or tutorial session to be added
      */
     public void addSession(Session s) {
@@ -247,7 +260,7 @@ public class Record implements Serializable {
 
     /**
      * Gets an array of <code>Session</code> object.
-     * Each <code>Session</code> object stores a lab or a tutorial session of the course taken by the student
+     * Each <code>Session</code> object stores a lab or a tutorial session of the course taken by the student.
      * @return the array of <code>Session</code> object
      */
     public ArrayList<Session> getSessionList() {

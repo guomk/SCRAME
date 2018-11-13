@@ -16,13 +16,13 @@ public class Course extends CA implements Serializable {
 
 	/**
 	 * <code>Component</code> object storing components of this course.
-	 * inclusive of exam and coursework
+	 * Inclusive of exam and coursework
 	 */
 	private Component component;
 
 	/**
 	 * <code>Faculty</code> object which stores information of the faculty who teaches this course.
-	 * information includes: name, title, description and id
+	 * Information includes: name, title, description and id.
 	 */
 	private Faculty faculty;
 
@@ -40,13 +40,13 @@ public class Course extends CA implements Serializable {
 
 	/**
 	 * An array of <code>Tutorial</code> object.
-	 * each <code>Tutorial</code> object stores information of a tutorial session of this course.
+	 * Each <code>Tutorial</code> object stores information of a tutorial session of this course.
 	 */
 	private ArrayList<Tutorial> tutorial;
 
 	/**
 	 *<code>Lecture</code> object that stores information of lecture of this course.
-	 * information includes: vacancy, size and id
+	 * Information includes: vacancy, size and id
 	 */
 	private Lecture lecture;
 
@@ -96,6 +96,7 @@ public class Course extends CA implements Serializable {
 		this.tutorialDic = tutorialDic;
 		this.labDic = labDic;
 		this.studentCount = 0;
+		this.component = null;
 		recordList = new ArrayList<>();
 		allStudents = new HashMap<>();
 	}
@@ -181,15 +182,21 @@ public class Course extends CA implements Serializable {
 		this.component = component;
 	}
 
+	/**
+	 * Checks whether this course has a <code>Component</code> object storing its exam and CAs weightage.
+	 * @return A boolean value.
+	 *         true if this course has a <code>Component</code> object,
+	 *         false if this course dose not have a <code>Component</code> object storing its exam and CAs weightage
+	 */
 	public boolean hasComponent(){
 		return component != null;
 	}
 	/**
 	 * Checks whether this course if full or not.
 	 * Checking is done by individually checking whether lecture, labs and tutorials are full or not.
-	 * @return a boolean value
+	 * @return A boolean value.
 	 *         true if the course if full
-	 *         (course is full if any of lecture, labs or tutorials are full)
+	 *         (course is full if any of lecture, labs or tutorials are full),
 	 *         false if this course has vacancy
 	 */
 	public boolean isFull(){
@@ -227,9 +234,9 @@ public class Course extends CA implements Serializable {
 	 * Checks whether this course contains the tutorial with ID: id or not.
 	 * Checking is done by checking whether <code>tutorialDic</code> contains the key 'id' or not.
 	 * @param id id of the tutorial session being checked
-	 * @return an integer value
-	 *         if course contains this tutorial, return the index of the tutorial in the <code>tutorial</code> array
-	 *         if course dose not contain this tutorial, -1 will be returned to indicate
+	 * @return An integer value.
+	 *         If course contains this tutorial, return the index of the tutorial in the <code>tutorial</code> array.
+	 *         If course dose not contain this tutorial, -1 will be returned to indicate
 	 */
 	public int checkTutorial(int id){
 		if(tutorialDic.containsKey(id)){
@@ -242,9 +249,9 @@ public class Course extends CA implements Serializable {
 	 * Checks whether this course contains the lab with ID: id or not.
 	 * Checking is done by checking whether <code>labDic</code> contains the key 'id' or not.
 	 * @param id id of the lab session being checked
-	 * @return an integer value
-	 * 	       if course contains this lab, return the index of the lab in the <code>lab</code> array
-	 * 	       if course dose not contain this lab, -1 will be returned to indicate
+	 * @return An integer value.
+	 * 	       If course contains this lab, return the index of the lab in the <code>lab</code> array.
+	 * 	       If course dose not contain this lab, -1 will be returned to indicate.
 	 */
 	public int checkLab(int id){
 		if(labDic.containsKey(id)){
@@ -256,7 +263,7 @@ public class Course extends CA implements Serializable {
 
 	/**
 	 * Gets the Dictionary <code>tutorialDic</code> that contains all information of all tutorials of this course.
-	 * @return  a collection of all tutorials of this course
+	 * @return  A collection of all tutorials of this course.
 	 *          It contains all information of all tutorials of this course.
 	 */
 	public HashMap<Integer, Integer> getTutorialDic() {
@@ -265,8 +272,8 @@ public class Course extends CA implements Serializable {
 
 	/**
 	 * Gets the Dictionary <code>labDic</code> that contains all information of all labs of this course.
-	 * @return a collection of all labs of this course
-	 *         It contains all information of all labs of this course
+	 * @return A collection of all labs of this course.
+	 *         It contains all information of all labs of this course.
 	 */
 	public HashMap<Integer, Integer> getLabDic() {
 		return labDic;
@@ -274,7 +281,7 @@ public class Course extends CA implements Serializable {
 
 	/**
 	 * Adds a record of this course to <code>recordList</code>.
-	 * The <code>Record</code> object contains a 'student-course'pair and the student's mark of this course
+	 * The <code>Record</code> object contains a 'student-course'pair and the student's mark of this course.
 	 * Adds the corresponding student into the student list of this course.
 	 * @param record the <code>Record</code> object to be added
 	 */
