@@ -25,4 +25,5 @@ public class Lecture implements Session, Serializable {
     public void registered(){
         vacancy--;
     }
+
 }

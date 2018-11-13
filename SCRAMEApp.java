@@ -5,53 +5,56 @@ import java.io.*;
 
 public class SCRAMEApp {
     /**
-     * Scanner class for input
+     * Scanner class for input.
      */
     private static Scanner sc;
 
     /**
-     * The array to store all the courses
+     * An array of <code>Course</code> object storing all the courses.
      */
     private static ArrayList<Course> courseList;
 
     /**
-     * Number of students in the system
+     * Number of students in the system.
      */
     private static int studentCount;
 
     /**
-     * The array to store all the students
+     * An array of <code>Student</code> object storing all the students.
      */
     private static ArrayList<Student> studentList;
 
     /**
-     * Number of courses in the system
+     * Number of courses in the system.
      */
     private static int courseCount;
 
     /**
-     * A dictionary to store all MatricNumber, key: matricNumber, value: the index of corresponding students in studentList
+     * A dictionary to store all MatricNumber.
+     * key: matricNumber, value: the index of corresponding students in <code>studentList</code>
      */
     private static HashMap<String, Integer> allMatricNos;
 
     /**
-     * A dictionary to store all Coursecodes, key:Coursecode , value: the index of corresponding course in courseList
+     * A dictionary to store all Coursecodes.
+     * key:Coursecode , value: the index of corresponding course in <code>courseList</code>
      */
     private static HashMap<String, Integer> allCourseCodes;
 
     /**
-     * The array to store all faculties in the system
+     * An array of <code>Faculty</code> object storing all the faculties.
      */
     private static ArrayList<Faculty> facultyList;
 
     /**
-     * A dictionary to store all faculties, key: facultyid, value: the index of corresponding faculty in facultyList
+     * A dictionary to store all faculties.
+     * key: facultyid, value: the index of corresponding faculty in <cpode>facultyList</cpode>
      */
     private static HashMap<String, Integer>  allfaculties;
 
     /**
-     * the main application function
-     * Only accessible by the administrator of the application.
+     * The main application function.
+     * Only accessible by the administrator of this application.
      * @param args
      * @throws IOException
      */
@@ -145,7 +148,7 @@ public class SCRAMEApp {
     }
 
     /**
-     * Add a student to the system
+     * Adds a student to this system.
      */
     private static void addStudent(){
         System.out.println("Please enter the student's name");
@@ -195,7 +198,7 @@ public class SCRAMEApp {
     }
 
     /**
-     * Add a course to the system(including tutorials and labs)
+     * Adds a course to this system(including tutorials and labs).
      */
     private static void addCourse(){
         System.out.println("Please enter the Course Code");
@@ -419,7 +422,7 @@ public class SCRAMEApp {
     }
 
     /**
-     * Register a student to a course(including registration of labs and tutorials) and store 'student-course' information in a record
+     * Registers a student to a course(including registration of labs and tutorials) and store 'student-course' information in a record.
      */
     private static void addStudentToCourse(){
         System.out.println("Please enter the Matriculation Number of the student");
@@ -521,7 +524,7 @@ public class SCRAMEApp {
     }
 
     /**
-     * check the vacancy of each lecture, lab and tutorial of a course
+     * Checks the vacancy of each lecture, lab and tutorial of a course.
      */
     private static void checkVacancy(){
         System.out.println("Please enter the Course Code you want to check for vacancy");
@@ -543,7 +546,7 @@ public class SCRAMEApp {
     }
 
     /**
-     * Print the list of students of a course by lecture, lab or tutorial
+     * Prints the list of students of a course by lecture, lab or tutorial.
      */
     private static void printStudentList(){
     	String courseCode;
@@ -613,12 +616,12 @@ public class SCRAMEApp {
                     }
                     if(currentCourse.checkTutorial(id) == -1){
                     	id = -1;
-                        System.out.println("The tutorial sesson does not exsit, please enter a valid tutorial session.\n");
+                        System.out.println("The tutorial session does not exist, please enter a valid tutorial session.\n");
                         continue;
 
     			}
                 }
-                if(currentCourse.getTutorial().get(currentCourse.checkTutorial(id)).ifEmpty()){
+                if(currentCourse.getTutorial().get(currentCourse.checkTutorial(id)).isEmpty()){
                     System.out.println("There is no student registered to this tutorial session.");
                     return;}
 
@@ -661,13 +664,13 @@ public class SCRAMEApp {
                     }
                     if(currentCourse.checkLab(id) == -1){
                         id = -1;
-                        System.out.println("The lab sesson does not exsit, please enter a valid tutorial session.\n");
+                        System.out.println("The lab session does not exist, please enter a valid lab session.\n");
                         continue;
 
                     }
                 }
-                if(currentCourse.getLab().get(currentCourse.checkLab(id)).ifEmpty()){
-                    System.out.println("There is no student registered to this tutorial session.");
+                if(currentCourse.getLab().get(currentCourse.checkLab(id)).isEmpty()){
+                    System.out.println("There is no student registered to this lab session.");
                     return;}
 
                     System.out.println("Student Name  "+" MatricNo  "+ " School "+ " Gender");
@@ -692,7 +695,7 @@ public class SCRAMEApp {
 
 
     /**
-     * Record the weightage of each component of the course ( including coursework and exam)
+     * Records the weightage of each component of a course (including coursework and exam)
      */
     private static void enterAssessmentWeightage(){
         double exam_weightage = 0;
@@ -769,7 +772,7 @@ public class SCRAMEApp {
     }
 
     /**
-     * Gets coursework mark of a course for a specific student( inclusive of its component)
+     * Gets coursework mark of a course for a specific student(inclusive of its component)
      */
     private static void enterCourseWorkMark(){
         ArrayList<Record> records;
@@ -868,15 +871,15 @@ public class SCRAMEApp {
     }
 
     /**
-     * Show grade percentage for overall (exam + coursework),
-     * exam only and coursework only
+     * Shows grade percentage for overall
+     * (exam + coursework,exam only and coursework only)
      */
     private static void printCourseStatistic(){
 
     }
 
     /**
-     * Show results for all courses registered by the student
+     * Shows results for all courses registered by a student
      * inclusive of the overall course mark and individual component marks
      */
     private static void printStudentTranscript(){

@@ -33,5 +33,5 @@ public class Lab implements Serializable,Session {
 		vacancy--;
 	}
 
-	public boolean ifEmpty(){return size == vacancy;}
+	public boolean isEmpty(){return size == vacancy;}
 }
