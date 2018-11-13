@@ -8,7 +8,7 @@ import java.util.HashMap;
  * @author Group3
  * @version 1.0
  */
-public class Course implements Serializable {
+public class Course extends CA implements Serializable {
 	/**
 	 * Name of this course.
 	 */
