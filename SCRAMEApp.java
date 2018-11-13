@@ -620,7 +620,7 @@ public class SCRAMEApp {
     private static void printStudentList(){
     	String courseCode;
     	int choice = 0;
-    	System.out.println("Please enter the Coursecode of which you want to print the student list:");
+    	System.out.println("Please enter the Course code of the Course of which you want to print the student list:");
 
     	courseCode = sc.next();
     	if(!allCourseCodes.containsKey(courseCode)) {
@@ -659,9 +659,9 @@ public class SCRAMEApp {
     	}
         if(choice ==1){
     	    for(Student s:studentList){
-    	    	System.out.println("Student Name  "+" MatricNo  "+ " School "+ " Gender");
+    	    	System.out.println("Name        "+"MatricNo  "+ "School  "+ "Gender");
     		    if(s.checkRegistered(courseCode)){
-    		    	System.out.println(s.getName() + "  " + s.getMatricNo() + "  " + s.getSchool() + "  " + s.getGender());
+    		    	System.out.format("%-10s  %-8s  %-6s  %s\n", s.getName(), s.getMatricNo(), s.getSchool(), s.getGender());
     		    }
     		}
     	}
@@ -673,11 +673,11 @@ public class SCRAMEApp {
     			return;
     		}
     		else{
-    			System.out.println("The tutorial list for this course:");
+    			System.out.println("Below is the list of tutorial IDs for this course:");
     			for(Tutorial t: currentCourse.getTutorial()){
-    				System.out.println(t.getID());
+    				System.out.println("Tutorial Group" + t.getID());
     			}
-    			System.out.println("Choose the tutorial you want to print");
+    			System.out.println("Please choose the ID of the tutorial you want to print");
     			int id = -1;
                 while(id == -1){
                     try{
@@ -702,15 +702,14 @@ public class SCRAMEApp {
                     return;
                 }
 
-    	    	System.out.println("Student Name  "+" MatricNo  "+ " School "+ " Gender");
+    	    	System.out.println("Name        "+"MatricNo  "+ "School "+ "Gender");
                 for(Record r: currentCourse.getRecordList()){
     		            int len = r.getSessionList().size();
     		            for(int i = 0; i < len; i++){
     		                Session se = (Session)r.getSessionList().get(i);
     		                if(se instanceof Tutorial)
     		                   if(se.getID() == id)
-    		                       System.out.println(r.getStudent().getName() + "\t\t" + r.getStudent().getMatricNo() + "\t\t" + r.getStudent().getSchool() + "\t\t" + r.getStudent().getGender());
-    		            }
+                                   System.out.format("%-10s  %-8s  %-5s  %-s\n", r.getStudent().getName(), r.getStudent().getMatricNo(), r.getStudent().getSchool(), r.getStudent().getGender());}
                 }
 
     		}
@@ -723,11 +722,11 @@ public class SCRAMEApp {
                 return;
             }
             else{
-                System.out.println("The lab list for this course:");
+                System.out.println("Below is the list of lab IDs for this course:");
                 for(Lab l: currentCourse.getLab()){
-                    System.out.println(l.getID());
+                    System.out.println("Lab Group" + l.getID());
                 }
-                System.out.println("Choose the lab you want to print");
+                System.out.println("Please choose the ID of the lab you want to print");
                 int id = -1;
                 while(id == -1){
                     try{
@@ -751,18 +750,19 @@ public class SCRAMEApp {
                     return;
                 }
 
-                System.out.println("Student Name  "+" MatricNo  "+ " School "+ " Gender");
+                System.out.println("Name        "+"MatricNo  "+ "School "+ " Gender");
                     for(Record r: currentCourse.getRecordList()){
                         int len = r.getSessionList().size();
                         for(int i = 0; i < len; i++){
                             Session se = (Session)r.getSessionList().get(i);
                             if(se instanceof Lab)
                                 if(se.getID() == id)
-                                    System.out.println(r.getStudent().getName() + "  " + r.getStudent().getMatricNo() + "  " + r.getStudent().getSchool() + "  " + r.getStudent().getGender());
-                        }
+                                    System.out.format("%-10s  %-8s  %-5s  %-s\n", r.getStudent().getName(), r.getStudent().getMatricNo(), r.getStudent().getSchool(), r.getStudent().getGender());}
                     }
             }
     	}
+        System.out.println();
+        pressAnyKeyToContinue();
     }
 
 
