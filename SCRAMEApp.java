@@ -217,6 +217,9 @@ public class SCRAMEApp {
         pressAnyKeyToContinue();
     }
 
+    /**
+     * Prints name and matric number of all students in the school.
+     */
     private static void printStudent() {
         int count = 1;
         if (studentList.size() == 0) {
@@ -460,6 +463,9 @@ public class SCRAMEApp {
         pressAnyKeyToContinue();
     }
 
+    /**
+     * Prints course code and faculty who teaches the course of all courses in the system.
+     */
     private static void printCourse() {
         int count = 1;
         if (courseList.size() == 0) {
