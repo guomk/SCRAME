@@ -533,7 +533,6 @@ cz2001
 60
 1
 coursework
-100
 
 ```
 
@@ -545,8 +544,8 @@ cz2002
 2
 assignment
 70
-class_participation
-30
+class participation
+
 
 ```
 
@@ -558,7 +557,6 @@ cz2007
 60
 1
 assignment
-100
 
 ```
 
@@ -574,3 +572,98 @@ assignment
 
 ```
 
+## Enter invalid course code
+```
+8
+cz2009
+cz2001
+60
+1
+coursework
+
+
+```
+
+# CASE 7: Enter coursework mark – inclusive of its components
+
+##Enter valid coursework mark for course with only 1 main component
+```
+9
+U111L
+cz2001
+80
+
+```
+
+##Enter valid coursework marks for course with 2 sub-components
+```
+9
+U111L
+cz2002
+90
+80
+
+```
+
+##Enter invalid matriculation number
+```
+9
+1
+U111L
+cz2001
+80
+
+```
+
+##Enter invalid course code
+```
+9
+U111L
+cz2009
+cz2001
+80
+
+```
+
+##Enter a course which the student hasn't been registered to
+```
+9
+U101L
+cz2001
+cz2002
+90
+80
+
+```
+
+##Enter a course not in the course list
+```
+9
+U222L
+CZ2001
+
+
+```
+
+##Enter invalid marks out of mark range
+```
+9
+U222L
+cz2001
+120
+90
+
+```
+
+#CASE 8: Enter exam mark
+
+##Enter valid exam mark for the valid course
+```
+10
+U111L
+cz2001
+90
+
+```
+
+##

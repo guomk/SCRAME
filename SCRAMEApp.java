@@ -916,6 +916,12 @@ public class SCRAMEApp {
 
         System.out.println("Please enter the Course Code of the course you want to enter course work mark");
         courseCode = sc.next();
+        if(!allCourseCodes.containsKey(courseCode)) {
+            System.out.println("This Course Code does not exist in the system records, you can proceed with other operations\n");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return;
+        }
         idx = allCourseCodes.get(courseCode);
         course = courseList.get(idx);
         if(!student.checkRegistered(courseCode)){
