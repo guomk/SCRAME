@@ -1,6 +1,13 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Represents the component of a course.
+ * component includes: exam and all CAs
+ * A course can have only one component
+ * @author Group3
+ * @version 1.0
+ */
 public class Component implements Serializable {
 
     /**

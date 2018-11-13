@@ -1,6 +1,12 @@
 import java.io.*;
 import java.util.*;
 
+/**
+ * Represents the SCRAME application
+ * The application allows the creation of courses and adding of student records.
+ * @author Group3
+ * @version 1.0
+ */
 public class SCRAMEApp {
     /**
      * Scanner class for input.
@@ -83,13 +89,13 @@ public class SCRAMEApp {
         System.out.println("Welcome to the SCRAME System! It's a good day, isn't it?");
         System.out.println();
         while(true){
-            System.out.println("Please choose from the following list of operations (enter a number between 1 and 11):");
+            System.out.println("Please choose from the following list of operations (enter a number between 1 and 13):");
             System.out.println("1. Add a student");
             System.out.println("2. Add a course");
             System.out.println("3. Print current students in the system");
             System.out.println("4. Print current courses in the system");
             System.out.println("5. Register student for a course (this includes registering for Tutorial/Lab classes");
-            System.out.println("6. Check availableslot in a class (vacancy in a class)");
+            System.out.println("6. Check available slot in a class (vacancy in a class)");
             System.out.println("7. Print student list by lecture, tutorial or laboratory session for a course");
             System.out.println("8. Enter course assessment components weightage");
             System.out.println("9. Enter coursework mark - inclusive of its components");
@@ -463,7 +469,7 @@ public class SCRAMEApp {
         }
         System.out.println("Below is the list of all courses, there are altogether " + courseList.size() + " courses in the system.");
         for(Course c:courseList){
-            System.out.println("(" + count + ") Course Code: " + c.getName() + "  |  Course Coordinator: " + c.getFaculty().getName());
+            System.out.println("(" + count + ") Course Code: " + c.getName() + "  |  Course Coordinator: " + c.getFaculty().getName() + " | Course Vacancy: " + c.getLecture().getVacancy());
             count++;
         }
         pressAnyKeyToContinue();
@@ -658,8 +664,8 @@ public class SCRAMEApp {
     	    return;
     	}
         if(choice ==1){
+            System.out.println("Name        "+"MatricNo  "+ "School  "+ "Gender");
     	    for(Student s:studentList){
-    	    	System.out.println("Name        "+"MatricNo  "+ "School  "+ "Gender");
     		    if(s.checkRegistered(courseCode)){
     		    	System.out.format("%-10s  %-8s  %-6s  %s\n", s.getName(), s.getMatricNo(), s.getSchool(), s.getGender());
     		    }
@@ -853,18 +859,29 @@ public class SCRAMEApp {
         ArrayList<Record> records;
         Student student;
         student = getStudent();
+        if (student == null)
+            return;
         String courseCode;
+        int idx;
+        Course course;
 
 
         records = student.getRecordList();
+        if (records.size() == 0) {
+            System.out.println("Student " + student.getName() + " hasn't been registered into any course");
+            pressAnyKeyToContinue();
+            return;
+        }
         boolean valid = true;
 
 
         System.out.println("Please enter the Course Code of the course you want to enter course work mark");
         courseCode = sc.next();
-        if(!allCourseCodes.containsKey(courseCode)){
+        idx = allCourseCodes.get(courseCode);
+        course = courseList.get(idx);
+        if(!student.checkRegistered(courseCode)){
             valid = false;
-            System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
+            System.out.println("Student " + student.getName() + " hasn't been registered to " + courseCode);
         }
         while (!valid) {
             System.out.println("Please enter the Course Code of the course you want to enter course work mark");
@@ -878,9 +895,15 @@ public class SCRAMEApp {
         }
 
 
+        if (!course.hasComponent()) {
+            System.out.println("Please enter the assessment components for the course " + courseList.get(idx).getName() + " first.");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return;
+        }
         for (Record record : records) {
             if (record.getCourse().getName().equals(courseCode)) {
-                record.setCaMarks();
+                record.setCaMarks(sc);
                 record.printCaMarks();
                 break;
             }
@@ -898,16 +921,28 @@ public class SCRAMEApp {
         ArrayList<Record> records;
         Student student;
         student = getStudent();
+        if (student == null)
+            return;
         String courseCode;
-        int mark;
+        int idx;
+        Course course;
+
 
         records = student.getRecordList();
-        boolean valid = true;
+        if (records.size() == 0) {
+            System.out.println("Student " + student.getName() + " hasn't been registered into any course");
+            pressAnyKeyToContinue();
+            return;
+        }
 
+        boolean valid = true;
 
         System.out.println("Please enter the Course Code of the course you want to enter course work mark");
         courseCode = sc.next();
-        if(!allCourseCodes.containsKey(courseCode)){
+        idx = allCourseCodes.get(courseCode);
+        course = courseList.get(idx);
+
+        if(!student.checkRegistered(courseCode)){
             valid = false;
             System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
         }
@@ -921,11 +956,16 @@ public class SCRAMEApp {
             valid = true;
 
         }
-
+        if(!course.hasComponent()){
+            System.out.println("Please enter the assessment components for the course " + courseList.get(idx).getName() + " first.");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return;
+        }
 
         for (Record record : records) {
             if (record.getCourse().getName().equals(courseCode)) {
-                record.setExamMark();
+                record.setExamMark(sc);
                 record.printExamMark();
                 break;
             }
@@ -941,7 +981,66 @@ public class SCRAMEApp {
      * (exam + coursework,exam only and coursework only)
      */
     private static void printCourseStatistic(){
-
+        if(courseList.isEmpty()){
+            System.out.println("There's no course in the System, please add a course first");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return;
+        }
+        int idx = -1;
+        while (idx == -1) {
+            System.out.println("Please enter the course code of the course you want to check");
+            String courseCode;
+            courseCode = sc.next();
+            if(!allCourseCodes.containsKey(courseCode)){
+                System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
+                System.out.println();
+            }
+            else{
+                idx = allCourseCodes.get(courseCode);
+            }
+        }
+        Course currentCourse = courseList.get(idx);
+        if(!currentCourse.hasComponent()){
+            System.out.println("Please enter the assessment components for the course " + courseList.get(idx).getName() + " first.");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return;
+        }
+        double overallavg = 0;
+        int numOfCAs = currentCourse.getComponent().getNumOfCAs();
+        double examavg = 0;
+        double[] caavg = new double[numOfCAs];
+        int count = 0;
+        for(int i = 0; i < currentCourse.getRecordList().size(); i++){
+            Record currentRecord = currentCourse.getRecordList().get(i);
+            if(currentRecord.hasMark()){
+                count++;
+                examavg += currentRecord.getExamMark();
+                overallavg += currentRecord.getOverallMark();
+                for(int j = 0; j < numOfCAs; j++){
+                    caavg[j] += currentRecord.getMark()[j];
+                }
+            }
+        }
+        if(count == 0){
+            System.out.println("There's no student grade record for this course.");
+        }
+        else{
+            if(count == 1){
+                System.out.println("There are altogether " + count + " record found, the average marks over all records are shown below");
+            }
+            else{
+                System.out.println("There are altogether " + count + " records found, the average marks over all records are shown below");
+            }
+            System.out.format("%14s | %f\n", "Overall grade", overallavg / count);
+            System.out.format("%14s | %f\n", "Exam", examavg / count);
+            for(int j = 0; j < numOfCAs; j++){
+                System.out.format("%14s | %f\n", currentCourse.getComponent().getCa().getName(j), caavg[j] / count);
+            }
+        }
+        System.out.println();
+        pressAnyKeyToContinue();
     }
 
     /**
@@ -951,6 +1050,7 @@ public class SCRAMEApp {
     private static void printStudentTranscript(){
         Student student = getStudent();
         student.printTranscript();
+        pressAnyKeyToContinue();
     }
 
     /**
@@ -959,6 +1059,12 @@ public class SCRAMEApp {
      * @return a Course object based on the user input
      */
     private static Course getCourse() {
+        if (courseList.size() == 0) {
+            System.out.println("There is no course in the system");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return null;
+        }
         System.out.println("Enter the course code of the course you want to edit");
         String courseCode;
         int idx;
@@ -984,6 +1090,12 @@ public class SCRAMEApp {
      * @return a Student object based on the user input
      */
     private static Student getStudent() {
+        if (studentList.size() == 0) {
+            System.out.println("There is no student in the system");
+            System.out.println();
+            pressAnyKeyToContinue();
+            return null;
+        }
         System.out.println("Enter the matric number of the student you want to find");
         String matricNo;
         int idx;

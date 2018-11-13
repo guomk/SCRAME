@@ -26,7 +26,7 @@ public class CA implements Serializable{
 
 
     /**
-     * <code>CA</code>constructor
+     * <code>CA</code> constructor
      * Sets the number of CAs and the total percentage.
      * @param num  total number of CAs of the course
      * @param percent  total percentage of all CAs of the course

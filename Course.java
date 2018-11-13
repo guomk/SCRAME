@@ -2,6 +2,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Represents a course in the system.
+ * A course can be enrolled by a limited number(course size) of students.
+ * @author Group3
+ * @version 1.0
+ */
 public class Course implements Serializable {
 	/**
 	 * Name of this course.
@@ -113,7 +119,7 @@ public class Course implements Serializable {
 	/**
 	 * Gets an array of <code>Record</code> object.
 	 * Each Record contains a 'student-course'pair and the student's mark of this course.
-	 * @return the array of Record object containing 'student-course' information related to the course
+	 * @return the array of Record object containing 'student-course' information related to this course
 	 */
 	public ArrayList<Record> getRecordList(){
 		return recordList;
@@ -175,6 +181,9 @@ public class Course implements Serializable {
 		this.component = component;
 	}
 
+	public boolean hasComponent(){
+		return component != null;
+	}
 	/**
 	 * Checks whether this course if full or not.
 	 * Checking is done by individually checking whether lecture, labs and tutorials are full or not.
