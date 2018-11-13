@@ -1,8 +1,5 @@
 import java.io.*;
 import java.util.*;
-import java.util.zip.CheckedOutputStream;
-import java.io.*;
-import java.nio.*;
 
 public class SCRAMEApp {
     /**
@@ -52,6 +49,8 @@ public class SCRAMEApp {
      * key: facultyid, value: the index of corresponding faculty in <cpode>facultyList</cpode>
      */
     private static HashMap<String, Integer>  allfaculties;
+
+    private static String[] ordinals = {"1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, 9th, 10th, 11th, 12th, 13th, 14th, 15th, 16th, 17th, 18th, 19th, 20th, 21st, 22nd, 23rd, 24th"};
 
     /**
      * The main application function.
@@ -158,6 +157,8 @@ public class SCRAMEApp {
         String matricNo = sc.next();
         if(allMatricNos.containsKey(matricNo)){
             System.out.println("This Matriculation Number already exists in the system records, you can proceed with other operations\n");
+            System.out.println();
+            pressAnyKeyToContinue();
             return;
         }
         System.out.println("Please enter the school of " + name);
@@ -188,13 +189,17 @@ public class SCRAMEApp {
         studentCount++;
         System.out.println("You've successfully added the student " + name + " with Matric No. " + matricNo + " to the SCRAME System!");
         System.out.println();
-        System.out.println("Below is the list of all current students, there are altogether " + studentList.size() + " students in the system.");
+        if(studentList.size() == 1)
+            System.out.println("Below is the list of all current students, there is " + studentList.size() + " student in the system.");
+        else
+            System.out.println("Below is the list of all current students, there are altogether " + studentList.size() + " students in the system.");
         int count = 1;
         for(Student s:studentList){
             System.out.println("(" + count + ") Name: " + s.getName() + "  |  Matric Number: " + s.getMatricNo());
             count++;
         }
         System.out.println();
+        pressAnyKeyToContinue();
     }
 
     /**
@@ -205,6 +210,8 @@ public class SCRAMEApp {
         String name = sc.next();
         if(allCourseCodes.containsKey(name)){
             System.out.println("This Course Code already exists in the system records, you can proceed with other operations\n");
+            System.out.println();
+            pressAnyKeyToContinue();
             return;
         }
         System.out.println("Please enter the ID of the course coordinator for " + name);
@@ -273,7 +280,7 @@ public class SCRAMEApp {
             }
             System.out.println("Please proceed with entering the information for the " + number + " tutorial sessions\n");
             for(int i = 0; i < number; i++){
-                System.out.println("Please enter the ID of the tutorial session");
+                System.out.println("Please enter the ID of the " + ordinals[i] + " tutorial session");
                 int id = -1;
                 while(id == -1){
                     try{
@@ -292,10 +299,10 @@ public class SCRAMEApp {
                     }
                     if(tutorialDic.containsKey(id)){
                         id = -1;
-                        System.out.println("This tutorial ID has existed for the course " + name + ", please enter a other ID");
+                        System.out.println("This tutorial ID has existed for the course " + name + ", please enter another ID");
                     }
                 }
-                System.out.println("Please enter the size of the tutorial session");
+                System.out.println("Please enter the size of the " + ordinals[i] + " tutorial session");
                 int size = 0;
                 while(size == 0){
                     try{
@@ -360,7 +367,7 @@ public class SCRAMEApp {
             }
             System.out.println("Please proceed with entering the information for the " + number + " lab sessions\n");
             for(int i = 0; i < number; i++){
-                System.out.println("Please enter the ID of the lab session");
+                System.out.println("Please enter the ID of the " + ordinals[i] + " lab session");
                 int id = -1;
                 while(id == -1){
                     try{
@@ -374,7 +381,7 @@ public class SCRAMEApp {
                     }
                     if(labDic.containsKey(id)){
                         id = -1;
-                        System.out.println("This lab ID has existed for the course " + name + ", please enter a other ID");
+                        System.out.println("This lab ID has existed for the course " + name + ", please enter another ID");
                         continue;
                     }
                     if(id < 0){
@@ -382,7 +389,7 @@ public class SCRAMEApp {
                         System.out.println("The input is not valid, please enter a non-negative number\n");
                     }
                 }
-                System.out.println("Please enter the size of the lab session");
+                System.out.println("Please enter the size of the " + ordinals + " lab session");
                 int size = 0;
                 while(size == 0){
                     try{
@@ -419,6 +426,7 @@ public class SCRAMEApp {
             count++;
         }
         System.out.println();
+        pressAnyKeyToContinue();
     }
 
     /**
@@ -429,6 +437,8 @@ public class SCRAMEApp {
         String matricNo = sc.next();
         if (!allMatricNos.containsKey(matricNo)){
             System.out.println("There's no student in the system with Matric Number " + matricNo + ", please check the correctness of the input\n");
+            System.out.println();
+            pressAnyKeyToContinue();
             return;
         }
         Student currentStudent = studentList.get(allMatricNos.get(matricNo));
@@ -436,15 +446,21 @@ public class SCRAMEApp {
         String courseCode = sc.next();
         if(!allCourseCodes.containsKey(courseCode)){
             System.out.println("The course " + courseCode + " doesn't exist in the system, please check the correctness of the input\n");
+            System.out.println();
+            pressAnyKeyToContinue();
             return;
         }
         if(currentStudent.checkRegistered(courseCode)){
             System.out.println("The student " + currentStudent.getName() + " has already been registered with the course " + courseCode + ".");
+            System.out.println();
+            pressAnyKeyToContinue();
             return;
         }
         Course currentCourse = courseList.get(allCourseCodes.get(courseCode));
         if (currentCourse.isFull()){
             System.out.println("The course " + courseCode + " has no vacancy left, please try another course");
+            System.out.println();
+            pressAnyKeyToContinue();
             return;
         }
         else{
@@ -519,6 +535,8 @@ public class SCRAMEApp {
             currentCourse.addRecord(currentRecord);
             currentStudent.addRecord(currentRecord);
             System.out.println("Congratulation, the student " + currentStudent.getName() + " has been successfully registered with the course " + currentCourse.getName() + "(including lab & tutorial).");
+            System.out.println();
+            pressAnyKeyToContinue();
         }
 
     }
@@ -542,6 +560,8 @@ public class SCRAMEApp {
         for (int j = 1; j <= currentCourse.getLabNumber(); j++){
             System.out.println("Lab group " + j + ": id = " + currentCourse.getLab().get(j-1).getID() + " vacancy = " + currentCourse.getLab().get(j-1).getVacancy());
         }
+        System.out.println();
+        pressAnyKeyToContinue();
         return; 
     }
 
@@ -556,16 +576,18 @@ public class SCRAMEApp {
     	courseCode = sc.next();
     	if(!allCourseCodes.containsKey(courseCode)) {
             System.out.println("This Course Code does not exist in the system records, you can proceed with other operations\n");
+            System.out.println();
+            pressAnyKeyToContinue();
             return;
         }
 
         while(choice == 0){
-        System.out.println("Please choose the sequence do you want to print the student list:");
-        System.out.println("1.By lecture");
-        System.out.println("2.By tutorial");
-        System.out.println("3.By laboratory");
-        try{
-                choice = sc.nextInt();
+            System.out.println("Please choose the sequence do you want to print the student list:");
+            System.out.println("1.By lecture");
+            System.out.println("2.By tutorial");
+            System.out.println("3.By laboratory");
+            try{
+                    choice = sc.nextInt();
             }
             catch (Exception e){
                 sc.next();
@@ -573,28 +595,32 @@ public class SCRAMEApp {
                 System.out.println("The input is not valid, please enter 1 or 2 or 3\n");
                 continue;
             }
-        if(choice != 1 && choice !=2 && choice != 3){
-        	    choice = 0;
+            if(choice != 1 && choice !=2 && choice != 3){
+                choice = 0;
                 System.out.println("The input is not valid, please enter 1 or 2 or 3\n");
                 continue;
-        }
-    }
+            }
+    	}
         Course currentCourse = courseList.get(allCourseCodes.get(courseCode));
-    		if(currentCourse.getRecordList().size()==0){
-    			System.out.println("There is no student registered to this course.");
-    			return;}
+    	if(currentCourse.getRecordList().size()==0){
+    	    System.out.println("There is no student registered to this course.");
+            System.out.println();
+            pressAnyKeyToContinue();
+    	    return;
+    	}
         if(choice ==1){
     	    for(Student s:studentList){
     	    	System.out.println("Student Name  "+" MatricNo  "+ " School "+ " Gender");
     		    if(s.checkRegistered(courseCode)){
     		    	System.out.println(s.getName() + "  " + s.getMatricNo() + "  " + s.getSchool() + "  " + s.getGender());
     		    }
-    	
     		}
     	}
     	else if(choice ==2){
     		if(currentCourse.getTutorialNumber()==0){
     			System.out.println("There is no tutorial for this course.");
+                System.out.println();
+                pressAnyKeyToContinue();
     			return;
     		}
     		else{
@@ -618,12 +644,14 @@ public class SCRAMEApp {
                     	id = -1;
                         System.out.println("The tutorial session does not exist, please enter a valid tutorial session.\n");
                         continue;
-
-    			}
+                    }
                 }
                 if(currentCourse.getTutorial().get(currentCourse.checkTutorial(id)).isEmpty()){
                     System.out.println("There is no student registered to this tutorial session.");
-                    return;}
+                    System.out.println();
+                    pressAnyKeyToContinue();
+                    return;
+                }
 
     	    	System.out.println("Student Name  "+" MatricNo  "+ " School "+ " Gender");
                 for(Record r: currentCourse.getRecordList()){
@@ -634,15 +662,15 @@ public class SCRAMEApp {
     		                   if(se.getID() == id)
     		                       System.out.println(r.getStudent().getName() + "\t\t" + r.getStudent().getMatricNo() + "\t\t" + r.getStudent().getSchool() + "\t\t" + r.getStudent().getGender());
     		            }
-    		        }
-
-
+                }
 
     		}
-    		}
+    	}
         else if(choice ==3){
             if(currentCourse.getLabNumber()==0){
                 System.out.println("There is no lab for this course.");
+                System.out.println();
+                pressAnyKeyToContinue();
                 return;
             }
             else{
@@ -671,26 +699,21 @@ public class SCRAMEApp {
                 }
                 if(currentCourse.getLab().get(currentCourse.checkLab(id)).isEmpty()){
                     System.out.println("There is no student registered to this lab session.");
-                    return;}
+                    return;
+                }
 
-                    System.out.println("Student Name  "+" MatricNo  "+ " School "+ " Gender");
-                        for(Record r: currentCourse.getRecordList()){
-                            int len = r.getSessionList().size();
-                            for(int i = 0; i < len; i++){
-                                Session se = (Session)r.getSessionList().get(i);
-                                if(se instanceof Lab)
-                                    if(se.getID() == id)
-                                        System.out.println(r.getStudent().getName() + "  " + r.getStudent().getMatricNo() + "  " + r.getStudent().getSchool() + "  " + r.getStudent().getGender());
-                            }
+                System.out.println("Student Name  "+" MatricNo  "+ " School "+ " Gender");
+                    for(Record r: currentCourse.getRecordList()){
+                        int len = r.getSessionList().size();
+                        for(int i = 0; i < len; i++){
+                            Session se = (Session)r.getSessionList().get(i);
+                            if(se instanceof Lab)
+                                if(se.getID() == id)
+                                    System.out.println(r.getStudent().getName() + "  " + r.getStudent().getMatricNo() + "  " + r.getStudent().getSchool() + "  " + r.getStudent().getGender());
                         }
-
-
-
+                    }
             }
-        }
-
-
-
+    	}
     }
 
 
@@ -769,6 +792,9 @@ public class SCRAMEApp {
         course.setComponent(component);
 
         component.printComponents();
+
+        System.out.println();
+        pressAnyKeyToContinue();
     }
 
     /**
@@ -813,6 +839,8 @@ public class SCRAMEApp {
             }
 
         }
+        System.out.println();
+        pressAnyKeyToContinue();
 
 //---------------------------------------------------------------end of production section
 
@@ -867,6 +895,8 @@ public class SCRAMEApp {
             }
 
         }
+        System.out.println();
+        pressAnyKeyToContinue();
 
     }
 
@@ -946,7 +976,8 @@ public class SCRAMEApp {
         System.out.println("Press Enter key to continue...");
         try
         {
-            System.in.read();
+            sc.nextLine();
+            sc.nextLine();
         }
         catch(Exception e)
         {}
