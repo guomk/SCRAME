@@ -21,7 +21,7 @@ public class SCRAMEApp {
     /**
      * Number of students in the system.
      */
-    private static int studentCount;
+    private static Integer studentCount;
 
     /**
      * An array of <code>Student</code> object storing all the students.
@@ -31,7 +31,7 @@ public class SCRAMEApp {
     /**
      * Number of courses in the system.
      */
-    private static int courseCount;
+    private static Integer courseCount;
 
     /**
      * A dictionary to store all MatricNumber.
@@ -80,12 +80,24 @@ public class SCRAMEApp {
             facultyList.add(new Faculty(name, title, description, id));
         }
         sc = new Scanner(System.in);
-        courseList = new ArrayList<>();
-        studentList = new ArrayList<>();
-        allMatricNos = new HashMap<>();
-        allCourseCodes = new HashMap<>();
-        courseCount = 0;
-        studentCount = 0;
+        courseList = (ArrayList<Course>)readObject("./courseList");
+        if(courseList == null)
+            courseList = new ArrayList<>();
+        studentList = (ArrayList<Student>)readObject("./studentList");
+        if(studentList == null)
+            studentList = new ArrayList<>();
+        allMatricNos = (HashMap<String, Integer>)readObject("./allMatricNos");
+        if(allMatricNos == null)
+            allMatricNos = new HashMap<>();
+        allCourseCodes = (HashMap<String, Integer>)readObject("./allCourseCodes");
+        if(allCourseCodes == null)
+            allCourseCodes = new HashMap<>();
+        courseCount = (Integer)readObject("./courseCount");
+        if(courseCount == null)
+            courseCount = 0;
+        studentCount = (Integer)readObject("./studentCount");
+        if(studentCount == null)
+            studentCount = 0;
         System.out.println("Welcome to the SCRAME System! It's a good day, isn't it?");
         System.out.println();
         while(true){
@@ -102,7 +114,7 @@ public class SCRAMEApp {
             System.out.println("10. Enter exam mark");
             System.out.println("11. Print course statistics");
             System.out.println("12. Print student transcript");
-            System.out.println("13. Quit");
+            System.out.println("13. Save and Quit");
 
             int choice = 0;
             try{
@@ -118,6 +130,12 @@ public class SCRAMEApp {
                 continue;
             }
             if(choice == 13) {
+                saveObject(courseList, "./courseList");
+                saveObject(studentList, "./studentList");
+                saveObject(courseCount, "./courseCount");
+                saveObject(studentCount, "./studentCount");
+                saveObject(allCourseCodes, "./allCourseCodes");
+                saveObject(allMatricNos, "./allMatricNos");
                 System.out.println("Thanks for using SCRAME, see you next time!");
                 break;
             }
@@ -1134,10 +1152,10 @@ public class SCRAMEApp {
     /**
      * A helper function that performs serialization,
      * saves object to binary files
+     * @param outPath the path of the object to be serialized
      * @param o Any object.
      */
-    private static void saveObject(Object o) {
-        String outPath = "";
+    private static void saveObject(Object o, String outPath) {
         try {
             FileOutputStream fileOut = new FileOutputStream(outPath);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -1146,7 +1164,6 @@ public class SCRAMEApp {
             fileOut.close();
             System.out.println("Serialized data is saved in " + outPath);
         } catch (IOException i) {
-            i.printStackTrace();
         }
 
     }
@@ -1154,11 +1171,10 @@ public class SCRAMEApp {
     /**
      * A helper function that reads any object and return it,
      * Type casting is not done
-     * @param o an Object read from binary file
+     * @param inPath the path from which we read object
      * @return an Object or null
      */
-    private static Object readObject(Object o) {
-        String inPath = "";
+    private static Object readObject(String inPath) {
         try {
             FileInputStream fileIn = new FileInputStream(inPath);
             ObjectInputStream in = new ObjectInputStream(fileIn);
@@ -1167,11 +1183,9 @@ public class SCRAMEApp {
             fileIn.close();
             return object;
         } catch (IOException i) {
-            i.printStackTrace();
             return null;
         } catch (ClassNotFoundException c) {
             System.out.println("Class not found");
-            c.printStackTrace();
             return null;
         }
     }
