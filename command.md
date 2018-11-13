@@ -110,6 +110,8 @@ Dummy
 U987H
 DummySchool
 6
+2
+
 
 ```
 --------------------------------------------------------------
@@ -157,7 +159,7 @@ cz2007
 10
 
 ```
-# Test adding existing course
+### Test adding existing course
 ```
 
 2
@@ -391,7 +393,11 @@ cz2006
 --------------------------------------------------------
 
 
+<<<<<<< HEAD
 # CASE 4: Check available slot in a class (vacancy in a class)
+=======
+# CASE 4: Check available slot in a class
+>>>>>>> 11520ae6121ad90134cf1401b00e42844b878de6
 ```
 
 6
@@ -417,6 +423,7 @@ cz2006
 
 
 
+<<<<<<< HEAD
 # CASE 5:Print student list by lecture, tutorial or laboratory session for a course. 
 
 ###Print student list for cz2001
@@ -520,3 +527,44 @@ cz2007
 3
 2
 ```
+=======
+# CASE: 5
+
+
+
+
+# CASE 6: Enter course assessment components weightage
+
+## Add course assessment with only 1 exam + main coursework component without sub-components
+```
+8
+cz2001
+60
+1
+coursework
+100
+
+```
+
+## Enter course assessment with exam + a coursework with 2 sub-components
+```
+8
+cz2002
+60
+2
+assignment
+70
+class_participation
+30
+
+```
+
+## Enter invalid weightage
+```
+8
+cz2007
+120
+60
+
+```
+>>>>>>> 11520ae6121ad90134cf1401b00e42844b878de6
