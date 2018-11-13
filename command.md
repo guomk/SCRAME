@@ -267,6 +267,21 @@ U100L
 cz2002
 1
 
+5
+U101L
+cz2002
+2
+
+5
+U122L
+cz2002
+2
+
+5
+U133L
+cz2002
+2
+
 
 ```
 
@@ -332,8 +347,6 @@ U100L
 cz2007
 1
 1
-
-
 
 ```
 
@@ -405,7 +418,10 @@ cz2006
 
 
 # CASE 5:Print student list by lecture, tutorial or laboratory session for a course. 
+
+###Print student list for cz2001
 ```
+
 7
 cz2001
 1
@@ -417,7 +433,9 @@ cz2001
 7
 cz2001
 3
-
+```
+###Print student list for cz2002
+```
 7
 cz2002
 1
@@ -425,4 +443,80 @@ cz2002
 7
 cz2002
 2
+1
 
+7
+cz2002
+2
+2
+
+7
+cz2002
+3
+```
+
+###Print student list for cz2007
+```
+
+7
+cz2007
+1
+
+7
+cz2007
+2
+1
+
+7
+cz2007
+3
+1
+
+
+```
+###Print student list for nonexistent course
+```
+7
+cz2006
+```
+
+###Print student list for nonexistent tutorial 
+```
+7
+cz2001
+2
+
+7
+cz2002
+2
+3
+```
+
+###Print student list for nonexistent lab 
+```
+7
+cz2002
+3
+
+7
+cz2007
+3
+3
+
+```
+
+###Print student list for empty tutorial
+```
+7
+cz2007
+2
+2
+```
+
+###Print student list for empty lab
+```
+7
+cz2007
+3
+2
+```
