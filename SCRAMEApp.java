@@ -854,7 +854,8 @@ public class SCRAMEApp {
         ca = component.getCa();
         for (int i = 0; i < numOfCAs; i++) {
             System.out.println("Enter name for CA(" + (i+1) + ")");
-            name = sc.next();
+            sc.nextLine();
+            name = sc.nextLine();
             ca.setName(name, i);
             if (i == numOfCAs-1) {
                 percent = 1 - percent;

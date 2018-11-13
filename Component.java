@@ -52,9 +52,9 @@ public class Component implements Serializable {
      */
     public void printComponents() {
         System.out.println("Component of the course: ");
-        System.out.format("%12s | %d%%\n", "Exam",  Math.round(100 * examWeightage));
+        System.out.format("%25s | %d%%\n", "Exam",  Math.round(100 * examWeightage));
         for (int i = 0; i < numOfCAs; i++) {
-            System.out.format("%12s | %d%%\n", ca.getName(i), Math.round(ca.getWeightage(i) * 100));
+            System.out.format("%25s | %d%%\n", ca.getName(i), Math.round(ca.getWeightage(i) * 100));
         }
         System.out.println();
     }
