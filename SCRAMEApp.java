@@ -1133,7 +1133,7 @@ public class SCRAMEApp{
                 idx = allCourseCodes.get(courseCode);
             }
             catch (Exception e) {
-                System.out.println("The course you are looking for is not valid");
+                System.out.println("the course you are looking for is not valid, please enter a valid course code");
                 continue;
             }
             break;
@@ -1164,7 +1164,7 @@ public class SCRAMEApp{
                 idx = allMatricNos.get(matricNo);
             }
             catch (Exception e) {
-                System.out.println("The student you are looking for is not present");
+                System.out.println("the student you are looking for is not present, please enter a vlid matric number");
                 continue;
             }
             break;
