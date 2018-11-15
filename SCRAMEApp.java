@@ -1098,7 +1098,7 @@ public class SCRAMEApp {
             }
             System.out.println("--------------------------------------------");
             System.out.format("%-20s | %-8s | %s\n", "Component", "Grade", "Weightage");
-            System.out.format("%-20s | %-4.2f/100 | %s\n", "Overall grade", overallavg/count, "NA");
+            System.out.format("%-20s | %-4.2f/100 | %s\n", "Overall grade", overallavg/count, "100%");
             System.out.format("%-20s | %-4.2f/100 | %d%%\n", "Exam", examavg / count, Math.round(currentCourse.getComponent().getExamWeightage() * 100));
             for(int j = 0; j < numOfCAs; j++){
                 System.out.format("%-20s | %-4.2f/100 | %d%%\n", currentCourse.getComponent().getCa().getName(j), caavg[j] / count, Math.round(100 * currentCourse.getComponent().getCa().getWeightage(j)));
@@ -1179,6 +1179,10 @@ public class SCRAMEApp {
                 idx = allMatricNos.get(matricNo);
             }
             catch (Exception e) {
+<<<<<<< HEAD
+                System.out.println("the student you are looking for is not present, please enter a vlid matric number");
+=======
+>>>>>>> c3bc29397742d6f0a72e000a24a9a22c1223201f
                 System.out.println("The student you are looking for is not present. Please enter another matric number");
                 continue;
             }
