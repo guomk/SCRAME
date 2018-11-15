@@ -912,8 +912,6 @@ U111L
 
 ```
 
-<<<<<<< HEAD
-=======
 ###Enter a student that has not been registered to a course
 ```
 10
@@ -926,4 +924,3 @@ U166L
 U111L
 cz2006
 ```
->>>>>>> a1e8b22e036c916ce02a772a44a08cdb4144df61
