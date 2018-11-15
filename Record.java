@@ -190,7 +190,8 @@ public class Record implements Serializable {
         System.out.println("--------------------------------------------");
         System.out.format("%-20s | %-8s | %s\n", "Name", "Grade", "Weightage");
         System.out.format("%-20s | %-8s | %d%%\n", "Exam", Integer.toString(examMark) + "/100", Math.round(component.getExamWeightage() * 100));
-        for (int i = 0; i < component.getNumOfCAs(); i++) {
+        int numOfCAs = component.getNumOfCAs();
+        for (int i = 0; i < numOfCAs; i++) {
             System.out.format("%-20s | %-8s | %d%%\n", ca.getName(i), Integer.toString(marks[i]) + "/100", Math.round(100 * ca.getWeightage(i)));
         }
         System.out.println("--------------------------------------------");
