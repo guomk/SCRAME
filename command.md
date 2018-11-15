@@ -90,6 +90,12 @@ U155L
 IEM
 1
 
+1
+Wendy
+U166L
+SCBE
+2
+
 ```
 
 ### Test adding existing student
@@ -822,6 +828,22 @@ cz2001
 
 ```
 
+###Enter invalid exam mark(out of range)
+```
+10
+U222L
+cz2001
+150
+50
+
+10
+U222L
+cz2001
+-30
+20
+
+```
+
 ###Enter course without assessment components
 ```
 10
@@ -890,3 +912,18 @@ U111L
 
 ```
 
+<<<<<<< HEAD
+=======
+###Enter a student that has not been registered to a course
+```
+10
+U166L
+```
+
+### Enter a nonexistent course
+```
+10
+U111L
+cz2006
+```
+>>>>>>> a1e8b22e036c916ce02a772a44a08cdb4144df61
