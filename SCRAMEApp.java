@@ -186,6 +186,7 @@ public class SCRAMEApp {
 
     /**
      * Adds a student to this system.
+     * Since this is a private method. It will not be shown in the HTML file
      */
     private static void addStudent(){
         System.out.println("Please enter the student's name");
@@ -242,6 +243,7 @@ public class SCRAMEApp {
 
     /**
      * Prints name and matric number of all students in the school.
+     * Since this is a private method. It will not be shown in the HTML file
      */
     private static void printStudent() {
         int count = 1;
@@ -261,6 +263,7 @@ public class SCRAMEApp {
 
     /**
      * Adds a course to this system(including tutorials and labs).
+     * Since this is a private method. It will not be shown in the HTML file
      */
     private static void addCourse(){
         System.out.println("Please enter the Course Code");
@@ -488,6 +491,7 @@ public class SCRAMEApp {
 
     /**
      * Prints course code and faculty who teaches the course of all courses in the system.
+     * Since this is a private method. It will not be shown in the HTML file
      */
     private static void printCourse() {
         int count = 1;
@@ -507,6 +511,7 @@ public class SCRAMEApp {
 
     /**
      * Registers a student to a course(including registration of labs and tutorials) and store 'student-course' information in a record.
+     * Since this is a private method. It will not be shown in the HTML file
      */
     private static void addStudentToCourse(){
         System.out.println("Please enter the Matriculation Number of the student");
@@ -627,6 +632,7 @@ public class SCRAMEApp {
 
     /**
      * Checks the vacancy of each lecture, lab and tutorial of a course.
+     * Since this is a private method. It will not be shown in the HTML file
      */
     private static void checkVacancy(){
         System.out.println("Please enter the Course Code you want to check for vacancy");
@@ -651,6 +657,7 @@ public class SCRAMEApp {
 
     /**
      * Prints the list of students of a course by lecture, lab or tutorial.
+     * Since this is a private method. It will not be shown in the HTML file
      */
     private static void printStudentList(){
     	String courseCode;
@@ -803,6 +810,7 @@ public class SCRAMEApp {
 
     /**
      * Records the weightage of each component of a course (including coursework and exam).
+     * Since this is a private method. It will not be shown in the HTML file
      */
     private static void enterAssessmentWeightage(){
         double exam_weightage = 0;
@@ -894,6 +902,7 @@ public class SCRAMEApp {
 
     /**
      * Gets coursework mark of a course for a specific student(inclusive of its component).
+     * Since this is a private method. It will not be shown in the HTML file
      */
     private static void enterCourseWorkMark(){
         ArrayList<Record> records;
@@ -962,6 +971,7 @@ public class SCRAMEApp {
 
     /**
      * Gets exam mark of a course for a specific student.
+     * Since this is a private method. It will not be shown in the HTML file
      */
     private static void enterExamMark(){
         ArrayList<Record> records;
@@ -1031,6 +1041,7 @@ public class SCRAMEApp {
     /**
      * Shows grade percentage for overall
      * (exam + coursework,exam only and coursework only)
+     * Since this is a private method. It will not be shown in the HTML file
      */
     private static void printCourseStatistic(){
         if(courseList.isEmpty()){
@@ -1090,7 +1101,7 @@ public class SCRAMEApp {
             System.out.format("%-20s | %-4.2f/100 | %s\n", "Overall grade", overallavg/count, "NA");
             System.out.format("%-20s | %-4.2f/100 | %d%%\n", "Exam", examavg / count, Math.round(currentCourse.getComponent().getExamWeightage() * 100));
             for(int j = 0; j < numOfCAs; j++){
-                System.out.format("%-20s | %-8s | %d%%\n", currentCourse.getComponent().getCa().getName(j), caavg[j] / count + "/100", Math.round(100 * currentCourse.getComponent().getCa().getWeightage(j)));
+                System.out.format("%-20s | %-4.2f/100 | %d%%\n", currentCourse.getComponent().getCa().getName(j), caavg[j] / count, Math.round(100 * currentCourse.getComponent().getCa().getWeightage(j)));
             }
         }
         System.out.println();
@@ -1100,6 +1111,7 @@ public class SCRAMEApp {
     /**
      * Shows results for all courses registered by a student,
      * inclusive of the overall course mark and individual component marks.
+     * Since this is a private method. It will not be shown in the HTML file
      */
     private static void printStudentTranscript(){
         Student student = getStudent();
@@ -1116,6 +1128,7 @@ public class SCRAMEApp {
      * A helper function that reads a course code (String),
      * perform input checking and returns a Course object.
      * @return a Course object based on the user input
+     * Since this is a private method. It will not be shown in the HTML file
      */
     private static Course getCourse() {
         if (courseList.size() == 0) {
@@ -1147,6 +1160,7 @@ public class SCRAMEApp {
      * A helper function that reads a student's matric Number,
      * perform input checking and returns a Student object.
      * @return a Student object based on the user input
+     * Since this is a private method. It will not be shown in the HTML file
      */
     private static Student getStudent() {
         if (studentList.size() == 0) {
@@ -1177,6 +1191,7 @@ public class SCRAMEApp {
     /**
      * A helper function that waits for any user action,
      * used to pause the program
+     * Since this is a private method. It will not be shown in the HTML file
      */
     private static void pressAnyKeyToContinue()
     {
@@ -1195,6 +1210,7 @@ public class SCRAMEApp {
      * saves object to binary files
      * @param outPath the path of the object to be serialized
      * @param o Any object.
+     * Since this is a private method. It will not be shown in the HTML file
      */
     private static void saveObject(Object o, String outPath) {
         try {
@@ -1214,6 +1230,7 @@ public class SCRAMEApp {
      * Type casting is not done
      * @param inPath the path from which we read object
      * @return an Object or null
+     * Since this is a private method. It will not be shown in the HTML file
      */
     private static Object readObject(String inPath) {
         try {
