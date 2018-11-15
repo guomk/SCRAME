@@ -129,13 +129,6 @@ DummySchool
 ```
 
 2
-cz2001
-1
-15
-2
-2
-
-2
 cz2002
 3
 18
@@ -148,21 +141,32 @@ cz2002
 2
 
 2
+cz2001
+1
+15
+2
+2
+
+2
 cz2007
 2
 18
 1
-2
+3
 1
 10
 2
 10
-1
+3
 2
+1
+3
 1
 10
 2
 10
+3
+2
 
 ```
 ### Test adding existing course
@@ -237,6 +241,9 @@ cz2001
 U144L
 cz2001
 
+5
+U155L
+cz2001
 
 ```
 ### Add student to cz2002
@@ -381,7 +388,7 @@ cz2007
 ```
 
 5
-U101L
+U166L
 cz2001
 
 ```
@@ -531,15 +538,15 @@ cz2007
 7
 cz2007
 2
-2
+3
 ```
 
 ###Print student list for empty lab
 ```
 7
 cz2007
-3
 2
+3
 ```
 
 
@@ -574,23 +581,21 @@ class participation
 ### Enter invalid weightage
 ```
 8
-cz2007
+cz2001
 120
 60
-1
-assignment
+coursework
 
 ```
 
 ### Enter invalid number of CAs
 ``` 
 8
-cz2007
+cz2001
 60
 0
 1
-assignment
-100
+coursework
 
 ```
 
@@ -655,10 +660,6 @@ U999L
 cz2001
 37
 
-9
-U999L
-cz2001
-87
 
 9
 U100L
@@ -712,8 +713,6 @@ cz2001
 9
 U111L
 cz2009
-cz2001
-80
 
 ```
 
@@ -721,21 +720,12 @@ cz2001
 ```
 9
 U101L
+cz2007
 cz2001
-cz2002
 90
-80
 
 ```
 
-###Enter a course not in the course list
-```
-9
-U222L
-CZ2001
-
-
-```
 
 ###Enter invalid marks out of mark range
 ```
@@ -826,6 +816,11 @@ U144L
 cz2001
 4
 
+10
+U111L
+cz2002
+44
+
 ```
 
 ###Enter invalid exam mark(out of range)
@@ -857,7 +852,8 @@ cz2007
 10
 U144L
 cz2002
-
+cz2001
+90
 
 ```
 
@@ -874,8 +870,8 @@ cz2001
 ###Enter course with invalid course code
 ```
 10
-U1000L
-CZ2000
+U100L
+cz2000
 
 
 ```
@@ -912,6 +908,10 @@ U111L
 
 ```
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c3bc29397742d6f0a72e000a24a9a22c1223201f
 ###Enter a student that has not been registered to a course
 ```
 10
