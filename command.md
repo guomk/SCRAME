@@ -584,6 +584,7 @@ class participation
 cz2001
 120
 60
+1
 coursework
 
 ```
@@ -908,10 +909,7 @@ U111L
 
 ```
 
-<<<<<<< HEAD
-=======
 
->>>>>>> c3bc29397742d6f0a72e000a24a9a22c1223201f
 ###Enter a student that has not been registered to a course
 ```
 10

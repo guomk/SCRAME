@@ -1179,11 +1179,7 @@ public class SCRAMEApp {
                 idx = allMatricNos.get(matricNo);
             }
             catch (Exception e) {
-<<<<<<< HEAD
-                System.out.println("the student you are looking for is not present, please enter a vlid matric number");
-=======
->>>>>>> c3bc29397742d6f0a72e000a24a9a22c1223201f
-                System.out.println("The student you are looking for is not present. Please enter another matric number");
+                System.out.println("the student you are looking for is not present, please enter a valid matric number");
                 continue;
             }
             break;
