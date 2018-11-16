@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"<Unnamed>","l":"CA"},{"p":"<Unnamed>","l":"Component"},{"p":"<Unnamed>","l":"Course"},{"p":"<Unnamed>","l":"Faculty"},{"p":"<Unnamed>","l":"Lab"},{"p":"<Unnamed>","l":"Lecture"},{"p":"<Unnamed>","l":"Record"},{"p":"<Unnamed>","l":"SCRAMEApp"},{"p":"<Unnamed>","l":"Student"},{"p":"<Unnamed>","l":"Tutorial"}]
